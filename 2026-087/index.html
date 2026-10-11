@@ -9,17 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@400;500;600&display=swap">
 <style>
-  /* Full-bredde modellscene med sidestilt spesifikasjonsspalte; stabler paa mobil. */
+  /* Modellscene med verktoeylinje og visningsterning; spesifikasjon i sidespalte, stabler paa mobil. */
   :root {
-    --ground: #F2EFE6;
-    --surface: #FBFAF6;
-    --ink: #1C342E;
-    --ink-soft: #55665F;
-    --line: #D8D2C2;
-    --accent: #1C342E;
-    --spark: #7E9B2F;
-    --stage-a: #E6E1D2;
-    --stage-b: #CFC8B4;
+    --ground: #F2EFE6; --surface: #FBFAF6; --ink: #1C342E; --ink-soft: #55665F;
+    --line: #D8D2C2; --accent: #1C342E; --spark: #7E9B2F;
+    --stage-a: #E6E1D2; --stage-b: #CFC8B4; --mal: #B4471F;
     --display: "Cardo", Georgia, "Times New Roman", serif;
     --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
@@ -27,13 +21,13 @@
     :root:not([data-theme="light"]) {
       --ground: #141E1B; --surface: #1C342E; --ink: #F2EFE6; --ink-soft: #A9BBB2;
       --line: #2E4A42; --accent: #DCF263; --spark: #DCF263;
-      --stage-a: #24403A; --stage-b: #14201D; color-scheme: dark;
+      --stage-a: #24403A; --stage-b: #14201D; --mal: #FF8A5B; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --ground: #141E1B; --surface: #1C342E; --ink: #F2EFE6; --ink-soft: #A9BBB2;
     --line: #2E4A42; --accent: #DCF263; --spark: #DCF263;
-    --stage-a: #24403A; --stage-b: #14201D; color-scheme: dark;
+    --stage-a: #24403A; --stage-b: #14201D; --mal: #FF8A5B; color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -56,8 +50,8 @@
   }
   h1 {
     font-family: var(--display); font-weight: 700;
-    font-size: clamp(1.4rem, 5vw, 2.1rem); line-height: 1.1;
-    margin: 0; text-wrap: balance;
+    font-size: clamp(1.4rem, 5vw, 2.1rem); line-height: 1.1; margin: 0;
+    text-wrap: balance;
   }
   .kunde { color: var(--ink-soft); font-size: 14px; margin-left: auto; }
 
@@ -71,23 +65,66 @@
     position: relative; min-width: 0;
     border: 1px solid var(--line); border-radius: 3px;
     background: linear-gradient(170deg, var(--stage-a), var(--stage-b));
-    overflow: hidden;
+    overflow: hidden; touch-action: none;
   }
   model-viewer {
     display: block; width: 100%;
-    height: clamp(340px, 60vh, 680px);
+    height: clamp(360px, 62vh, 700px);
     background: transparent; --poster-color: transparent;
   }
+
+  /* --- visningsterning --- */
+  .terning {
+    position: absolute; top: 12px; right: 12px;
+    display: grid; grid-template-columns: repeat(3, 34px); gap: 3px;
+  }
+  .terning button, .verktoy button {
+    font-family: var(--body); font-size: 10px; font-weight: 600;
+    letter-spacing: .05em; text-transform: uppercase;
+    color: var(--ink); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 6px 0; cursor: pointer; opacity: .94;
+  }
+  .terning button:hover, .verktoy button:hover { border-color: var(--accent); }
+  .terning button:focus-visible, .verktoy button:focus-visible {
+    outline: 2px solid var(--spark); outline-offset: 1px;
+  }
+  .terning .tom { visibility: hidden; }
+
+  /* --- verktoey --- */
+  .verktoy {
+    position: absolute; top: 12px; left: 12px; display: flex; gap: 6px;
+  }
+  .verktoy button { padding: 6px 10px; }
+  .verktoy button[aria-pressed="true"] {
+    background: var(--accent); color: var(--ground); border-color: var(--accent);
+  }
+
   .hint {
     position: absolute; left: 12px; bottom: 12px;
     font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
     color: var(--ink-soft); background: var(--surface);
     border: 1px solid var(--line); border-radius: 2px; padding: 5px 9px;
-    pointer-events: none; opacity: .9;
+    pointer-events: none; opacity: .9; max-width: calc(100% - 24px);
   }
   .loading {
     position: absolute; inset: 0; display: grid; place-items: center;
     font-size: 13px; color: var(--ink-soft); letter-spacing: .04em;
+  }
+
+  /* --- maalelinje --- */
+  svg.maal { position: absolute; inset: 0; pointer-events: none; }
+  svg.maal line { stroke: var(--mal); stroke-width: 2; }
+  svg.maal circle { fill: var(--mal); }
+  .maaltall {
+    position: absolute; transform: translate(-50%, -50%);
+    background: var(--mal); color: #fff; font-size: 12px; font-weight: 600;
+    font-variant-numeric: tabular-nums; padding: 3px 8px; border-radius: 2px;
+    pointer-events: none; white-space: nowrap;
+  }
+  .punkt {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--mal); border: 2px solid #fff; box-sizing: content-box;
   }
 
   aside { min-width: 0; display: flex; flex-direction: column; gap: 22px; }
@@ -119,6 +156,7 @@
     font-size: 12px; color: var(--ink-soft);
     display: flex; flex-wrap: wrap; gap: 6px 18px;
   }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
@@ -130,14 +168,15 @@
 </header>
 
 <div class="wrap">
-  <div class="stage">
+  <div class="stage" id="stage">
     <div class="loading" id="laster">Laster modell&nbsp;&hellip;</div>
+
     <model-viewer
       id="mv"
       src="modell.glb"
       alt="3D-modell av testleilighet: kj&oslash;kken, garderobe og skapmodul"
       camera-controls
-      touch-action="pan-y"
+      touch-action="none"
       interaction-prompt="none"
       shadow-intensity="0.9"
       shadow-softness="0.7"
@@ -145,8 +184,33 @@
       environment-image="neutral"
       camera-orbit="32deg 68deg 78%"
       min-field-of-view="8deg">
+      <button class="punkt" slot="hotspot-a" data-position="0 0 0" data-visibility-attribute="visible" hidden></button>
+      <button class="punkt" slot="hotspot-b" data-position="0 0 0" data-visibility-attribute="visible" hidden></button>
     </model-viewer>
-    <div class="hint">Dra for &aring; snu &middot; knip for &aring; zoome</div>
+
+    <svg class="maal" id="maalsvg" hidden>
+      <line id="maallinje" x1="0" y1="0" x2="0" y2="0"></line>
+    </svg>
+    <div class="maaltall" id="maaltall" hidden></div>
+
+    <div class="verktoy">
+      <button id="maalknapp" aria-pressed="false" title="Klikk to punkter p&aring; modellen">M&aring;l</button>
+      <button id="nullstill" hidden>T&oslash;m</button>
+    </div>
+
+    <div class="terning" aria-label="Visningsretning">
+      <button class="tom" tabindex="-1" aria-hidden="true"></button>
+      <button data-orbit="0deg 0deg 100%">Topp</button>
+      <button class="tom" tabindex="-1" aria-hidden="true"></button>
+      <button data-orbit="-90deg 90deg 100%">Venstre</button>
+      <button data-orbit="0deg 90deg 100%">Front</button>
+      <button data-orbit="90deg 90deg 100%">H&oslash;yre</button>
+      <button class="tom" tabindex="-1" aria-hidden="true"></button>
+      <button data-orbit="32deg 68deg 78%">3D</button>
+      <button data-orbit="180deg 90deg 100%">Bak</button>
+    </div>
+
+    <div class="hint" id="hint">Dra for &aring; snu &middot; knip for &aring; zoome</div>
   </div>
 
   <aside>
@@ -211,13 +275,104 @@
     'Oppdatert ' + new Date().toLocaleDateString('nb-NO',
       { day: '2-digit', month: 'long', year: 'numeric' });
 
-  const mv = document.getElementById('mv');
-  const laster = document.getElementById('laster');
+  const mv       = document.getElementById('mv');
+  const stage    = document.getElementById('stage');
+  const laster   = document.getElementById('laster');
+  const hint     = document.getElementById('hint');
+  const svg      = document.getElementById('maalsvg');
+  const linje    = document.getElementById('maallinje');
+  const tall     = document.getElementById('maaltall');
+  const maalknapp = document.getElementById('maalknapp');
+  const nullstill = document.getElementById('nullstill');
+
   mv.addEventListener('load', () => { laster.hidden = true; });
   mv.addEventListener('error', () => { laster.textContent = 'Kunne ikke laste modellen.'; });
   const ferdig = setInterval(() => {
     if (mv.loaded) { laster.hidden = true; clearInterval(ferdig); }
   }, 200);
+
+  /* --- visningsterning --------------------------------------------------- */
+  document.querySelectorAll('.terning button[data-orbit]').forEach(b => {
+    b.addEventListener('click', () => {
+      mv.cameraOrbit = b.dataset.orbit;
+      mv.jumpCameraToGoal?.();
+    });
+  });
+
+  /* --- maaling ----------------------------------------------------------- */
+  // Modellen er i millimeter, saa avstanden kommer rett ut i mm.
+  let maaler = false;
+  let punkter = [];
+
+  function formater(mm) {
+    return mm >= 1000
+      ? (mm / 1000).toLocaleString('nb-NO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' m'
+      : Math.round(mm).toLocaleString('nb-NO') + ' mm';
+  }
+
+  function settPunkt(navn, pos) {
+    mv.updateHotspot({ name: navn, position: `${pos.x} ${pos.y} ${pos.z}` });
+    mv.querySelector(`[slot="${navn}"]`).hidden = false;
+  }
+
+  function tegn() {
+    if (punkter.length < 2) { svg.hidden = true; tall.hidden = true; return; }
+    const a = mv.queryHotspot('hotspot-a');
+    const b = mv.queryHotspot('hotspot-b');
+    if (!a || !b) return;
+    svg.hidden = false; tall.hidden = false;
+    linje.setAttribute('x1', a.canvasPosition.x);
+    linje.setAttribute('y1', a.canvasPosition.y);
+    linje.setAttribute('x2', b.canvasPosition.x);
+    linje.setAttribute('y2', b.canvasPosition.y);
+    tall.style.left = ((a.canvasPosition.x + b.canvasPosition.x) / 2) + 'px';
+    tall.style.top  = ((a.canvasPosition.y + b.canvasPosition.y) / 2) + 'px';
+    const dx = punkter[0].x - punkter[1].x;
+    const dy = punkter[0].y - punkter[1].y;
+    const dz = punkter[0].z - punkter[1].z;
+    tall.textContent = formater(Math.sqrt(dx * dx + dy * dy + dz * dz));
+  }
+
+  function tomMaal() {
+    punkter = [];
+    svg.hidden = true; tall.hidden = true; nullstill.hidden = true;
+    mv.querySelectorAll('[slot^="hotspot-"]').forEach(h => h.hidden = true);
+    if (maaler) hint.textContent = 'Klikk to punkter på modellen';
+  }
+
+  maalknapp.addEventListener('click', () => {
+    maaler = !maaler;
+    maalknapp.setAttribute('aria-pressed', String(maaler));
+    mv.cameraControls = !maaler ? true : true;   // rotasjon beholdes
+    hint.textContent = maaler
+      ? 'Klikk to punkter på modellen'
+      : 'Dra for å snu · knip for å zoome';
+    if (!maaler) tomMaal();
+  });
+
+  nullstill.addEventListener('click', tomMaal);
+
+  mv.addEventListener('click', (e) => {
+    if (!maaler) return;
+    const treff = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
+    if (!treff) { hint.textContent = 'Klikk på selve modellen'; return; }
+    if (punkter.length >= 2) tomMaal();
+    punkter.push(treff.position);
+    settPunkt(punkter.length === 1 ? 'hotspot-a' : 'hotspot-b', treff.position);
+    nullstill.hidden = false;
+    hint.textContent = punkter.length === 1
+      ? 'Klikk punkt nummer to'
+      : 'Trykk Tøm for nytt mål';
+    tegn();
+  });
+
+  mv.addEventListener('camera-change', tegn);
+  new ResizeObserver(() => {
+    svg.setAttribute('viewBox', `0 0 ${stage.clientWidth} ${stage.clientHeight}`);
+    svg.setAttribute('width', stage.clientWidth);
+    svg.setAttribute('height', stage.clientHeight);
+    tegn();
+  }).observe(stage);
 </script>
 
 </body>
