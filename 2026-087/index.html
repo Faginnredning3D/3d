@@ -76,11 +76,12 @@
   /* --- visningsterning --- */
   .terning {
     position: absolute; top: 12px; right: 12px;
-    display: grid; grid-template-columns: repeat(3, 34px); gap: 3px;
+    display: grid; grid-template-columns: repeat(3, 58px); gap: 3px;
   }
+  @media (max-width: 520px) { .terning { grid-template-columns: repeat(3, 50px); } }
   .terning button, .verktoy button {
-    font-family: var(--body); font-size: 10px; font-weight: 600;
-    letter-spacing: .05em; text-transform: uppercase;
+    font-family: var(--body); font-size: 9.5px; font-weight: 600;
+    letter-spacing: .02em; text-transform: uppercase; white-space: nowrap;
     color: var(--ink); background: var(--surface);
     border: 1px solid var(--line); border-radius: 2px;
     padding: 6px 0; cursor: pointer; opacity: .94;
@@ -113,8 +114,11 @@
   }
 
   /* --- maalelinje --- */
-  svg.maal { position: absolute; inset: 0; pointer-events: none; }
-  svg.maal line { stroke: var(--mal); stroke-width: 2; }
+  svg.maal {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: visible;
+  }
+  svg.maal line { stroke: var(--mal); stroke-width: 2; stroke-dasharray: 6 4; }
   svg.maal circle { fill: var(--mal); }
   .maaltall {
     position: absolute; transform: translate(-50%, -50%);
@@ -367,12 +371,8 @@
   });
 
   mv.addEventListener('camera-change', tegn);
-  new ResizeObserver(() => {
-    svg.setAttribute('viewBox', `0 0 ${stage.clientWidth} ${stage.clientHeight}`);
-    svg.setAttribute('width', stage.clientWidth);
-    svg.setAttribute('height', stage.clientHeight);
-    tegn();
-  }).observe(stage);
+  // Ingen viewBox: SVG-koordinater = CSS-piksler, samme rom som hotspot-posisjonene.
+  new ResizeObserver(tegn).observe(stage);
 </script>
 
 </body>
