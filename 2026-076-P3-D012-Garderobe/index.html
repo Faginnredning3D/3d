@@ -131,6 +131,7 @@
   .maaltall.live { opacity: .85; }
   .maaltall { font-size: 13px; }
   .punkt { pointer-events: none; }
+  .pivot { width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; border: 2px solid var(--accent); background: color-mix(in srgb, var(--surface) 60%, transparent); pointer-events: none; }
   .verktoy { flex-wrap: wrap; max-width: calc(100% - 210px); }
   @media (max-width: 520px) { .verktoy { max-width: calc(100% - 180px); } }
 
@@ -198,7 +199,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=202610121250"
+      src="modell.glb?v=202610121321"
       alt="3D-modell av 18 personlige garderobeskap i rom D012"
       camera-controls
       touch-action="none"
@@ -238,7 +239,7 @@
       <button data-orbit="180deg 90deg 100%">Bak</button>
     </div>
 
-    <div class="hint" id="hint">Dra for &aring; snu &middot; rull/knip for &aring; zoome &middot; dobbeltklikk for &aring; g&aring; inn p&aring; et punkt</div>
+    <div class="hint" id="hint">Dra for &aring; snu rundt punktet du tar tak i &middot; rull for &aring; zoome &middot; dobbeltklikk for &aring; g&aring; inn p&aring; et punkt</div>
   </div>
 
   <aside>
@@ -333,7 +334,7 @@
   }, 200);
 
   const STARTBANE = mv.getAttribute('camera-orbit');
-  const standardHint = 'Dra for å snu · rull/knip for å zoome · dobbeltklikk for å gå inn på et punkt';
+  const standardHint = 'Dra for å snu rundt punktet du tar tak i · rull for å zoome · dobbeltklikk for å gå inn på et punkt';
   const maaleHint = 'Klikk to punkter – snapper til hjørner · dobbeltklikk zoomer';
 
   /* --- visningsterning --------------------------------------------------- */
@@ -381,7 +382,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=202610121250').then(r => r.json()).then(d => {
+  fetch('snap.json?v=202610121321').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -522,12 +523,119 @@
     hint.textContent = maaler ? maaleHint : standardHint;
   });
 
-  /* Klikk skilles fra dra: bare et trykk som flytter seg under 6 px teller som klikk.
-     Et klikk venter litt, slik at et dobbeltklikk kan zoome i stedet for aa sette punkt. */
-  let ned = null, ventKlikk = null;
-  mv.addEventListener('pointerdown', (e) => { ned = { x: e.clientX, y: e.clientY }; });
+  /* --- rotasjon rundt punktet du tar tak i (mus/penn) ------------------
+     model-viewer roterer alltid rundt midten. For mus og penn tar vi over
+     venstre-dra selv: kamera og siktepunkt dreies sammen rundt punktet under
+     markoeren, slik at det punktet blir liggende i ro paa skjermen.
+     Zoom (hjul), panorering (hoeyre-dra) og beroering paa mobil gaar som foer. */
+  const FART = 0.006;     // radianer pr. skjermpiksel
+  let dra = null, ventKlikk = null;
+  const pivotmerke = lagHotspot('pivot', { x: 0, y: 0, z: 0 }, 'pivot');
+  pivotmerke.hidden = true;
+
+  function kameraNaa() {
+    const T = mv.getCameraTarget(), o = mv.getCameraOrbit();
+    const C = {
+      x: T.x + o.radius * Math.sin(o.phi) * Math.sin(o.theta),
+      y: T.y + o.radius * Math.cos(o.phi),
+      z: T.z + o.radius * Math.sin(o.phi) * Math.cos(o.theta),
+    };
+    return { T: { x: T.x, y: T.y, z: T.z }, C };
+  }
+
+  const sub = (a, b) => ({ x: a.x - b.x, y: a.y - b.y, z: a.z - b.z });
+  const add = (a, b) => ({ x: a.x + b.x, y: a.y + b.y, z: a.z + b.z });
+  const len = (v) => Math.hypot(v.x, v.y, v.z);
+  const norm = (v) => { const l = len(v) || 1; return { x: v.x / l, y: v.y / l, z: v.z / l }; };
+  const cross = (a, b) => ({ x: a.y * b.z - a.z * b.y, y: a.z * b.x - a.x * b.z, z: a.x * b.y - a.y * b.x });
+  const dot = (a, b) => a.x * b.x + a.y * b.y + a.z * b.z;
+
+  function rotY(v, a) {
+    const c = Math.cos(a), s = Math.sin(a);
+    return { x: v.x * c + v.z * s, y: v.y, z: -v.x * s + v.z * c };
+  }
+  function rotAkse(v, k, a) {          // Rodrigues: dreier v rundt enhetsakse k
+    const c = Math.cos(a), s = Math.sin(a), kv = cross(k, v), kd = dot(k, v);
+    return {
+      x: v.x * c + kv.x * s + k.x * kd * (1 - c),
+      y: v.y * c + kv.y * s + k.y * kd * (1 - c),
+      z: v.z * c + kv.z * s + k.z * kd * (1 - c),
+    };
+  }
+
+  function settKamera(C, T) {
+    const off = sub(C, T), r = len(off);
+    const phi = Math.acos(Math.max(-1, Math.min(1, off.y / r)));
+    const theta = Math.atan2(off.x, off.z);
+    mv.cameraTarget = `${T.x}m ${T.y}m ${T.z}m`;
+    mv.cameraOrbit = `${theta}rad ${phi}rad ${r}m`;
+    mv.jumpCameraToGoal();
+  }
+
+  function drei(dx, dy) {
+    const P = dra.P;
+    let { C, T } = kameraNaa();
+    // gir: rundt loddrett akse gjennom P
+    const a = -dx * FART;
+    C = add(P, rotY(sub(C, P), a));
+    T = add(P, rotY(sub(T, P), a));
+    // stigning: rundt kameraets hoeyre-akse gjennom P
+    const F = norm(sub(T, C));
+    const R = norm(cross(F, { x: 0, y: 1, z: 0 }));
+    const b = -dy * FART;
+    const C2 = add(P, rotAkse(sub(C, P), R, b));
+    const T2 = add(P, rotAkse(sub(T, P), R, b));
+    const phi2 = Math.acos(Math.max(-1, Math.min(1, (C2.y - T2.y) / len(sub(C2, T2)))));
+    if (phi2 > 0.03 && phi2 < Math.PI - 0.03) { C = C2; T = T2; }
+    settKamera(C, T);
+    sentrer.hidden = false;
+  }
+
+  mv.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch' || e.button !== 0) return;
+    e.stopPropagation();               // model-viewer skal ikke rotere selv
+    const treff = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
+    const T = mv.getCameraTarget();
+    const P = treff ? treff.position : { x: T.x, y: T.y, z: T.z };
+    dra = { x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY, P, flyttet: 0, id: e.pointerId };
+    try { mv.setPointerCapture(e.pointerId); } catch (_) {}
+  }, true);
+
+  mv.addEventListener('pointermove', (e) => {
+    if (!dra || e.pointerId !== dra.id) return;
+    e.stopPropagation();
+    const dx = e.clientX - dra.x, dy = e.clientY - dra.y;
+    dra.x = e.clientX; dra.y = e.clientY;
+    dra.flyttet = Math.max(dra.flyttet, Math.hypot(e.clientX - dra.x0, e.clientY - dra.y0));
+    if (dra.flyttet <= 6) return;
+    if (pivotmerke.hidden) {
+      pivotmerke.hidden = false;
+      mv.updateHotspot({ name: 'hotspot-pivot', position: `${dra.P.x}m ${dra.P.y}m ${dra.P.z}m` });
+    }
+    drei(dx, dy);
+  }, true);
+
+  function slipp(e) {
+    if (!dra || e.pointerId !== dra.id) return;
+    e.stopPropagation();
+    const varKlikk = dra.flyttet <= 6;
+    dra = null;
+    pivotmerke.hidden = true;
+    try { mv.releasePointerCapture(e.pointerId); } catch (_) {}
+    if (varKlikk && maaler) {
+      const x = e.clientX, y = e.clientY;
+      clearTimeout(ventKlikk);
+      ventKlikk = setTimeout(() => settPunkt(x, y), 260);
+    }
+  }
+  mv.addEventListener('pointerup', slipp, true);
+  mv.addEventListener('pointercancel', slipp, true);
+
+  /* Paa beroeringsskjerm roterer model-viewer selv; et kort trykk setter maalepunkt. */
+  let ned = null;
+  mv.addEventListener('pointerdown', (e) => { if (e.pointerType === 'touch') ned = { x: e.clientX, y: e.clientY }; });
   mv.addEventListener('pointerup', (e) => {
-    if (!ned) return;
+    if (e.pointerType !== 'touch' || !ned) return;
     const flyttet = Math.hypot(e.clientX - ned.x, e.clientY - ned.y);
     ned = null;
     if (flyttet > 6 || !maaler) return;
