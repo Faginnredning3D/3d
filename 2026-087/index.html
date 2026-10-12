@@ -319,12 +319,15 @@
     mv.querySelector(`[slot="${navn}"]`).hidden = false;
   }
 
+  // SVG-elementer har ingen .hidden-egenskap - attributtet maa settes direkte.
+  const visSvg = (paa) => paa ? svg.removeAttribute('hidden') : svg.setAttribute('hidden', '');
+
   function tegn() {
-    if (punkter.length < 2) { svg.hidden = true; tall.hidden = true; return; }
+    if (punkter.length < 2) { visSvg(false); tall.hidden = true; return; }
     const a = mv.queryHotspot('hotspot-a');
     const b = mv.queryHotspot('hotspot-b');
     if (!a || !b) return;
-    svg.hidden = false; tall.hidden = false;
+    visSvg(true); tall.hidden = false;
     linje.setAttribute('x1', a.canvasPosition.x);
     linje.setAttribute('y1', a.canvasPosition.y);
     linje.setAttribute('x2', b.canvasPosition.x);
@@ -339,7 +342,7 @@
 
   function tomMaal() {
     punkter = [];
-    svg.hidden = true; tall.hidden = true; nullstill.hidden = true;
+    visSvg(false); tall.hidden = true; nullstill.hidden = true;
     mv.querySelectorAll('[slot^="hotspot-"]').forEach(h => h.hidden = true);
     if (maaler) hint.textContent = 'Klikk to punkter på modellen';
   }
