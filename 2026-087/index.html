@@ -100,6 +100,17 @@
   .verktoy button[aria-pressed="true"] {
     background: var(--accent); color: var(--ground); border-color: var(--accent);
   }
+  .teller {
+    align-self: center; font-size: 10px; font-weight: 600; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 2px; padding: 6px 8px; opacity: .94;
+  }
+  .snapp {
+    position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px;
+    border: 2px solid var(--mal); border-radius: 2px;
+    pointer-events: none; opacity: .85;
+  }
 
   .hint {
     position: absolute; left: 12px; bottom: 12px;
@@ -188,18 +199,16 @@
       environment-image="neutral"
       camera-orbit="32deg 68deg 78%"
       min-field-of-view="8deg">
-      <button class="punkt" slot="hotspot-a" data-position="0 0 0" data-visibility-attribute="visible" hidden></button>
-      <button class="punkt" slot="hotspot-b" data-position="0 0 0" data-visibility-attribute="visible" hidden></button>
     </model-viewer>
 
-    <svg class="maal" id="maalsvg" hidden>
-      <line id="maallinje" x1="0" y1="0" x2="0" y2="0"></line>
-    </svg>
-    <div class="maaltall" id="maaltall" hidden></div>
+    <svg class="maal" id="maalsvg" hidden></svg>
+    <div id="maaltalllag"></div>
 
     <div class="verktoy">
       <button id="maalknapp" aria-pressed="false" title="Klikk to punkter p&aring; modellen">M&aring;l</button>
-      <button id="nullstill" hidden>T&oslash;m</button>
+      <button id="angre" hidden>Angre</button>
+      <button id="nullstill" hidden>T&oslash;m alle</button>
+      <span class="teller" id="teller" hidden></span>
     </div>
 
     <div class="terning" aria-label="Visningsretning">
@@ -279,15 +288,16 @@
     'Oppdatert ' + new Date().toLocaleDateString('nb-NO',
       { day: '2-digit', month: 'long', year: 'numeric' });
 
-  const mv       = document.getElementById('mv');
-  const stage    = document.getElementById('stage');
-  const laster   = document.getElementById('laster');
-  const hint     = document.getElementById('hint');
-  const svg      = document.getElementById('maalsvg');
-  const linje    = document.getElementById('maallinje');
-  const tall     = document.getElementById('maaltall');
+  const mv        = document.getElementById('mv');
+  const stage     = document.getElementById('stage');
+  const laster    = document.getElementById('laster');
+  const hint      = document.getElementById('hint');
+  const svg       = document.getElementById('maalsvg');
+  const talllag   = document.getElementById('maaltalllag');
   const maalknapp = document.getElementById('maalknapp');
+  const angre     = document.getElementById('angre');
   const nullstill = document.getElementById('nullstill');
+  const teller    = document.getElementById('teller');
 
   mv.addEventListener('load', () => { laster.hidden = true; });
   mv.addEventListener('error', () => { laster.textContent = 'Kunne ikke laste modellen.'; });
@@ -305,8 +315,53 @@
 
   /* --- maaling ----------------------------------------------------------- */
   // Modellen er i millimeter, saa avstanden kommer rett ut i mm.
+  const MAKS = 12;
   let maaler = false;
-  let punkter = [];
+  let maalinger = [];     // [{a:{x,y,z}, b:{x,y,z}}]
+  let ventende = null;    // foerste punkt i et paabegynt maal
+
+  /* --- snapping til hjoerner --------------------------------------------- */
+  let snapp = null;       // {pkt: Int32Array, rutenett: Map, celle: int}
+  const CELLE = 250;
+
+  fetch('snap.json').then(r => r.json()).then(d => {
+    const pkt = Int32Array.from(d.punkter);
+    const rutenett = new Map();
+    for (let i = 0; i < pkt.length; i += 3) {
+      const n = `${Math.floor(pkt[i] / CELLE)},${Math.floor(pkt[i+1] / CELLE)},${Math.floor(pkt[i+2] / CELLE)}`;
+      let liste = rutenett.get(n);
+      if (!liste) rutenett.set(n, liste = []);
+      liste.push(i);
+    }
+    snapp = { pkt, rutenett };
+  }).catch(() => { snapp = null; });
+
+  function terskel() {
+    const r = mv.getCameraOrbit?.().radius ?? 4000;
+    return Math.min(220, Math.max(30, r * 0.03));
+  }
+
+  function finnHjorne(p) {
+    if (!snapp) return null;
+    const t = terskel(), t2 = t * t;
+    const cx = Math.floor(p.x / CELLE), cy = Math.floor(p.y / CELLE), cz = Math.floor(p.z / CELLE);
+    const spenn = Math.ceil(t / CELLE);
+    let best = null, bestD = t2;
+    for (let i = -spenn; i <= spenn; i++)
+      for (let j = -spenn; j <= spenn; j++)
+        for (let k = -spenn; k <= spenn; k++) {
+          const liste = snapp.rutenett.get(`${cx+i},${cy+j},${cz+k}`);
+          if (!liste) continue;
+          for (const idx of liste) {
+            const dx = snapp.pkt[idx] - p.x;
+            const dy = snapp.pkt[idx+1] - p.y;
+            const dz = snapp.pkt[idx+2] - p.z;
+            const d = dx*dx + dy*dy + dz*dz;
+            if (d < bestD) { bestD = d; best = { x: snapp.pkt[idx], y: snapp.pkt[idx+1], z: snapp.pkt[idx+2] }; }
+          }
+        }
+    return best;
+  }
 
   function formater(mm) {
     return mm >= 1000
@@ -314,63 +369,105 @@
       : Math.round(mm).toLocaleString('nb-NO') + ' mm';
   }
 
-  function settPunkt(navn, pos) {
-    mv.updateHotspot({ name: navn, position: `${pos.x} ${pos.y} ${pos.z}` });
-    mv.querySelector(`[slot="${navn}"]`).hidden = false;
-  }
-
   // SVG-elementer har ingen .hidden-egenskap - attributtet maa settes direkte.
   const visSvg = (paa) => paa ? svg.removeAttribute('hidden') : svg.setAttribute('hidden', '');
 
-  function tegn() {
-    if (punkter.length < 2) { visSvg(false); tall.hidden = true; return; }
-    const a = mv.queryHotspot('hotspot-a');
-    const b = mv.queryHotspot('hotspot-b');
-    if (!a || !b) return;
-    visSvg(true); tall.hidden = false;
-    linje.setAttribute('x1', a.canvasPosition.x);
-    linje.setAttribute('y1', a.canvasPosition.y);
-    linje.setAttribute('x2', b.canvasPosition.x);
-    linje.setAttribute('y2', b.canvasPosition.y);
-    tall.style.left = ((a.canvasPosition.x + b.canvasPosition.x) / 2) + 'px';
-    tall.style.top  = ((a.canvasPosition.y + b.canvasPosition.y) / 2) + 'px';
-    const dx = punkter[0].x - punkter[1].x;
-    const dy = punkter[0].y - punkter[1].y;
-    const dz = punkter[0].z - punkter[1].z;
-    tall.textContent = formater(Math.sqrt(dx * dx + dy * dy + dz * dz));
+  function lagHotspot(navn, pos, klasse) {
+    const b = document.createElement('button');
+    b.className = klasse;
+    b.slot = `hotspot-${navn}`;
+    b.dataset.position = `${pos.x} ${pos.y} ${pos.z}`;
+    mv.appendChild(b);
   }
 
-  function tomMaal() {
-    punkter = [];
-    visSvg(false); tall.hidden = true; nullstill.hidden = true;
-    mv.querySelectorAll('[slot^="hotspot-"]').forEach(h => h.hidden = true);
-    if (maaler) hint.textContent = 'Klikk to punkter på modellen';
+  function fjernHotspots() {
+    mv.querySelectorAll('[slot^="hotspot-"]').forEach(h => h.remove());
   }
+
+  function byggHotspots() {
+    fjernHotspots();
+    maalinger.forEach((m, i) => {
+      lagHotspot(`m${i}a`, m.a, 'punkt');
+      lagHotspot(`m${i}b`, m.b, 'punkt');
+    });
+    if (ventende) lagHotspot('vent', ventende, 'snapp');
+  }
+
+  function avstand(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+  }
+
+  function tegn() {
+    svg.textContent = '';
+    talllag.textContent = '';
+    if (!maalinger.length) { visSvg(false); return; }
+    visSvg(true);
+    maalinger.forEach((m, i) => {
+      const a = mv.queryHotspot(`hotspot-m${i}a`);
+      const b = mv.queryHotspot(`hotspot-m${i}b`);
+      if (!a || !b) return;
+      const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l.setAttribute('x1', a.canvasPosition.x);
+      l.setAttribute('y1', a.canvasPosition.y);
+      l.setAttribute('x2', b.canvasPosition.x);
+      l.setAttribute('y2', b.canvasPosition.y);
+      svg.appendChild(l);
+      const t = document.createElement('div');
+      t.className = 'maaltall';
+      t.style.left = ((a.canvasPosition.x + b.canvasPosition.x) / 2) + 'px';
+      t.style.top  = ((a.canvasPosition.y + b.canvasPosition.y) / 2) + 'px';
+      t.textContent = formater(avstand(m.a, m.b));
+      talllag.appendChild(t);
+    });
+  }
+
+  function oppdaterKnapper() {
+    const n = maalinger.length;
+    angre.hidden = nullstill.hidden = teller.hidden = (n === 0);
+    teller.textContent = `${n} av ${MAKS}`;
+  }
+
+  function tomAlle() {
+    maalinger = []; ventende = null;
+    byggHotspots(); tegn(); oppdaterKnapper();
+    hint.textContent = maaler ? 'Klikk to punkter – snapper til hjørner' : standardHint;
+  }
+
+  const standardHint = 'Dra for å snu · knip for å zoome';
 
   maalknapp.addEventListener('click', () => {
     maaler = !maaler;
     maalknapp.setAttribute('aria-pressed', String(maaler));
-    mv.cameraControls = !maaler ? true : true;   // rotasjon beholdes
-    hint.textContent = maaler
-      ? 'Klikk to punkter på modellen'
-      : 'Dra for å snu · knip for å zoome';
-    if (!maaler) tomMaal();
+    ventende = null; byggHotspots(); tegn();
+    hint.textContent = maaler ? 'Klikk to punkter – snapper til hjørner' : standardHint;
   });
 
-  nullstill.addEventListener('click', tomMaal);
+  angre.addEventListener('click', () => {
+    maalinger.pop(); ventende = null;
+    byggHotspots(); tegn(); oppdaterKnapper();
+  });
+
+  nullstill.addEventListener('click', tomAlle);
 
   mv.addEventListener('click', (e) => {
     if (!maaler) return;
     const treff = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
     if (!treff) { hint.textContent = 'Klikk på selve modellen'; return; }
-    if (punkter.length >= 2) tomMaal();
-    punkter.push(treff.position);
-    settPunkt(punkter.length === 1 ? 'hotspot-a' : 'hotspot-b', treff.position);
-    nullstill.hidden = false;
-    hint.textContent = punkter.length === 1
-      ? 'Klikk punkt nummer to'
-      : 'Trykk Tøm for nytt mål';
-    tegn();
+    const p = finnHjorne(treff.position) ?? treff.position;
+
+    if (!ventende) {
+      if (maalinger.length >= MAKS) {
+        hint.textContent = `Maks ${MAKS} mål – trykk Angre eller Tøm alle`;
+        return;
+      }
+      ventende = p;
+      hint.textContent = 'Klikk punkt nummer to';
+    } else {
+      maalinger.push({ a: ventende, b: p });
+      ventende = null;
+      hint.textContent = `Klikk to nye punkter · ${maalinger.length} mål satt`;
+    }
+    byggHotspots(); tegn(); oppdaterKnapper();
   });
 
   mv.addEventListener('camera-change', tegn);
