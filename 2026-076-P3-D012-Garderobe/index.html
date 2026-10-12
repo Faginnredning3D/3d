@@ -124,6 +124,16 @@
     font-size: 13px; color: var(--ink-soft); letter-spacing: .04em;
   }
 
+
+  .snapp.fri { border-radius: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; opacity: .6; }
+  .stage.maalemodus model-viewer { cursor: crosshair; }
+  svg.maal line.live { stroke-dasharray: 3 3; opacity: .8; }
+  .maaltall.live { opacity: .85; }
+  .maaltall { font-size: 13px; }
+  .punkt { pointer-events: none; }
+  .verktoy { flex-wrap: wrap; max-width: calc(100% - 210px); }
+  @media (max-width: 520px) { .verktoy { max-width: calc(100% - 180px); } }
+
   /* --- maalelinje --- */
   svg.maal {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -193,12 +203,15 @@
       camera-controls
       touch-action="none"
       interaction-prompt="none"
-      shadow-intensity="0.9"
-      shadow-softness="0.7"
-      exposure="1.05"
+      tone-mapping="neutral"
+      shadow-intensity="0.5"
+      shadow-softness="0.8"
+      exposure="1"
       environment-image="neutral"
       camera-orbit="28deg 76deg 75%"
-      min-field-of-view="8deg">
+      min-camera-orbit="auto auto 120m"
+      min-field-of-view="2deg"
+      interpolation-decay="120">
     </model-viewer>
 
     <svg class="maal" id="maalsvg" hidden></svg>
@@ -209,6 +222,7 @@
       <button id="innmat" aria-pressed="false" title="Gj&oslash;r d&oslash;rene gjennomsiktige">Vis innmat</button>
       <button id="angre" hidden>Angre</button>
       <button id="nullstill" hidden>T&oslash;m alle</button>
+      <button id="sentrer" hidden>Hele modellen</button>
       <span class="teller" id="teller" hidden></span>
     </div>
 
@@ -224,7 +238,7 @@
       <button data-orbit="180deg 90deg 100%">Bak</button>
     </div>
 
-    <div class="hint" id="hint">Dra for &aring; snu &middot; knip for &aring; zoome</div>
+    <div class="hint" id="hint">Dra for &aring; snu &middot; rull/knip for &aring; zoome &middot; dobbeltklikk for &aring; g&aring; inn p&aring; et punkt</div>
   </div>
 
   <aside>
@@ -295,6 +309,11 @@
     'Oppdatert ' + new Date().toLocaleDateString('nb-NO',
       { day: '2-digit', month: 'long', year: 'numeric' });
 
+  // model-viewer senker opploesningen automatisk ved lav bildefrekvens; det gir uskarpt bilde.
+  customElements.whenDefined('model-viewer').then(() => {
+    customElements.get('model-viewer').minimumRenderScale = 1;
+  });
+
   const mv        = document.getElementById('mv');
   const stage     = document.getElementById('stage');
   const laster    = document.getElementById('laster');
@@ -305,6 +324,7 @@
   const angre     = document.getElementById('angre');
   const nullstill = document.getElementById('nullstill');
   const teller    = document.getElementById('teller');
+  const sentrer   = document.getElementById('sentrer');
 
   mv.addEventListener('load', () => { laster.hidden = true; });
   mv.addEventListener('error', () => { laster.textContent = 'Kunne ikke laste modellen.'; });
@@ -312,12 +332,31 @@
     if (mv.loaded) { laster.hidden = true; clearInterval(ferdig); }
   }, 200);
 
+  const STARTBANE = mv.getAttribute('camera-orbit');
+  const standardHint = 'Dra for å snu · rull/knip for å zoome · dobbeltklikk for å gå inn på et punkt';
+  const maaleHint = 'Klikk to punkter – snapper til hjørner · dobbeltklikk zoomer';
+
   /* --- visningsterning --------------------------------------------------- */
   document.querySelectorAll('.terning button[data-orbit]').forEach(b => {
     b.addEventListener('click', () => {
+      mv.cameraTarget = 'auto auto auto';
       mv.cameraOrbit = b.dataset.orbit;
-      mv.jumpCameraToGoal?.();
+      mv.fieldOfView = 'auto';
     });
+  });
+
+  /* --- zoom inn paa et punkt ------------------------------------------- */
+  function gaaTil(p) {
+    const r = mv.getCameraOrbit().radius;
+    mv.cameraTarget = `${p.x}m ${p.y}m ${p.z}m`;
+    mv.cameraOrbit = `auto auto ${Math.max(250, r * 0.35)}m`;
+    sentrer.hidden = false;
+  }
+  sentrer.addEventListener('click', () => {
+    mv.cameraTarget = 'auto auto auto';
+    mv.cameraOrbit = STARTBANE;
+    mv.fieldOfView = 'auto';
+    sentrer.hidden = true;
   });
 
   /* --- innmat: doerene er materialgruppe 1 i modellen ------------------- */
@@ -329,7 +368,7 @@
     m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
     m.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, vis ? 0.12 : 1]);
     innmat.setAttribute('aria-pressed', String(vis));
-    innmat.textContent = vis ? 'Vis d\u00f8rer' : 'Vis innmat';
+    innmat.textContent = vis ? 'Vis dører' : 'Vis innmat';
   });
 
   /* --- maaling ----------------------------------------------------------- */
@@ -338,11 +377,10 @@
   let maaler = false;
   let maalinger = [];     // [{a:{x,y,z}, b:{x,y,z}}]
   let ventende = null;    // foerste punkt i et paabegynt maal
+  let sveve = null;       // punktet under markoeren (med snapping)
 
-  /* --- snapping til hjoerner --------------------------------------------- */
-  let snapp = null;       // {pkt: Int32Array, rutenett: Map, celle: int}
+  let snapp = null;
   const CELLE = 250;
-
   fetch('snap.json').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
@@ -355,9 +393,10 @@
     snapp = { pkt, rutenett };
   }).catch(() => { snapp = null; });
 
+  // Snappeavstand foelger zoom: naer modellen snapper den bare til hjoerner like ved.
   function terskel() {
     const r = mv.getCameraOrbit?.().radius ?? 4000;
-    return Math.min(220, Math.max(30, r * 0.03));
+    return Math.min(120, Math.max(6, r * 0.015));
   }
 
   function finnHjorne(p) {
@@ -372,9 +411,7 @@
           const liste = snapp.rutenett.get(`${cx+i},${cy+j},${cz+k}`);
           if (!liste) continue;
           for (const idx of liste) {
-            const dx = snapp.pkt[idx] - p.x;
-            const dy = snapp.pkt[idx+1] - p.y;
-            const dz = snapp.pkt[idx+2] - p.z;
+            const dx = snapp.pkt[idx] - p.x, dy = snapp.pkt[idx+1] - p.y, dz = snapp.pkt[idx+2] - p.z;
             const d = dx*dx + dy*dy + dz*dz;
             if (d < bestD) { bestD = d; best = { x: snapp.pkt[idx], y: snapp.pkt[idx+1], z: snapp.pkt[idx+2] }; }
           }
@@ -382,62 +419,82 @@
     return best;
   }
 
-  function formater(mm) {
-    return mm >= 1000
-      ? (mm / 1000).toLocaleString('nb-NO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' m'
-      : Math.round(mm).toLocaleString('nb-NO') + ' mm';
+  function punktUnder(x, y) {
+    const treff = mv.positionAndNormalFromPoint(x, y);
+    if (!treff) return null;
+    const p = treff.position;
+    const h = finnHjorne(p);
+    return h ? { ...h, snappet: true } : { x: p.x, y: p.y, z: p.z, snappet: false };
   }
 
-  // SVG-elementer har ingen .hidden-egenskap - attributtet maa settes direkte.
+  function formater(mm) {
+    return Math.round(mm).toLocaleString('nb-NO') + ' mm';
+  }
+
   const visSvg = (paa) => paa ? svg.removeAttribute('hidden') : svg.setAttribute('hidden', '');
 
   function lagHotspot(navn, pos, klasse) {
-    const b = document.createElement('button');
+    const b = document.createElement('div');
     b.className = klasse;
     b.slot = `hotspot-${navn}`;
-    b.dataset.position = `${pos.x} ${pos.y} ${pos.z}`;
+    b.dataset.position = `${pos.x}m ${pos.y}m ${pos.z}m`;
     mv.appendChild(b);
-  }
-
-  function fjernHotspots() {
-    mv.querySelectorAll('[slot^="hotspot-"]').forEach(h => h.remove());
+    return b;
   }
 
   function byggHotspots() {
-    fjernHotspots();
+    mv.querySelectorAll('[slot^="hotspot-m"], [slot="hotspot-vent"]').forEach(h => h.remove());
     maalinger.forEach((m, i) => {
       lagHotspot(`m${i}a`, m.a, 'punkt');
       lagHotspot(`m${i}b`, m.b, 'punkt');
     });
-    if (ventende) lagHotspot('vent', ventende, 'snapp');
+    if (ventende) lagHotspot('vent', ventende, 'punkt');
   }
 
-  function avstand(a, b) {
-    return Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+  // Ett gjenbrukt sveve-merke som foelger markoeren i maalemodus.
+  let svevemerke = null;
+  function settSveve(p) {
+    sveve = p;
+    if (!p) { if (svevemerke) svevemerke.hidden = true; tegn(); return; }
+    if (!svevemerke) svevemerke = lagHotspot('sveve', p, 'snapp');
+    svevemerke.hidden = false;
+    svevemerke.classList.toggle('fri', !p.snappet);
+    mv.updateHotspot({ name: 'hotspot-sveve', position: `${p.x}m ${p.y}m ${p.z}m` });
+    tegn();
+  }
+
+  const avstand = (a, b) => Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+
+  function linje(a, b, tekst, klasse) {
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', a.x); l.setAttribute('y1', a.y);
+    l.setAttribute('x2', b.x); l.setAttribute('y2', b.y);
+    if (klasse) l.setAttribute('class', klasse);
+    svg.appendChild(l);
+    const t = document.createElement('div');
+    t.className = 'maaltall' + (klasse ? ' ' + klasse : '');
+    t.style.left = ((a.x + b.x) / 2) + 'px';
+    t.style.top  = ((a.y + b.y) / 2) + 'px';
+    t.textContent = tekst;
+    talllag.appendChild(t);
   }
 
   function tegn() {
     svg.textContent = '';
     talllag.textContent = '';
-    if (!maalinger.length) { visSvg(false); return; }
+    const live = maaler && ventende && sveve;
+    if (!maalinger.length && !live) { visSvg(false); return; }
     visSvg(true);
     maalinger.forEach((m, i) => {
       const a = mv.queryHotspot(`hotspot-m${i}a`);
       const b = mv.queryHotspot(`hotspot-m${i}b`);
-      if (!a || !b) return;
-      const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      l.setAttribute('x1', a.canvasPosition.x);
-      l.setAttribute('y1', a.canvasPosition.y);
-      l.setAttribute('x2', b.canvasPosition.x);
-      l.setAttribute('y2', b.canvasPosition.y);
-      svg.appendChild(l);
-      const t = document.createElement('div');
-      t.className = 'maaltall';
-      t.style.left = ((a.canvasPosition.x + b.canvasPosition.x) / 2) + 'px';
-      t.style.top  = ((a.canvasPosition.y + b.canvasPosition.y) / 2) + 'px';
-      t.textContent = formater(avstand(m.a, m.b));
-      talllag.appendChild(t);
+      if (a && b) linje(a.canvasPosition, b.canvasPosition, formater(avstand(m.a, m.b)));
     });
+    if (live) {
+      const a = mv.queryHotspot('hotspot-vent');
+      const b = mv.queryHotspot('hotspot-sveve');
+      if (a && b) linje(a.canvasPosition, b.canvasPosition, formater(avstand(ventende, sveve)), 'live');
+    }
   }
 
   function oppdaterKnapper() {
@@ -446,34 +503,48 @@
     teller.textContent = `${n} av ${MAKS}`;
   }
 
-  function tomAlle() {
-    maalinger = []; ventende = null;
-    byggHotspots(); tegn(); oppdaterKnapper();
-    hint.textContent = maaler ? 'Klikk to punkter – snapper til hjørner' : standardHint;
-  }
-
-  const standardHint = 'Dra for å snu · knip for å zoome';
-
   maalknapp.addEventListener('click', () => {
     maaler = !maaler;
     maalknapp.setAttribute('aria-pressed', String(maaler));
-    ventende = null; byggHotspots(); tegn();
-    hint.textContent = maaler ? 'Klikk to punkter – snapper til hjørner' : standardHint;
+    ventende = null; settSveve(null); byggHotspots(); tegn();
+    stage.classList.toggle('maalemodus', maaler);
+    hint.textContent = maaler ? maaleHint : standardHint;
   });
 
   angre.addEventListener('click', () => {
-    maalinger.pop(); ventende = null;
+    if (ventende) ventende = null; else maalinger.pop();
     byggHotspots(); tegn(); oppdaterKnapper();
   });
 
-  nullstill.addEventListener('click', tomAlle);
+  nullstill.addEventListener('click', () => {
+    maalinger = []; ventende = null;
+    byggHotspots(); tegn(); oppdaterKnapper();
+    hint.textContent = maaler ? maaleHint : standardHint;
+  });
 
-  mv.addEventListener('click', (e) => {
-    if (!maaler) return;
+  /* Klikk skilles fra dra: bare et trykk som flytter seg under 6 px teller som klikk.
+     Et klikk venter litt, slik at et dobbeltklikk kan zoome i stedet for aa sette punkt. */
+  let ned = null, ventKlikk = null;
+  mv.addEventListener('pointerdown', (e) => { ned = { x: e.clientX, y: e.clientY }; });
+  mv.addEventListener('pointerup', (e) => {
+    if (!ned) return;
+    const flyttet = Math.hypot(e.clientX - ned.x, e.clientY - ned.y);
+    ned = null;
+    if (flyttet > 6 || !maaler) return;
+    const x = e.clientX, y = e.clientY;
+    clearTimeout(ventKlikk);
+    ventKlikk = setTimeout(() => settPunkt(x, y), 260);
+  });
+
+  mv.addEventListener('dblclick', (e) => {
+    clearTimeout(ventKlikk);
     const treff = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
-    if (!treff) { hint.textContent = 'Klikk på selve modellen'; return; }
-    const p = finnHjorne(treff.position) ?? treff.position;
+    if (treff) gaaTil(treff.position);
+  });
 
+  function settPunkt(x, y) {
+    const p = punktUnder(x, y);
+    if (!p) { hint.textContent = 'Klikk på selve modellen'; return; }
     if (!ventende) {
       if (maalinger.length >= MAKS) {
         hint.textContent = `Maks ${MAKS} mål – trykk Angre eller Tøm alle`;
@@ -484,13 +555,25 @@
     } else {
       maalinger.push({ a: ventende, b: p });
       ventende = null;
-      hint.textContent = `Klikk to nye punkter · ${maalinger.length} mål satt`;
+      hint.textContent = `${maalinger.length} mål satt · klikk to nye punkter`;
     }
     byggHotspots(); tegn(); oppdaterKnapper();
+  }
+
+  let rafVent = false, sist = null;
+  mv.addEventListener('pointermove', (e) => {
+    if (!maaler || e.buttons || e.pointerType === 'touch') return;
+    sist = { x: e.clientX, y: e.clientY };
+    if (rafVent) return;
+    rafVent = true;
+    requestAnimationFrame(() => {
+      rafVent = false;
+      settSveve(sist ? punktUnder(sist.x, sist.y) : null);
+    });
   });
+  mv.addEventListener('pointerleave', () => { sist = null; settSveve(null); });
 
   mv.addEventListener('camera-change', tegn);
-  // Ingen viewBox: SVG-koordinater = CSS-piksler, samme rom som hotspot-posisjonene.
   new ResizeObserver(tegn).observe(stage);
 </script>
 
