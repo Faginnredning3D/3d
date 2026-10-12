@@ -1,51 +1,58 @@
 <!doctype html>
-<html lang="no">
+<html lang="nb">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
 <title>Garderobeskap D012 Marken 37 · Faginnredning 3D</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cardo:wght@400;700&family=Inter:wght@400;500;600&display=swap">
-
 <style>
-  /* Full-bredde modellscene med sidestilt spesifikasjonsspalte; stabler paa mobil. */
+  /* Modellscene med verktoeylinje og visningsterning; spesifikasjon i sidespalte, stabler paa mobil. */
   :root {
-    --ground: #F2EFE6;
-    --surface: #FBFAF6;
-    --ink: #1C342E;
-    --ink-soft: #55665F;
-    --line: #D8D2C2;
-    --accent: #1C342E;
-    --spark: #7E9B2F;
-    --stage-a: #E6E1D2;
-    --stage-b: #CFC8B4;
+    --ground: #F2EFE6; --surface: #FBFAF6; --ink: #1C342E; --ink-soft: #55665F;
+    --line: #D8D2C2; --accent: #1C342E; --spark: #7E9B2F;
+    --stage-a: #E6E1D2; --stage-b: #CFC8B4; --mal: #B4471F;
     --display: "Cardo", Georgia, "Times New Roman", serif;
     --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --ground: #141E1B; --surface: #1C342E; --ink: #F2EFE6; --ink-soft: #A9BBB2;
-      --line: #2E4A42; --accent: #DCF263; --spark: #DCF263; --stage-a: #24403A; --stage-b: #14201D;
-      color-scheme: dark;
+      --line: #2E4A42; --accent: #DCF263; --spark: #DCF263;
+      --stage-a: #24403A; --stage-b: #14201D; --mal: #FF8A5B; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --ground: #141E1B; --surface: #1C342E; --ink: #F2EFE6; --ink-soft: #A9BBB2;
-    --line: #2E4A42; --accent: #DCF263; --spark: #DCF263; --stage-a: #24403A; --stage-b: #14201D;
-    color-scheme: dark;
+    --line: #2E4A42; --accent: #DCF263; --spark: #DCF263;
+    --stage-a: #24403A; --stage-b: #14201D; --mal: #FF8A5B; color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
   html, body { margin: 0; }
-  body { background: var(--ground); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: var(--body); font-size: 15px; line-height: 1.55;
+    -webkit-text-size-adjust: 100%;
+  }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
 
   .masthead {
     display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px;
     padding: 20px 16px 16px; border-bottom: 1px solid var(--line);
   }
-  .ordre { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
-  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.1; margin: 0; text-wrap: balance; }
+  .ordre {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft); font-weight: 600;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(1.4rem, 5vw, 2.1rem); line-height: 1.1; margin: 0;
+    text-wrap: balance;
+  }
   .kunde { color: var(--ink-soft); font-size: 14px; margin-left: auto; }
 
   .wrap {
@@ -58,37 +65,113 @@
     position: relative; min-width: 0;
     border: 1px solid var(--line); border-radius: 3px;
     background: linear-gradient(170deg, var(--stage-a), var(--stage-b));
-    overflow: hidden;
+    overflow: hidden; touch-action: none;
   }
-  model-viewer { display: block; width: 100%; height: clamp(380px, 62vh, 680px); --poster-color: transparent; background: transparent; }
+  model-viewer {
+    display: block; width: 100%;
+    height: clamp(360px, 62vh, 700px);
+    background: transparent; --poster-color: transparent;
+  }
+
+  /* --- visningsterning --- */
+  .terning {
+    position: absolute; top: 12px; right: 12px;
+    display: grid; grid-template-columns: repeat(3, 58px); gap: 3px;
+  }
+  @media (max-width: 520px) { .terning { grid-template-columns: repeat(3, 50px); } }
+  .terning button, .verktoy button {
+    font-family: var(--body); font-size: 9.5px; font-weight: 600;
+    letter-spacing: .02em; text-transform: uppercase; white-space: nowrap;
+    color: var(--ink); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 6px 0; cursor: pointer; opacity: .94;
+  }
+  .terning button:hover, .verktoy button:hover { border-color: var(--accent); }
+  .terning button:focus-visible, .verktoy button:focus-visible {
+    outline: 2px solid var(--spark); outline-offset: 1px;
+  }
+  .terning .tom { visibility: hidden; }
+
+  /* --- verktoey --- */
+  .verktoy {
+    position: absolute; top: 12px; left: 12px; display: flex; gap: 6px;
+  }
+  .verktoy button { padding: 6px 10px; }
+  .verktoy button[aria-pressed="true"] {
+    background: var(--accent); color: var(--ground); border-color: var(--accent);
+  }
+  .teller {
+    align-self: center; font-size: 10px; font-weight: 600; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 2px; padding: 6px 8px; opacity: .94;
+  }
+  .snapp {
+    position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px;
+    border: 2px solid var(--mal); border-radius: 2px;
+    pointer-events: none; opacity: .85;
+  }
+
   .hint {
     position: absolute; left: 12px; bottom: 12px;
-    font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--ink-soft); background: color-mix(in srgb, var(--surface) 82%, transparent);
-    border: 1px solid var(--line); border-radius: 2px; padding: 5px 9px; pointer-events: none;
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--ink-soft); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 2px; padding: 5px 9px;
+    pointer-events: none; opacity: .9; max-width: calc(100% - 24px);
   }
-  .verktoy { position: absolute; right: 12px; top: 12px; display: flex; gap: 8px; }
-  .verktoy button {
-    font: 600 12px var(--body); letter-spacing: .04em;
-    color: var(--ink); background: var(--surface);
-    border: 1px solid var(--line); border-radius: 2px; padding: 7px 12px; cursor: pointer;
+  .loading {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    font-size: 13px; color: var(--ink-soft); letter-spacing: .04em;
   }
-  .verktoy button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
-  .verktoy button:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
-  .loading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 13px; color: var(--ink-soft); letter-spacing: .04em; }
+
+  /* --- maalelinje --- */
+  svg.maal {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; overflow: visible;
+  }
+  svg.maal line { stroke: var(--mal); stroke-width: 2; stroke-dasharray: 6 4; }
+  svg.maal circle { fill: var(--mal); }
+  .maaltall {
+    position: absolute; transform: translate(-50%, -50%);
+    background: var(--mal); color: #fff; font-size: 12px; font-weight: 600;
+    font-variant-numeric: tabular-nums; padding: 3px 8px; border-radius: 2px;
+    pointer-events: none; white-space: nowrap;
+  }
+  .punkt {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--mal); border: 2px solid #fff; box-sizing: content-box;
+  }
 
   aside { min-width: 0; display: flex; flex-direction: column; gap: 22px; }
   .blokk { border-top: 2px solid var(--accent); padding-top: 12px; }
-  h2 { font-family: var(--display); font-weight: 700; font-size: 1.05rem; margin: 0 0 10px; letter-spacing: .01em; }
+  h2 { font-family: var(--display); font-weight: 700; font-size: 1.05rem; margin: 0 0 10px; }
   dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 7px 14px; }
-  dt { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; padding-top: 2px; }
+  dt {
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-soft); font-weight: 600; padding-top: 2px;
+  }
   dd { margin: 0; font-size: 14px; min-width: 0; }
   .kode { font-variant-numeric: tabular-nums; }
-  .merknad { font-size: 13px; color: var(--ink-soft); border-left: 2px solid var(--spark); padding-left: 12px; margin: 0; }
-  footer {
-    border-top: 1px solid var(--line); margin-top: 8px; padding: 16px 16px 28px;
-    font-size: 12px; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 6px 18px;
+
+  ul.varer { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  ul.varer li {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 14px; padding-bottom: 7px; border-bottom: 1px dotted var(--line);
   }
+  ul.varer li span:last-child {
+    color: var(--ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+
+  .merknad {
+    font-size: 13px; color: var(--ink-soft); margin: 0;
+    border-left: 2px solid var(--spark); padding-left: 12px;
+  }
+  footer {
+    border-top: 1px solid var(--line); padding: 16px 16px 28px;
+    font-size: 12px; color: var(--ink-soft);
+    display: flex; flex-wrap: wrap; gap: 6px 18px;
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
@@ -100,13 +183,15 @@
 </header>
 
 <div class="wrap">
-  <div class="stage">
+  <div class="stage" id="stage">
     <div class="loading" id="laster">Laster modell&nbsp;&hellip;</div>
+
     <model-viewer
       id="mv"
+      src="modell.glb"
       alt="3D-modell av 18 personlige garderobeskap i rom D012"
       camera-controls
-      touch-action="pan-y"
+      touch-action="none"
       interaction-prompt="none"
       shadow-intensity="0.9"
       shadow-softness="0.7"
@@ -115,10 +200,31 @@
       camera-orbit="28deg 76deg 75%"
       min-field-of-view="8deg">
     </model-viewer>
+
+    <svg class="maal" id="maalsvg" hidden></svg>
+    <div id="maaltalllag"></div>
+
     <div class="verktoy">
-      <button type="button" id="innmat" aria-pressed="false">Vis innmat</button>
+      <button id="maalknapp" aria-pressed="false" title="Klikk to punkter p&aring; modellen">M&aring;l</button>
+      <button id="innmat" aria-pressed="false" title="Gj&oslash;r d&oslash;rene gjennomsiktige">Vis innmat</button>
+      <button id="angre" hidden>Angre</button>
+      <button id="nullstill" hidden>T&oslash;m alle</button>
+      <span class="teller" id="teller" hidden></span>
     </div>
-    <div class="hint">Dra for &aring; snu &middot; rull for &aring; zoome</div>
+
+    <div class="terning" aria-label="Visningsretning">
+      <button class="tom" tabindex="-1" aria-hidden="true"></button>
+      <button data-orbit="0deg 0deg 100%">Topp</button>
+      <button class="tom" tabindex="-1" aria-hidden="true"></button>
+      <button data-orbit="-90deg 90deg 100%">Venstre</button>
+      <button data-orbit="0deg 90deg 100%">Front</button>
+      <button data-orbit="90deg 90deg 100%">H&oslash;yre</button>
+      <button class="tom" tabindex="-1" aria-hidden="true"></button>
+      <button data-orbit="28deg 76deg 75%">3D</button>
+      <button data-orbit="180deg 90deg 100%">Bak</button>
+    </div>
+
+    <div class="hint" id="hint">Dra for &aring; snu &middot; knip for &aring; zoome</div>
   </div>
 
   <aside>
@@ -180,29 +286,213 @@
 <footer>
   <span>Faginnredning AS</span>
   <span>Modell eksportert fra imos iX</span>
-  <span>Utarbeidet 12. oktober 2026</span>
+  <span id="dato"></span>
 </footer>
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <script>
-  const mv = document.getElementById('mv');
-  const laster = document.getElementById('laster');
-  const knapp = document.getElementById('innmat');
+  document.getElementById('dato').textContent =
+    'Oppdatert ' + new Date().toLocaleDateString('nb-NO',
+      { day: '2-digit', month: 'long', year: 'numeric' });
+
+  const mv        = document.getElementById('mv');
+  const stage     = document.getElementById('stage');
+  const laster    = document.getElementById('laster');
+  const hint      = document.getElementById('hint');
+  const svg       = document.getElementById('maalsvg');
+  const talllag   = document.getElementById('maaltalllag');
+  const maalknapp = document.getElementById('maalknapp');
+  const angre     = document.getElementById('angre');
+  const nullstill = document.getElementById('nullstill');
+  const teller    = document.getElementById('teller');
+
   mv.addEventListener('load', () => { laster.hidden = true; });
   mv.addEventListener('error', () => { laster.textContent = 'Kunne ikke laste modellen.'; });
+  const ferdig = setInterval(() => {
+    if (mv.loaded) { laster.hidden = true; clearInterval(ferdig); }
+  }, 200);
 
-  // Doerene er materialgruppe 1 i modellen; gjoeres gjennomsiktige for aa vise hattehylle, stang og skohylle.
-  knapp.addEventListener('click', () => {
-    const m = mv.model && mv.model.materials[1];
-    if (!m) return;
-    const vis = knapp.getAttribute('aria-pressed') !== 'true';
-    m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
-    m.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, vis ? 0.12 : 1]);
-    knapp.setAttribute('aria-pressed', String(vis));
-    knapp.textContent = vis ? 'Vis dører' : 'Vis innmat';
+  /* --- visningsterning --------------------------------------------------- */
+  document.querySelectorAll('.terning button[data-orbit]').forEach(b => {
+    b.addEventListener('click', () => {
+      mv.cameraOrbit = b.dataset.orbit;
+      mv.jumpCameraToGoal?.();
+    });
   });
 
-  mv.src = 'modell.glb';
+  /* --- innmat: doerene er materialgruppe 1 i modellen ------------------- */
+  const innmat = document.getElementById('innmat');
+  innmat.addEventListener('click', () => {
+    const m = mv.model && mv.model.materials[1];
+    if (!m) return;
+    const vis = innmat.getAttribute('aria-pressed') !== 'true';
+    m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
+    m.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, vis ? 0.12 : 1]);
+    innmat.setAttribute('aria-pressed', String(vis));
+    innmat.textContent = vis ? 'Vis d\u00f8rer' : 'Vis innmat';
+  });
+
+  /* --- maaling ----------------------------------------------------------- */
+  // Modellen er i millimeter, saa avstanden kommer rett ut i mm.
+  const MAKS = 12;
+  let maaler = false;
+  let maalinger = [];     // [{a:{x,y,z}, b:{x,y,z}}]
+  let ventende = null;    // foerste punkt i et paabegynt maal
+
+  /* --- snapping til hjoerner --------------------------------------------- */
+  let snapp = null;       // {pkt: Int32Array, rutenett: Map, celle: int}
+  const CELLE = 250;
+
+  fetch('snap.json').then(r => r.json()).then(d => {
+    const pkt = Int32Array.from(d.punkter);
+    const rutenett = new Map();
+    for (let i = 0; i < pkt.length; i += 3) {
+      const n = `${Math.floor(pkt[i] / CELLE)},${Math.floor(pkt[i+1] / CELLE)},${Math.floor(pkt[i+2] / CELLE)}`;
+      let liste = rutenett.get(n);
+      if (!liste) rutenett.set(n, liste = []);
+      liste.push(i);
+    }
+    snapp = { pkt, rutenett };
+  }).catch(() => { snapp = null; });
+
+  function terskel() {
+    const r = mv.getCameraOrbit?.().radius ?? 4000;
+    return Math.min(220, Math.max(30, r * 0.03));
+  }
+
+  function finnHjorne(p) {
+    if (!snapp) return null;
+    const t = terskel(), t2 = t * t;
+    const cx = Math.floor(p.x / CELLE), cy = Math.floor(p.y / CELLE), cz = Math.floor(p.z / CELLE);
+    const spenn = Math.ceil(t / CELLE);
+    let best = null, bestD = t2;
+    for (let i = -spenn; i <= spenn; i++)
+      for (let j = -spenn; j <= spenn; j++)
+        for (let k = -spenn; k <= spenn; k++) {
+          const liste = snapp.rutenett.get(`${cx+i},${cy+j},${cz+k}`);
+          if (!liste) continue;
+          for (const idx of liste) {
+            const dx = snapp.pkt[idx] - p.x;
+            const dy = snapp.pkt[idx+1] - p.y;
+            const dz = snapp.pkt[idx+2] - p.z;
+            const d = dx*dx + dy*dy + dz*dz;
+            if (d < bestD) { bestD = d; best = { x: snapp.pkt[idx], y: snapp.pkt[idx+1], z: snapp.pkt[idx+2] }; }
+          }
+        }
+    return best;
+  }
+
+  function formater(mm) {
+    return mm >= 1000
+      ? (mm / 1000).toLocaleString('nb-NO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' m'
+      : Math.round(mm).toLocaleString('nb-NO') + ' mm';
+  }
+
+  // SVG-elementer har ingen .hidden-egenskap - attributtet maa settes direkte.
+  const visSvg = (paa) => paa ? svg.removeAttribute('hidden') : svg.setAttribute('hidden', '');
+
+  function lagHotspot(navn, pos, klasse) {
+    const b = document.createElement('button');
+    b.className = klasse;
+    b.slot = `hotspot-${navn}`;
+    b.dataset.position = `${pos.x} ${pos.y} ${pos.z}`;
+    mv.appendChild(b);
+  }
+
+  function fjernHotspots() {
+    mv.querySelectorAll('[slot^="hotspot-"]').forEach(h => h.remove());
+  }
+
+  function byggHotspots() {
+    fjernHotspots();
+    maalinger.forEach((m, i) => {
+      lagHotspot(`m${i}a`, m.a, 'punkt');
+      lagHotspot(`m${i}b`, m.b, 'punkt');
+    });
+    if (ventende) lagHotspot('vent', ventende, 'snapp');
+  }
+
+  function avstand(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+  }
+
+  function tegn() {
+    svg.textContent = '';
+    talllag.textContent = '';
+    if (!maalinger.length) { visSvg(false); return; }
+    visSvg(true);
+    maalinger.forEach((m, i) => {
+      const a = mv.queryHotspot(`hotspot-m${i}a`);
+      const b = mv.queryHotspot(`hotspot-m${i}b`);
+      if (!a || !b) return;
+      const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l.setAttribute('x1', a.canvasPosition.x);
+      l.setAttribute('y1', a.canvasPosition.y);
+      l.setAttribute('x2', b.canvasPosition.x);
+      l.setAttribute('y2', b.canvasPosition.y);
+      svg.appendChild(l);
+      const t = document.createElement('div');
+      t.className = 'maaltall';
+      t.style.left = ((a.canvasPosition.x + b.canvasPosition.x) / 2) + 'px';
+      t.style.top  = ((a.canvasPosition.y + b.canvasPosition.y) / 2) + 'px';
+      t.textContent = formater(avstand(m.a, m.b));
+      talllag.appendChild(t);
+    });
+  }
+
+  function oppdaterKnapper() {
+    const n = maalinger.length;
+    angre.hidden = nullstill.hidden = teller.hidden = (n === 0);
+    teller.textContent = `${n} av ${MAKS}`;
+  }
+
+  function tomAlle() {
+    maalinger = []; ventende = null;
+    byggHotspots(); tegn(); oppdaterKnapper();
+    hint.textContent = maaler ? 'Klikk to punkter – snapper til hjørner' : standardHint;
+  }
+
+  const standardHint = 'Dra for å snu · knip for å zoome';
+
+  maalknapp.addEventListener('click', () => {
+    maaler = !maaler;
+    maalknapp.setAttribute('aria-pressed', String(maaler));
+    ventende = null; byggHotspots(); tegn();
+    hint.textContent = maaler ? 'Klikk to punkter – snapper til hjørner' : standardHint;
+  });
+
+  angre.addEventListener('click', () => {
+    maalinger.pop(); ventende = null;
+    byggHotspots(); tegn(); oppdaterKnapper();
+  });
+
+  nullstill.addEventListener('click', tomAlle);
+
+  mv.addEventListener('click', (e) => {
+    if (!maaler) return;
+    const treff = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
+    if (!treff) { hint.textContent = 'Klikk på selve modellen'; return; }
+    const p = finnHjorne(treff.position) ?? treff.position;
+
+    if (!ventende) {
+      if (maalinger.length >= MAKS) {
+        hint.textContent = `Maks ${MAKS} mål – trykk Angre eller Tøm alle`;
+        return;
+      }
+      ventende = p;
+      hint.textContent = 'Klikk punkt nummer to';
+    } else {
+      maalinger.push({ a: ventende, b: p });
+      ventende = null;
+      hint.textContent = `Klikk to nye punkter · ${maalinger.length} mål satt`;
+    }
+    byggHotspots(); tegn(); oppdaterKnapper();
+  });
+
+  mv.addEventListener('camera-change', tegn);
+  // Ingen viewBox: SVG-koordinater = CSS-piksler, samme rom som hotspot-posisjonene.
+  new ResizeObserver(tegn).observe(stage);
 </script>
+
 </body>
 </html>
