@@ -198,7 +198,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb"
+      src="modell.glb?v=202610121250"
       alt="3D-modell av 18 personlige garderobeskap i rom D012"
       camera-controls
       touch-action="none"
@@ -211,7 +211,7 @@
       camera-orbit="28deg 76deg 75%"
       min-camera-orbit="auto auto 120m"
       min-field-of-view="2deg"
-      interpolation-decay="120">
+      interpolation-decay="60">
     </model-viewer>
 
     <svg class="maal" id="maalsvg" hidden></svg>
@@ -381,7 +381,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json').then(r => r.json()).then(d => {
+  fetch('snap.json?v=202610121250').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
