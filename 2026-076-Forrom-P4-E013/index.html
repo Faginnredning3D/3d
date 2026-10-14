@@ -202,7 +202,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014102135';
+    const SIDE_VERSJON = '20261014102812';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -271,7 +271,7 @@
       <button data-orbit="180deg 90deg 100%">Bak</button>
     </div>
 
-    <div class="hint" id="hint">Dra for &aring; snu rundt punktet du tar tak i &middot; rull for &aring; zoome &middot; dobbeltklikk for &aring; g&aring; inn p&aring; et punkt</div>
+    <div class="hint" id="hint">Dra for &aring; snu rundt punktet du tar tak i &middot; rull for &aring; zoome der musa peker &middot; dobbeltklikk for &aring; g&aring; inn p&aring; et punkt</div>
   </div>
 
   <aside>
@@ -398,7 +398,7 @@
   }, 200);
 
   const STARTBANE = mv.getAttribute('camera-orbit');
-  const standardHint = 'Dra for å snu rundt punktet du tar tak i · rull for å zoome · dobbeltklikk for å gå inn på et punkt';
+  const standardHint = 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt';
   const maaleHint = 'Klikk to punkter – snapper til hjørner · dobbeltklikk zoomer';
 
   /* --- visningsterning --------------------------------------------------- */
@@ -654,6 +654,27 @@
     settKamera(C, T);
     sentrer.hidden = false;
   }
+
+  /* --- zoom mot punktet musa peker paa -----------------------------------
+     Kamera og siktepunkt skaleres mot punktet under markoeren, saa det punktet
+     blir liggende i ro paa skjermen mens man zoomer (som i CAD). Treffer man
+     ikke modellen, zoomes det mot midten som foer. Knipezoom paa mobil er uendret. */
+  const MIN_AVSTAND = 120;   // mm, naermeste kameraavstand
+  mv.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+    const f = Math.min(1.6, Math.max(0.6, Math.exp(dy * 0.0015)));
+    const treff = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
+    let { C, T } = kameraNaa();
+    const P = treff ? treff.position : T;
+    const r = len(sub(C, T));
+    if (f < 1 && r * f < MIN_AVSTAND) return;
+    C = add(P, { x: (C.x - P.x) * f, y: (C.y - P.y) * f, z: (C.z - P.z) * f });
+    T = add(P, { x: (T.x - P.x) * f, y: (T.y - P.y) * f, z: (T.z - P.z) * f });
+    settKamera(C, T);
+    sentrer.hidden = false;
+  }, { capture: true, passive: false });
 
   mv.addEventListener('pointerdown', (e) => {
     if (e.pointerType === 'touch' || e.button !== 0) return;
