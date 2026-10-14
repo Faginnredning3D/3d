@@ -202,7 +202,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014102812';
+    const SIDE_VERSJON = '20261014102945';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -657,23 +657,32 @@
 
   /* --- zoom mot punktet musa peker paa -----------------------------------
      Kamera og siktepunkt skaleres mot punktet under markoeren, saa det punktet
-     blir liggende i ro paa skjermen mens man zoomer (som i CAD). Treffer man
-     ikke modellen, zoomes det mot midten som foer. Knipezoom paa mobil er uendret. */
+     blir liggende i ro paa skjermen mens man zoomer (som i CAD). Hjulhakk samles
+     pr. skjermbilde, ellers leses et kamera som ikke er oppdatert ennaa.
+     Treffer man ikke modellen, zoomes det mot midten. Knipezoom paa mobil er uendret. */
   const MIN_AVSTAND = 120;   // mm, naermeste kameraavstand
+  let hjulSum = 0, hjulPos = null, hjulVent = false;
   mv.addEventListener('wheel', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
-    const f = Math.min(1.6, Math.max(0.6, Math.exp(dy * 0.0015)));
-    const treff = mv.positionAndNormalFromPoint(e.clientX, e.clientY);
-    let { C, T } = kameraNaa();
-    const P = treff ? treff.position : T;
-    const r = len(sub(C, T));
-    if (f < 1 && r * f < MIN_AVSTAND) return;
-    C = add(P, { x: (C.x - P.x) * f, y: (C.y - P.y) * f, z: (C.z - P.z) * f });
-    T = add(P, { x: (T.x - P.x) * f, y: (T.y - P.y) * f, z: (T.z - P.z) * f });
-    settKamera(C, T);
-    sentrer.hidden = false;
+    hjulSum += e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+    hjulPos = { x: e.clientX, y: e.clientY };
+    if (hjulVent) return;
+    hjulVent = true;
+    requestAnimationFrame(() => {
+      hjulVent = false;
+      const f = Math.min(2.5, Math.max(0.4, Math.exp(hjulSum * 0.0015)));
+      hjulSum = 0;
+      const treff = mv.positionAndNormalFromPoint(hjulPos.x, hjulPos.y);
+      let { C, T } = kameraNaa();
+      const P = treff ? treff.position : T;
+      const r = len(sub(C, T));
+      if (f < 1 && r * f < MIN_AVSTAND) return;
+      C = add(P, { x: (C.x - P.x) * f, y: (C.y - P.y) * f, z: (C.z - P.z) * f });
+      T = add(P, { x: (T.x - P.x) * f, y: (T.y - P.y) * f, z: (T.z - P.z) * f });
+      settKamera(C, T);
+      sentrer.hidden = false;
+    });
   }, { capture: true, passive: false });
 
   mv.addEventListener('pointerdown', (e) => {
