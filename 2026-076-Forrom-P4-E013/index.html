@@ -202,7 +202,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014101534';
+    const SIDE_VERSJON = '20261014101704';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -240,7 +240,8 @@
       shadow-softness="0.8"
       exposure="1"
       environment-image="neutral"
-      camera-orbit="28deg 76deg 75%"
+      camera-orbit="25deg 72deg 3200m"
+      camera-target="1600m 550m -3750m"
       min-camera-orbit="auto auto 120m"
       min-field-of-view="2deg"
       interpolation-decay="60">
@@ -266,7 +267,7 @@
       <button data-orbit="0deg 90deg 100%">Front</button>
       <button data-orbit="90deg 90deg 100%">H&oslash;yre</button>
       <button class="tom" tabindex="-1" aria-hidden="true"></button>
-      <button data-orbit="28deg 76deg 75%">3D</button>
+      <button data-orbit="25deg 72deg 3200m">3D</button>
       <button data-orbit="180deg 90deg 100%">Bak</button>
     </div>
 
@@ -415,7 +416,7 @@
     sentrer.hidden = false;
   }
   sentrer.addEventListener('click', () => {
-    mv.cameraTarget = 'auto auto auto';
+    mv.cameraTarget = '1600m 550m -3750m';
     mv.cameraOrbit = STARTBANE;
     mv.fieldOfView = 'auto';
     sentrer.hidden = true;
