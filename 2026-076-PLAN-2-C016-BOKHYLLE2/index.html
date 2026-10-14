@@ -202,7 +202,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014154041';
+    const SIDE_VERSJON = '20261014154203';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -230,7 +230,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261014153743"
+      src="modell.glb?v=20261014154203"
       alt="3D-modell av bokhylle 2 i rom C016"
       camera-controls
       touch-action="none"
@@ -307,7 +307,7 @@
         <dt>Sokkel</dt>
         <dd>16&nbsp;mm MDF eikefin&eacute;r, 1&nbsp;mm heltre eik kantlist</dd>
         <dt>Rygg</dt>
-        <dd>3&nbsp;mm MDF malt sort</dd>
+        <dd>3&nbsp;mm MDF, malt i samme farge som skroget (F2200 Dark Chocolate)</dd>
       </dl>
     </section>
 
