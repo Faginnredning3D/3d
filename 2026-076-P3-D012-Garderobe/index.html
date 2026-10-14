@@ -198,6 +198,22 @@
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
+<script>
+  /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
+     uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
+  (function () {
+    const SIDE_VERSJON = '20261014091023';
+    fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
+      v = v.trim();
+      let sist = null;
+      try { sist = sessionStorage.getItem('lastet-versjon'); } catch (_) {}
+      if (v && v !== SIDE_VERSJON && sist !== v) {
+        try { sessionStorage.setItem('lastet-versjon', v); } catch (_) {}
+        location.reload();
+      }
+    }).catch(() => {});
+  })();
+</script>
 </head>
 <body>
 
