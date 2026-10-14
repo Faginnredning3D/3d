@@ -5,6 +5,7 @@ Hver ordre ligger i egen mappe og serveres via GitHub Pages.
 
 - `2026-087` — Testleilighet Fjøsangerveien (GMB Student)
 - `2026-076-P3-D012-Garderobe` — Personlige garderobeskap D012, Marken 37 (LAB Entreprenør)
+- `2026-076-Forrom-P4-E013` — Servant forrom E013, Marken 37 (LAB Entreprenør)
 
 Modellene eksporteres fra imos iX med **VR Link** (VRML + teksturmappe) og konverteres
 til glTF før publisering. Konverteringsverktøyet ligger på fellesen under
