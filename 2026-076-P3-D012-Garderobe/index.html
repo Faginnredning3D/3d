@@ -135,6 +135,20 @@
   .verktoy { flex-wrap: wrap; max-width: calc(100% - 210px); }
   @media (max-width: 520px) { .verktoy { max-width: calc(100% - 180px); } }
 
+
+  /* --- tegninger under modellen --- */
+  .tilteg { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .tegninger { max-width: 1500px; margin: 0 auto; padding: 8px 16px 40px; display: grid; gap: 22px; }
+  .teg-hode { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; border-top: 2px solid var(--accent); padding-top: 12px; }
+  .teg-hode h2 { margin: 0 0 4px; }
+  .teg-hode p { margin: 0; font-size: 13px; color: var(--ink-soft); max-width: 65ch; }
+  .lastned { font: 600 12px var(--body); letter-spacing: .04em; text-transform: uppercase; color: var(--ground); background: var(--accent); padding: 9px 14px; border-radius: 2px; text-decoration: none; }
+  .lastned:focus-visible, .tilteg:focus-visible { outline: 2px solid var(--spark); outline-offset: 2px; }
+  figure.side { margin: 0 auto; width: 100%; max-width: 820px; }
+  figure.side.liggende { max-width: 1500px; }
+  figure.side img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--line); }
+  figure.side figcaption { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); padding-top: 6px; text-align: right; }
+
   /* --- maalelinje --- */
   svg.maal {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -190,6 +204,7 @@
 <header class="masthead">
   <span class="ordre">Ordre 2026-076 &middot; Post C-028 &middot; Plan 3</span>
   <h1>Personlige garderobeskap D012</h1>
+  <a class="tilteg" href="#tegninger">Se tegninger &darr;</a>
   <span class="kunde">LAB Entrepren&oslash;r &middot; Marken 37</span>
 </header>
 
@@ -297,6 +312,52 @@
     </section>
   </aside>
 </div>
+
+<section class="tegninger" id="tegninger">
+  <div class="teg-hode">
+    <div>
+      <h2>Tegninger</h2>
+      <p>REV&nbsp;B &middot; 14.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+    </div>
+    <a class="lastned" href="2026-076-P3-D012-Garderobe-REV-B.pdf?v=202610140855" download>Last ned PDF</a>
+  </div>
+    <figure class="side">
+      <a href="sider/side-01.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-01.png?v=202610140855" width="1500" height="2121" loading="lazy" alt="Tegning side 1 av 9"></a>
+      <figcaption>Side 1 av 9</figcaption>
+    </figure>
+    <figure class="side">
+      <a href="sider/side-02.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-02.png?v=202610140855" width="1500" height="2121" loading="lazy" alt="Tegning side 2 av 9"></a>
+      <figcaption>Side 2 av 9</figcaption>
+    </figure>
+    <figure class="side">
+      <a href="sider/side-03.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-03.png?v=202610140855" width="1500" height="2121" loading="lazy" alt="Tegning side 3 av 9"></a>
+      <figcaption>Side 3 av 9</figcaption>
+    </figure>
+    <figure class="side">
+      <a href="sider/side-04.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-04.png?v=202610140855" width="1500" height="2121" loading="lazy" alt="Tegning side 4 av 9"></a>
+      <figcaption>Side 4 av 9</figcaption>
+    </figure>
+    <figure class="side">
+      <a href="sider/side-05.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-05.png?v=202610140855" width="1500" height="2121" loading="lazy" alt="Tegning side 5 av 9"></a>
+      <figcaption>Side 5 av 9</figcaption>
+    </figure>
+    <figure class="side liggende">
+      <a href="sider/side-06.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-06.png?v=202610140855" width="2400" height="1697" loading="lazy" alt="Tegning side 6 av 9"></a>
+      <figcaption>Side 6 av 9</figcaption>
+    </figure>
+    <figure class="side liggende">
+      <a href="sider/side-07.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-07.png?v=202610140855" width="2400" height="1697" loading="lazy" alt="Tegning side 7 av 9"></a>
+      <figcaption>Side 7 av 9</figcaption>
+    </figure>
+    <figure class="side liggende">
+      <a href="sider/side-08.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-08.png?v=202610140855" width="2400" height="1697" loading="lazy" alt="Tegning side 8 av 9"></a>
+      <figcaption>Side 8 av 9</figcaption>
+    </figure>
+    <figure class="side liggende">
+      <a href="sider/side-09.png?v=202610140855" target="_blank" rel="noopener"><img src="sider/side-09.png?v=202610140855" width="2400" height="1697" loading="lazy" alt="Tegning side 9 av 9"></a>
+      <figcaption>Side 9 av 9</figcaption>
+    </figure>
+</section>
 
 <footer>
   <span>Faginnredning AS</span>
