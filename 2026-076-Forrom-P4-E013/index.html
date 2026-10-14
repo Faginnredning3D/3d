@@ -202,7 +202,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014101704';
+    const SIDE_VERSJON = '20261014102135';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -230,7 +230,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261014101534"
+      src="modell.glb?v=20261014102135"
       alt="3D-modell av servantmøbel i forrom E013"
       camera-controls
       touch-action="none"
@@ -298,6 +298,8 @@
         <dd>19&nbsp;mm MDF eikefin&eacute;r, m&oslash;rk beis<br>Prosjektbeis &laquo;2026-076 m&oslash;rk type 1&raquo;, heltre eik kantlist 2&nbsp;mm</dd>
         <dt>Benkeplate</dt>
         <dd>Dekton Rem Natural 20&nbsp;mm (avklares)</dd>
+        <dt>Kantlist</dt>
+        <dd>Heltre eik p&aring; fronter, dekksider og platen under skapene</dd>
         <dt>Opphengslist</dt>
         <dd>Kryssfiner, malt sort</dd>
       </dl>
@@ -425,7 +427,7 @@
   /* --- innmat: doerene er materialgruppe 3 i modellen ------------------- */
   const innmat = document.getElementById('innmat');
   innmat.addEventListener('click', () => {
-    const m = mv.model && mv.model.materials[2];
+    const m = mv.model && mv.model.materials[0];
     if (!m) return;
     const vis = innmat.getAttribute('aria-pressed') !== 'true';
     m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
@@ -444,7 +446,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261014101534').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261014102135').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
