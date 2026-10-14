@@ -202,7 +202,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014153403';
+    const SIDE_VERSJON = '20261014153743';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -230,7 +230,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261014152506"
+      src="modell.glb?v=20261014153743"
       alt="3D-modell av bokhylle 2 i rom C016"
       camera-controls
       touch-action="none"
@@ -252,6 +252,7 @@
 
     <div class="verktoy">
       <button id="maalknapp" aria-pressed="false" title="Klikk to punkter p&aring; modellen">M&aring;l</button>
+      <button id="innmat" aria-pressed="false" title="Gj&oslash;r d&oslash;rene gjennomsiktige">Vis innmat</button>
       <button id="angre" hidden>Angre</button>
       <button id="nullstill" hidden>T&oslash;m alle</button>
       <button id="sentrer" hidden>Hele modellen</button>
@@ -335,54 +336,54 @@
       <h2>Tegninger</h2>
       <p>REV&nbsp;C &middot; 14.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-076-PLAN-2-C016-BOKHYLLE2-REV-C.pdf?v=20261014152506" download>Last ned PDF</a>
+    <a class="lastned" href="2026-076-PLAN-2-C016-BOKHYLLE2-REV-C.pdf?v=20261014153743" download>Last ned PDF</a>
   </div>
     <figure class="side">
-      <a href="sider/side-01.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 1 av 12"></a>
+      <a href="sider/side-01.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 1 av 12"></a>
       <figcaption>Side 1 av 12</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-02.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 2 av 12"></a>
+      <a href="sider/side-02.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 2 av 12"></a>
       <figcaption>Side 2 av 12</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-03.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 3 av 12"></a>
+      <a href="sider/side-03.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 3 av 12"></a>
       <figcaption>Side 3 av 12</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-04.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 4 av 12"></a>
+      <a href="sider/side-04.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 4 av 12"></a>
       <figcaption>Side 4 av 12</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-05.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 5 av 12"></a>
+      <a href="sider/side-05.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 5 av 12"></a>
       <figcaption>Side 5 av 12</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-06.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 6 av 12"></a>
+      <a href="sider/side-06.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 6 av 12"></a>
       <figcaption>Side 6 av 12</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-07.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 7 av 12"></a>
+      <a href="sider/side-07.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 7 av 12"></a>
       <figcaption>Side 7 av 12</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-08.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261014152506" width="1500" height="2121" loading="lazy" alt="Tegning side 8 av 12"></a>
+      <a href="sider/side-08.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261014153743" width="1500" height="2121" loading="lazy" alt="Tegning side 8 av 12"></a>
       <figcaption>Side 8 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-09.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261014152506" width="2400" height="1697" loading="lazy" alt="Tegning side 9 av 12"></a>
+      <a href="sider/side-09.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261014153743" width="2400" height="1697" loading="lazy" alt="Tegning side 9 av 12"></a>
       <figcaption>Side 9 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-10.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261014152506" width="2400" height="1697" loading="lazy" alt="Tegning side 10 av 12"></a>
+      <a href="sider/side-10.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261014153743" width="2400" height="1697" loading="lazy" alt="Tegning side 10 av 12"></a>
       <figcaption>Side 10 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-11.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261014152506" width="2400" height="1697" loading="lazy" alt="Tegning side 11 av 12"></a>
+      <a href="sider/side-11.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261014153743" width="2400" height="1697" loading="lazy" alt="Tegning side 11 av 12"></a>
       <figcaption>Side 11 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-12.png?v=20261014152506" target="_blank" rel="noopener"><img src="sider/side-12.png?v=20261014152506" width="2400" height="1697" loading="lazy" alt="Tegning side 12 av 12"></a>
+      <a href="sider/side-12.png?v=20261014153743" target="_blank" rel="noopener"><img src="sider/side-12.png?v=20261014153743" width="2400" height="1697" loading="lazy" alt="Tegning side 12 av 12"></a>
       <figcaption>Side 12 av 12</figcaption>
     </figure>
 </section>
@@ -449,6 +450,31 @@
     sentrer.hidden = true;
   });
 
+  /* --- innmat: doerene er materialene merket FRONT i modellen --------------
+     (imos-utseender med __FRONT__ faar navnet FRONT i konverteringen).
+     Mangler navnet, brukes DOR_INDEKS som reserve. Opprinnelig farge huskes,
+     saa beiset eik ikke blir lys naar doerene vises igjen. */
+  const innmat = document.getElementById('innmat');
+  const DOR_INDEKS = -1;
+  const dorMat = () => {
+    const ms = mv.model ? mv.model.materials : [];
+    const f = ms.filter(m => /FRONT/i.test(m.name || ''));
+    return f.length ? f : (ms[DOR_INDEKS] ? [ms[DOR_INDEKS]] : []);
+  };
+  const origFarge = new Map();
+  innmat.addEventListener('click', () => {
+    const ms = dorMat();
+    if (!ms.length) return;
+    const vis = innmat.getAttribute('aria-pressed') !== 'true';
+    ms.forEach(m => {
+      if (!origFarge.has(m)) origFarge.set(m, m.pbrMetallicRoughness.baseColorFactor.slice());
+      const c = origFarge.get(m);
+      m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
+      m.pbrMetallicRoughness.setBaseColorFactor([c[0], c[1], c[2], vis ? 0.12 : c[3]]);
+    });
+    innmat.setAttribute('aria-pressed', String(vis));
+    innmat.textContent = vis ? 'Vis dører' : 'Vis innmat';
+  });
 
   /* --- maaling ----------------------------------------------------------- */
   // Modellen er i millimeter, saa avstanden kommer rett ut i mm.
@@ -460,7 +486,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261014152506').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261014153743').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {

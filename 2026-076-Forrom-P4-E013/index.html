@@ -202,7 +202,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014102945';
+    const SIDE_VERSJON = '20261014153743';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -424,14 +424,28 @@
     sentrer.hidden = true;
   });
 
-  /* --- innmat: doerene er materialgruppe 3 i modellen ------------------- */
+  /* --- innmat: doerene er materialene merket FRONT i modellen --------------
+     (imos-utseender med __FRONT__ faar navnet FRONT i konverteringen).
+     Mangler navnet, brukes DOR_INDEKS som reserve. Opprinnelig farge huskes,
+     saa beiset eik ikke blir lys naar doerene vises igjen. */
   const innmat = document.getElementById('innmat');
+  const DOR_INDEKS = 0;
+  const dorMat = () => {
+    const ms = mv.model ? mv.model.materials : [];
+    const f = ms.filter(m => /FRONT/i.test(m.name || ''));
+    return f.length ? f : (ms[DOR_INDEKS] ? [ms[DOR_INDEKS]] : []);
+  };
+  const origFarge = new Map();
   innmat.addEventListener('click', () => {
-    const m = mv.model && mv.model.materials[0];
-    if (!m) return;
+    const ms = dorMat();
+    if (!ms.length) return;
     const vis = innmat.getAttribute('aria-pressed') !== 'true';
-    m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
-    m.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, vis ? 0.12 : 1]);
+    ms.forEach(m => {
+      if (!origFarge.has(m)) origFarge.set(m, m.pbrMetallicRoughness.baseColorFactor.slice());
+      const c = origFarge.get(m);
+      m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
+      m.pbrMetallicRoughness.setBaseColorFactor([c[0], c[1], c[2], vis ? 0.12 : c[3]]);
+    });
     innmat.setAttribute('aria-pressed', String(vis));
     innmat.textContent = vis ? 'Vis dører' : 'Vis innmat';
   });

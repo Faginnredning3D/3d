@@ -8,7 +8,7 @@ import numpy as np
 from PIL import Image
 
 TEX_ROOT_MAP = [(r"\\fidc02\imos AG", "I:"), (r"\fidc02\imos AG", "I:")]
-TEX_TINT = {'ix_oak_m.jpg': [0.42, 0.30, 0.22]}  # moerk beis paa eik
+TEX_TINT = {'ix_oak_m.jpg': [0.42, 0.30, 0.22], 'i_wood_oak_gloss.jpg': [0.42, 0.30, 0.22]}  # moerk beis paa eik
 TEX_OVERRIDE = {'fag_fenixj5003_oro_cortez.jpg': r'I:\Library\IVIS\IX_ALUMINIUM_BRUSHED.JPG'}
 MAX_TEX = 2048
 
@@ -188,7 +188,8 @@ def appearance_key(app):
     tr = tr if isinstance(tr, float) else 0.0
     tex = app.get("texture") or {}
     url = tex.get("url") if isinstance(tex, dict) else None
-    return (app.get("_type", "A"), tuple(round(c, 4) for c in dc[:3]), round(tr, 3), url)
+    front = "FRONT" if "__FRONT__" in (app.get("_name") or "") else ""
+    return (front or app.get("_type", "A"), tuple(round(c, 4) for c in dc[:3]), round(tr, 3), url)
 
 
 # imos eksporterer snitt- og fasademarkoerer (flagg, etiketter) som egne noder,
@@ -438,7 +439,7 @@ def build_glb(buckets, out_path):
         accessors.append({"bufferView": vi, "componentType": 5125, "count": len(idx), "type": "SCALAR"})
         a_idx = len(accessors) - 1
 
-        _, rgb, transp, url = key
+        typ, rgb, transp, url = key
         pbr = {"baseColorFactor": [rgb[0], rgb[1], rgb[2], 1.0 - transp],
                "metallicFactor": 0.0, "roughnessFactor": 0.75}
 
@@ -460,7 +461,7 @@ def build_glb(buckets, out_path):
             t = TEX_TINT.get(os.path.basename(url or "").lower(), [1.0, 1.0, 1.0])
             pbr["baseColorFactor"] = [t[0], t[1], t[2], 1.0 - transp]
 
-        m = {"pbrMetallicRoughness": pbr, "doubleSided": False}
+        m = {"name": "FRONT" if typ == "FRONT" else "", "pbrMetallicRoughness": pbr, "doubleSided": False}
         if transp > 0.01:
             m["alphaMode"] = "BLEND"
         materials.append(m)
