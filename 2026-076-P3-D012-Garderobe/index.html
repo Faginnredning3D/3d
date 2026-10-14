@@ -199,7 +199,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=202610121321"
+      src="modell.glb?v=202610140853"
       alt="3D-modell av 18 personlige garderobeskap i rom D012"
       camera-controls
       touch-action="none"
@@ -247,11 +247,11 @@
       <h2>Oppsett</h2>
       <dl>
         <dt>Antall</dt>
-        <dd>18 skap i rekke (D012)</dd>
+        <dd>18 skap i rekke (D012), dekksider i begge ender</dd>
         <dt>M&aring;l pr. skap</dt>
-        <dd class="kode">B 300 &times; D 600 &times; H 2050&nbsp;mm</dd>
+        <dd class="kode">B 300 &times; D 600 &times; H 2080&nbsp;mm</dd>
         <dt>Sokkel</dt>
-        <dd class="kode">H 50&nbsp;mm, total h&oslash;yde 2100&nbsp;mm</dd>
+        <dd class="kode">H 20&nbsp;mm, total h&oslash;yde 2100&nbsp;mm</dd>
         <dt>Total lengde</dt>
         <dd class="kode">5400&nbsp;mm p&aring; vegg 7000&nbsp;mm</dd>
         <dt>D&oslash;rer</dt>
@@ -271,7 +271,7 @@
         <dt>Hyller</dt>
         <dd>16&nbsp;mm MDF, laminat Folkestone</dd>
         <dt>Rygg</dt>
-        <dd>4&nbsp;mm MDF ryggplate</dd>
+        <dd>4&nbsp;mm MDF, malt i Folkestone-farge</dd>
         <dt>Sokkel</dt>
         <dd>16&nbsp;mm MDF, laminat Folkestone</dd>
       </dl>
@@ -283,7 +283,7 @@
         <dt>Hengsler</dt>
         <dd>Blum CLIP top BLUMOTION 110&deg; med demping, 3 pr. d&oslash;r</dd>
         <dt>L&aring;s</dt>
-        <dd>Sylinderl&aring;s Symo med rosett i matt st&aring;l, egen n&oslash;kkel til hver d&oslash;r</dd>
+        <dd>L&aring;stype avklares f&oslash;r produksjonsstart</dd>
         <dt>Stang</dt>
         <dd>Rustfritt r&oslash;r &oslash;25&nbsp;mm med r&oslash;rholdere</dd>
       </dl>
@@ -292,7 +292,7 @@
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        Tegning REV&nbsp;A, 12.10.2026. Illustrasjonen er kun en rendering og kan avvike fra produksjonstegninger.
+        Tegning REV&nbsp;B, 14.10.2026. Illustrasjonen er kun en rendering og kan avvike fra produksjonstegninger.
       </p>
     </section>
   </aside>
@@ -360,10 +360,10 @@
     sentrer.hidden = true;
   });
 
-  /* --- innmat: doerene er materialgruppe 1 i modellen ------------------- */
+  /* --- innmat: doerene er materialgruppe 3 i modellen ------------------- */
   const innmat = document.getElementById('innmat');
   innmat.addEventListener('click', () => {
-    const m = mv.model && mv.model.materials[1];
+    const m = mv.model && mv.model.materials[3];
     if (!m) return;
     const vis = innmat.getAttribute('aria-pressed') !== 'true';
     m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
@@ -382,7 +382,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=202610121321').then(r => r.json()).then(d => {
+  fetch('snap.json?v=202610140853').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
