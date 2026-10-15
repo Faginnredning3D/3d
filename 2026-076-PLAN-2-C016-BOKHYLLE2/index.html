@@ -149,6 +149,22 @@
   figure.side img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--line); }
   figure.side figcaption { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); padding-top: 6px; text-align: right; }
 
+
+  /* --- fremhevet detalj --- */
+  .detalj { max-width: 1500px; margin: 0 auto 8px; padding: 0 16px; display: grid; gap: 16px 28px; grid-template-columns: minmax(0, 1fr); align-items: center; }
+  @media (min-width: 760px) { .detalj { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); } }
+  .detalj-tekst { border-top: 2px solid var(--accent); padding-top: 12px; }
+  .detalj-tekst h2 { margin: 0 0 8px; }
+  .detalj-tekst p { margin: 0 0 6px; font-size: 14px; }
+  .detalj-tekst .skala { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+  .detalj-figur { margin: 0; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--spark); padding: 12px; max-width: 640px; }
+  .detalj-figur svg { display: block; width: 100%; height: auto; }
+  .detalj-figur .kontur { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+  .detalj-figur .tynn { stroke: var(--ink-soft); stroke-width: 0.5; }
+  .detalj-figur .hjelp rect, .detalj-figur .hjelp line { fill: none; stroke: var(--ink-soft); stroke-width: 0.5; stroke-dasharray: 2 2; opacity: .7; }
+  .detalj-figur .maal line, .detalj-figur .maal path { stroke: var(--ink); stroke-width: 0.6; fill: none; }
+  .detalj-figur .maal .pil { fill: var(--ink); stroke: none; }
+  .detalj-figur text { font-family: var(--body); font-size: 8px; fill: var(--ink); }
   /* --- maalelinje --- */
   svg.maal {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -202,7 +218,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261015084741';
+    const SIDE_VERSJON = '20261015085931';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -331,6 +347,55 @@
     </section>
   </aside>
 </div>
+
+<section class="detalj" id="detalj-01">
+  <div class="detalj-tekst">
+    <h2>Detalj 01 &middot; stolpe</h2>
+    <p>Stolpe i heltre eik <strong>28 &times; 28&nbsp;mm</strong> med avrundede hj&oslash;rner <strong>R&nbsp;5&nbsp;mm</strong>.</p>
+    <p class="skala">Det. 01 &middot; 1:5</p>
+  </div>
+  <figure class="detalj-figur">
+    <svg viewBox="0 0 240 150" role="img" aria-label="Detalj 01: stolpe 28 x 28 mm med radius 5 mm">
+      <!-- hjelpelinjer -->
+      <g class="hjelp">
+        <rect x="20" y="10" width="200" height="125"/>
+        <line x1="20" y1="82" x2="220" y2="82"/>
+        <line x1="106" y1="10" x2="106" y2="135"/>
+        <line x1="134" y1="10" x2="134" y2="135"/>
+      </g>
+      <!-- kontur: hylleforkant, stolpe med R5 oppe, fuge opp -->
+      <path class="kontur" d="M20 110 H106 V87 Q106 82 111 82 H129 Q134 82 134 87 V110 H220"/>
+      <line class="kontur" x1="120" y1="10" x2="120" y2="82"/>
+      <line class="tynn" x1="118.5" y1="82" x2="118.5" y2="110"/>
+      <line class="tynn" x1="121.5" y1="82" x2="121.5" y2="110"/>
+      <!-- maal 28 vannrett -->
+      <g class="maal">
+        <line x1="106" y1="66" x2="134" y2="66"/>
+        <line x1="106" y1="62" x2="106" y2="80"/>
+        <line x1="134" y1="62" x2="134" y2="80"/>
+        <line x1="103" y1="69" x2="109" y2="63"/>
+        <line x1="131" y1="69" x2="137" y2="63"/>
+        <text x="120" y="61" text-anchor="middle">28</text>
+      </g>
+      <!-- maal 28 loddrett -->
+      <g class="maal">
+        <line x1="92" y1="82" x2="92" y2="110"/>
+        <line x1="88" y1="82" x2="104" y2="82"/>
+        <line x1="88" y1="110" x2="104" y2="110"/>
+        <line x1="89" y1="85" x2="95" y2="79"/>
+        <line x1="89" y1="113" x2="95" y2="107"/>
+        <text x="86" y="99" text-anchor="middle" transform="rotate(-90 86 96)">28</text>
+      </g>
+      <!-- radius -->
+      <g class="maal">
+        <line x1="133" y1="83" x2="162" y2="52"/>
+        <path d="M133 83 l1.5 -5.5 l3.5 3.5 z" class="pil"/>
+        <line x1="162" y1="52" x2="182" y2="52"/>
+        <text x="164" y="49">R=5</text>
+      </g>
+    </svg>
+  </figure>
+</section>
 
 <section class="tegninger" id="tegninger">
   <div class="teg-hode">
