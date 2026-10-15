@@ -66,10 +66,13 @@
     border: 1px solid var(--line); border-radius: 3px;
     background: linear-gradient(170deg, var(--stage-a), var(--stage-b));
     overflow: hidden; touch-action: none;
+    /* Modellen skal fylle hele ruten: fast hoeyde, ikke strekk etter sidespalten. */
+    height: clamp(380px, 72svh, 720px); align-self: start;
   }
+  @media (min-width: 900px) { .stage { height: clamp(460px, calc(100svh - 130px), 940px); } }
   model-viewer {
     display: block; width: 100%;
-    height: clamp(360px, 62vh, 700px);
+    height: 100%;
     background: transparent; --poster-color: transparent;
   }
 
@@ -453,11 +456,7 @@
 
   /* --- visningsterning --------------------------------------------------- */
   document.querySelectorAll('.terning button[data-orbit]').forEach(b => {
-    b.addEventListener('click', () => {
-      mv.cameraTarget = 'auto auto auto';
-      mv.cameraOrbit = b.dataset.orbit;
-      mv.fieldOfView = 'auto';
-    });
+    b.addEventListener('click', () => rammeInn(b.dataset.orbit));
   });
 
   /* --- zoom inn paa et punkt ------------------------------------------- */
@@ -468,11 +467,45 @@
     sentrer.hidden = false;
   }
   sentrer.addEventListener('click', () => {
-    mv.cameraTarget = '2443m 1100m -3800m';
-    mv.cameraOrbit = STARTBANE;
-    mv.fieldOfView = 'auto';
+    rammeInn(STARTBANE);
     sentrer.hidden = true;
   });
+
+  /* --- innramming paa selve innredningen, ikke hele gulvplaten ----------
+     Gulvet fra imos er mye stoerre enn innredningen, saa automatisk innramming
+     gjoer modellen liten. Vi finner innredningens utstrekning fra snappunktene
+     (alt som ligger over gulvplaten) og setter kamera etter den. */
+  let fokus = null;
+  function rammeInn(bane, hopp) {
+    const [t, p] = bane.split(' ');
+    if (fokus) {
+      mv.cameraTarget = fokus.mal;
+      mv.cameraOrbit = `${t} ${p} ${fokus.r}m`;
+    } else {
+      mv.cameraTarget = 'auto auto auto';
+      mv.cameraOrbit = bane;
+    }
+    mv.fieldOfView = 'auto';
+    if (hopp) mv.jumpCameraToGoal();
+  }
+  function beregnFokus(pkt) {
+    let gulv = Infinity;
+    for (let i = 1; i < pkt.length; i += 3) gulv = Math.min(gulv, pkt[i]);
+    const over = gulv + 120;            // gulvplaten er ca. 100 mm tykk
+    const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+    for (let i = 0; i < pkt.length; i += 3) {
+      if (pkt[i+1] < over) continue;
+      for (let k = 0; k < 3; k++) { lo[k] = Math.min(lo[k], pkt[i+k]); hi[k] = Math.max(hi[k], pkt[i+k]); }
+    }
+    if (!isFinite(lo[0])) return;
+    lo[1] = gulv + 100;
+    const c = lo.map((v, k) => (v + hi[k]) / 2);
+    const R = Math.hypot(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]) / 2;
+    const rect = mv.getBoundingClientRect();
+    const vfov = (mv.getFieldOfView?.() || 30) * Math.PI / 180;
+    const hfov = 2 * Math.atan(Math.tan(vfov / 2) * rect.width / Math.max(1, rect.height));
+    fokus = { mal: `${c[0]}m ${c[1]}m ${c[2]}m`, r: Math.round(R * 0.92 / Math.sin(Math.min(vfov, hfov) / 2)) };
+  }
 
   /* --- innmat: doerene er materialene merket FRONT i modellen --------------
      (imos-utseender med __FRONT__ faar navnet FRONT i konverteringen).
@@ -520,6 +553,8 @@
       liste.push(i);
     }
     snapp = { pkt, rutenett };
+    const start = () => { beregnFokus(pkt); rammeInn(STARTBANE, true); };
+    if (mv.loaded) start(); else mv.addEventListener('load', start, { once: true });
   }).catch(() => { snapp = null; });
 
   // Snappeavstand foelger zoom: naer modellen snapper den bare til hjoerner like ved.
