@@ -205,7 +205,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261016133956';
+    const SIDE_VERSJON = '20261016134011';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -233,7 +233,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261016133956"
+      src="modell.glb?v=20261016134011"
       alt="3D-modell av 7 personlige garderobeskap i rom D024"
       camera-controls
       touch-action="none"
@@ -342,31 +342,23 @@
       <h2>Tegninger</h2>
       <p>REV&nbsp;A &middot; 16.10.2026 &middot; Produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-076-P3-D024-Garderobe-REV-A.pdf?v=20261016133956" download>Last ned PDF</a>
+    <a class="lastned" href="2026-076-P3-D024-Garderobe-REV-A.pdf?v=20261016134011" download>Last ned PDF</a>
   </div>
     <figure class="side liggende">
-      <a href="sider/prev_side-02.png?v=20261016133956" target="_blank" rel="noopener"><img src="sider/prev_side-02.png?v=20261016133956" width="1556" height="1100" loading="lazy" alt="Tegning side 1 av 6"></a>
-      <figcaption>Side 1 av 6</figcaption>
+      <a href="sider/side-01.png?v=20261016134011" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261016134011" width="2400" height="1697" loading="lazy" alt="Tegning side 1 av 4"></a>
+      <figcaption>Side 1 av 4</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/prev_side-03.png?v=20261016133956" target="_blank" rel="noopener"><img src="sider/prev_side-03.png?v=20261016133956" width="1556" height="1100" loading="lazy" alt="Tegning side 2 av 6"></a>
-      <figcaption>Side 2 av 6</figcaption>
+      <a href="sider/side-02.png?v=20261016134011" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261016134011" width="2400" height="1697" loading="lazy" alt="Tegning side 2 av 4"></a>
+      <figcaption>Side 2 av 4</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-01.png?v=20261016133956" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261016133956" width="2400" height="1697" loading="lazy" alt="Tegning side 3 av 6"></a>
-      <figcaption>Side 3 av 6</figcaption>
+      <a href="sider/side-03.png?v=20261016134011" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261016134011" width="2400" height="1697" loading="lazy" alt="Tegning side 3 av 4"></a>
+      <figcaption>Side 3 av 4</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-02.png?v=20261016133956" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261016133956" width="2400" height="1697" loading="lazy" alt="Tegning side 4 av 6"></a>
-      <figcaption>Side 4 av 6</figcaption>
-    </figure>
-    <figure class="side liggende">
-      <a href="sider/side-03.png?v=20261016133956" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261016133956" width="2400" height="1697" loading="lazy" alt="Tegning side 5 av 6"></a>
-      <figcaption>Side 5 av 6</figcaption>
-    </figure>
-    <figure class="side liggende">
-      <a href="sider/side-04.png?v=20261016133956" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261016133956" width="2400" height="1697" loading="lazy" alt="Tegning side 6 av 6"></a>
-      <figcaption>Side 6 av 6</figcaption>
+      <a href="sider/side-04.png?v=20261016134011" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261016134011" width="2400" height="1697" loading="lazy" alt="Tegning side 4 av 4"></a>
+      <figcaption>Side 4 av 4</figcaption>
     </figure>
 </section>
 
@@ -498,7 +490,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261016133956').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261016134011').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
