@@ -1,7 +1,8 @@
-"""VRML 2.0 (imos-eksport) -> binaer glTF (.glb).
+r"""VRML 2.0 (imos-eksport) -> binaer glTF (.glb).
 
 Flater hierarkiet, grupperer trekanter per materiale, bygger inn teksturer.
-Bruk:  python wrl2glb.py <inn.wrl> <ut.glb>
+Bruk:  python wrl2glb.py <inn.wrl> <ut.glb> [PXM_..._CADOUTPUT.xml]
+(PXM-fila finnes automatisk i <wrl-mappe>\PXM hvis den ikke oppgis; gir kantlist per kant.)
 """
 import sys, os, json, struct, io, math, re
 import numpy as np
@@ -178,9 +179,63 @@ class Bucket:
         self.pos, self.uv, self.idx = [], [], []
 
 
-def appearance_key(app):
+# Kantlist per kant hentes fra imos sin PXM-fil (PXM\PXM_<ordre>_01_CADOUTPUT.xml).
+# VRML-en har hver kant som egen node «EdgeK» paa delens koordinater «BT<del-id>CO»,
+# og K er samme nummer som kantens cid i PXM. Fargen i VRML kan ikke brukes:
+# imos gir kanter uten kantlist samme dekor som flaten.
+KANTDATA = {}          # {del-id: {cid: "ABS_1,0_F7927"}}
+
+
+def les_pxm(sti):
+    import xml.etree.ElementTree as ET
+    data = {}
+    for part in ET.parse(sti).getroot().iter("part"):
+        kanter = {}
+        for e in part.iter("edge"):
+            navn = e.get("name") or ""
+            if e.get("machining") == "edgebanded" and navn and not navn.startswith("PRF_"):
+                kanter[int(e.get("cid"))] = navn
+        data[part.get("id")] = kanter
+    return data
+
+
+def sjekk_pxm(pxm, wrl):
+    """Tom streng hvis PXM-en passer til VRML-en, ellers en forklaring.
+    Del-ID-ene gjenbrukes naar tegningen endres, saa en gammel PXM kan gi kantlist
+    paa feil del. Krever at hver del med kanter finnes i PXM med like mange kanter."""
+    import xml.etree.ElementTree as ET
+    if os.path.getmtime(pxm) < os.path.getmtime(wrl) - 1800:
+        return "PXM er eldre enn VRML-eksporten (mer enn 30 min)."
+    tekst = open(wrl, "r", encoding="utf-8", errors="replace").read()
+    antall = {}
+    for pid in re.findall(r"DEF Edge\d+ Transform\{children\[Shape\{\s*appearance (?:USE|DEF) \w+\s*"
+                          r"geometry IndexedFaceSet\{[^}]*?coord (?:USE|DEF) BT(\d+)CO", tekst):
+        antall[pid] = antall.get(pid, 0) + 1
+    deler = {p.get("id"): len({e.get("cid") for e in p.iter("edge")})
+             for p in ET.parse(pxm).getroot().iter("part")}
+    mangler = [p for p in antall if p not in deler]
+    ulike = [p for p in antall if p in deler and deler[p] != antall[p]]
+    if mangler or ulike:
+        return f"{len(mangler)} deler mangler i PXM, {len(ulike)} deler har ulikt antall kanter."
+    return ""
+
+
+def kant_navn(app, kant, coord):
+    """Materialnavn for en kantflate: «KANT:<kantlist>», med FRONT foran paa doerer.
+    Tom streng naar kanten ikke har kantlist (eller PXM mangler)."""
+    m = re.match(r"BT(\d+)CO$", (coord or {}).get("_name") or "")
+    if not m or m.group(1) not in KANTDATA:
+        return ""
+    band = KANTDATA[m.group(1)].get(kant)
+    if not band:
+        return ""
+    front = "FRONT " if "__FRONT__" in ((app or {}).get("_name") or "") else ""
+    return front + "KANT:" + band
+
+
+def appearance_key(app, kantnavn=""):
     if app is None:
-        return ("default", (0.8, 0.8, 0.8), 0.0, None)
+        return ("default", (0.8, 0.8, 0.8), 0.0, None, kantnavn)
     mat = app.get("material") or {}
     dc = mat.get("diffuseColor", [0.8, 0.8, 0.8])
     dc = dc if isinstance(dc, list) else [dc, dc, dc]
@@ -189,7 +244,8 @@ def appearance_key(app):
     tex = app.get("texture") or {}
     url = tex.get("url") if isinstance(tex, dict) else None
     front = "FRONT" if "__FRONT__" in (app.get("_name") or "") else ""
-    return (front or app.get("_type", "A"), tuple(round(c, 4) for c in dc[:3]), round(tr, 3), url)
+    navn = kantnavn or ("FRONT" if front else "")
+    return (front or app.get("_type", "A"), tuple(round(c, 4) for c in dc[:3]), round(tr, 3), url, navn)
 
 
 # imos eksporterer snitt- og fasademarkoerer (flagg, etiketter) som egne noder,
@@ -197,7 +253,10 @@ def appearance_key(app):
 ANNOT = re.compile(r"imos(flag|label)", re.I)
 
 
-def walk(node, mat, buckets, stats):
+KANTNODE = re.compile(r"^Edge(\d+)$")
+
+
+def walk(node, mat, buckets, stats, kant=0):
     if not isinstance(node, dict):
         return
     nm = node.get("_name")
@@ -208,8 +267,11 @@ def walk(node, mat, buckets, stats):
     if t in ("Transform", "Group", "Collision", "Anchor", "Billboard"):
         if t == "Transform":
             mat = mat @ transform_matrix(node)
+        km = KANTNODE.match(nm or "")
+        if km:
+            kant = int(km.group(1))
         for ch in node.get("children", []) or []:
-            walk(ch, mat, buckets, stats)
+            walk(ch, mat, buckets, stats, kant)
         return
     if t == "Shape":
         geo = node.get("geometry")
@@ -229,7 +291,10 @@ def walk(node, mat, buckets, stats):
         tc = np.asarray(tcn.get("point"), dtype=np.float32).reshape(-1, 2) if isinstance(tcn, dict) and tcn.get("point") else None
         tci = [int(v) for v in geo.get("texCoordIndex", [])] or None
 
-        key = appearance_key(node.get("appearance"))
+        kn = kant_navn(node.get("appearance"), kant, coord) if kant else ""
+        key = appearance_key(node.get("appearance"), kn)
+        if kn:
+            stats["kant"] = stats.get("kant", 0) + 1
         b = buckets.setdefault(key, Bucket())
 
         hom = np.hstack([pts, np.ones((len(pts), 1))])
@@ -264,7 +329,7 @@ def walk(node, mat, buckets, stats):
         stats["shapes"] += 1
         return
     for ch in node.get("children", []) or []:
-        walk(ch, mat, buckets, stats)
+        walk(ch, mat, buckets, stats, kant)
 
 
 # ---------------------------------------------------------------- glb
@@ -439,7 +504,7 @@ def build_glb(buckets, out_path):
         accessors.append({"bufferView": vi, "componentType": 5125, "count": len(idx), "type": "SCALAR"})
         a_idx = len(accessors) - 1
 
-        typ, rgb, transp, url = key
+        typ, rgb, transp, url, navn = key
         pbr = {"baseColorFactor": [rgb[0], rgb[1], rgb[2], 1.0 - transp],
                "metallicFactor": 0.0, "roughnessFactor": 0.75}
 
@@ -461,7 +526,7 @@ def build_glb(buckets, out_path):
             t = TEX_TINT.get(os.path.basename(url or "").lower(), [1.0, 1.0, 1.0])
             pbr["baseColorFactor"] = [t[0], t[1], t[2], 1.0 - transp]
 
-        m = {"name": "FRONT" if typ == "FRONT" else "", "pbrMetallicRoughness": pbr, "doubleSided": False}
+        m = {"name": navn, "pbrMetallicRoughness": pbr, "doubleSided": False}
         if transp > 0.01:
             m["alphaMode"] = "BLEND"
         materials.append(m)
@@ -499,6 +564,20 @@ def main():
     global SRC_DIR
     src, dst = sys.argv[1], sys.argv[2]
     SRC_DIR = os.path.dirname(os.path.abspath(src))
+    import glob
+    pxm = sys.argv[3] if len(sys.argv) > 3 else next(iter(sorted(glob.glob(
+        os.path.join(SRC_DIR, "PXM", "PXM_*_CADOUTPUT.xml")))), None)
+    if pxm and os.path.exists(pxm):
+        # KANT_TVING=1 hopper over kontrollen – KUN for lokal test, aldri for kundesider
+        feil = "" if os.environ.get("KANT_TVING") == "1" else sjekk_pxm(pxm, src)
+        if feil:
+            print("ADVARSEL: PXM passer ikke til modellen, kantlist blir IKKE merket. " + feil +
+                  " Eksporter PXM paa nytt fra imos samtidig med VR Link.", flush=True)
+        else:
+            KANTDATA.update(les_pxm(pxm))
+            print(f"kantlist fra {os.path.basename(pxm)}: {len(KANTDATA)} deler", flush=True)
+    else:
+        print("ADVARSEL: fant ingen PXM-fil – kantlist blir ikke merket", flush=True)
     text = open(src, "r", encoding="utf-8", errors="replace").read()
     print(f"leser {os.path.getsize(src)/1e6:.1f} MB ...", flush=True)
     toks = tokenize(text)
@@ -519,7 +598,7 @@ def main():
     for r in roots:
         walk(r, np.eye(4), buckets, stats)
     print(f"{stats['shapes']} shapes -> {len(buckets)} materialgrupper "
-          f"({stats.get('annot', 0)} annotasjonsnoder hoppet over)", flush=True)
+          f"({stats.get('annot', 0)} annotasjonsnoder hoppet over, {stats.get('kant', 0)} kanter med kantlist)", flush=True)
     drop_outside_room(buckets)
     drop_ceiling(buckets)
     drop_shell(buckets)
