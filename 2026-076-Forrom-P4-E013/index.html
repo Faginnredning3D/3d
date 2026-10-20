@@ -218,7 +218,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261014153743';
+    const SIDE_VERSJON = '20261020154726';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -246,7 +246,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261014102135"
+      src="modell.glb?v=20261020154726"
       alt="3D-modell av servantmøbel i forrom E013"
       camera-controls
       touch-action="none"
@@ -256,8 +256,7 @@
       shadow-softness="0.8"
       exposure="1"
       environment-image="neutral"
-      camera-orbit="25deg 72deg 3200m"
-      camera-target="1600m 550m -3750m"
+      camera-orbit="28deg 76deg 75%"
       min-camera-orbit="auto auto 120m"
       min-field-of-view="2deg"
       interpolation-decay="60">
@@ -284,7 +283,7 @@
       <button data-orbit="0deg 90deg 100%">Front</button>
       <button data-orbit="90deg 90deg 100%">H&oslash;yre</button>
       <button class="tom" tabindex="-1" aria-hidden="true"></button>
-      <button data-orbit="25deg 72deg 3200m">3D</button>
+      <button data-orbit="28deg 76deg 75%">3D</button>
       <button data-orbit="180deg 90deg 100%">Bak</button>
     </div>
 
@@ -298,12 +297,12 @@
       <dl>
         <dt>Rom</dt>
         <dd>E013 Forrom, plan 4</dd>
-        <dt>Servant</dt>
-        <dd class="kode">L 1114 &times; D 500&nbsp;mm, vegghengt</dd>
+        <dt>Benk</dt>
+        <dd class="kode">L 2159 &times; D 500&nbsp;mm, vegghengt, topp 809&nbsp;mm over gulv</dd>
         <dt>Skap</dt>
-        <dd class="kode">779 + 295&nbsp;mm brede, H 600&nbsp;mm, dekksider i begge ender</dd>
+        <dd class="kode">4 skap: 276 + 779 + 779 + 295&nbsp;mm, H 600&nbsp;mm, dekksider i begge ender</dd>
         <dt>D&oslash;rer</dt>
-        <dd>TIP-ON (trykk for &aring; &aring;pne), ingen grep</dd>
+        <dd>6 d&oslash;rer, TIP-ON (trykk for &aring; &aring;pne), ingen grep</dd>
       </dl>
     </section>
 
@@ -336,47 +335,52 @@
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        Tegning REV&nbsp;A, 14.10.2026. Rendering kan avvike fra originalen og er kun en illustrasjon. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
+        Tegning REV&nbsp;B, 20.10.2026 &ndash; skapene g&aring;r n&aring; over hele lengden. Rendering kan avvike fra originalen og er kun en illustrasjon. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
       </p>
     </section>
   </aside>
+
 </div>
 
 <section class="tegninger" id="tegninger">
   <div class="teg-hode">
     <div>
       <h2>Tegninger</h2>
-      <p>REV&nbsp;A &middot; 14.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+      <p>REV&nbsp;B &middot; 20.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-076-Forrom-P4-E013-REV-A.pdf?v=20261014101534" download>Last ned PDF</a>
+    <a class="lastned" href="2026-076-Forrom-P4-E013-REV-B.pdf?v=20261020154726" download>Last ned PDF</a>
   </div>
     <figure class="side">
-      <a href="sider/side-01.png?v=20261014101534" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261014101534" width="1500" height="2121" loading="lazy" alt="Tegning side 1 av 7"></a>
-      <figcaption>Side 1 av 7</figcaption>
+      <a href="sider/side-01.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261020154726" width="1500" height="2122" loading="lazy" alt="Tegning side 1 av 8"></a>
+      <figcaption>Side 1 av 8</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-02.png?v=20261014101534" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261014101534" width="1500" height="2121" loading="lazy" alt="Tegning side 2 av 7"></a>
-      <figcaption>Side 2 av 7</figcaption>
+      <a href="sider/side-02.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261020154726" width="1500" height="2122" loading="lazy" alt="Tegning side 2 av 8"></a>
+      <figcaption>Side 2 av 8</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-03.png?v=20261014101534" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261014101534" width="1500" height="2121" loading="lazy" alt="Tegning side 3 av 7"></a>
-      <figcaption>Side 3 av 7</figcaption>
+      <a href="sider/side-03.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261020154726" width="1500" height="2122" loading="lazy" alt="Tegning side 3 av 8"></a>
+      <figcaption>Side 3 av 8</figcaption>
+    </figure>
+    <figure class="side">
+      <a href="sider/side-04.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261020154726" width="1500" height="2122" loading="lazy" alt="Tegning side 4 av 8"></a>
+      <figcaption>Side 4 av 8</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-04.png?v=20261014101534" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261014101534" width="2400" height="1697" loading="lazy" alt="Tegning side 4 av 7"></a>
-      <figcaption>Side 4 av 7</figcaption>
+      <a href="sider/side-05.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261020154726" width="2400" height="1697" loading="lazy" alt="Tegning side 5 av 8"></a>
+      <figcaption>Side 5 av 8</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-05.png?v=20261014101534" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261014101534" width="2400" height="1697" loading="lazy" alt="Tegning side 5 av 7"></a>
-      <figcaption>Side 5 av 7</figcaption>
+      <a href="sider/side-06.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261020154726" width="2400" height="1697" loading="lazy" alt="Tegning side 6 av 8"></a>
+      <figcaption>Side 6 av 8</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261014101534" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261014101534" width="2400" height="1697" loading="lazy" alt="Tegning side 6 av 7"></a>
-      <figcaption>Side 6 av 7</figcaption>
+      <a href="sider/side-07.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261020154726" width="2400" height="1697" loading="lazy" alt="Tegning side 7 av 8"></a>
+      <figcaption>Side 7 av 8</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261014101534" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261014101534" width="2400" height="1697" loading="lazy" alt="Tegning side 7 av 7"></a>
-      <figcaption>Side 7 av 7</figcaption>
+      <a href="sider/side-08.png?v=20261020154726" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261020154726" width="2400" height="1697" loading="lazy" alt="Tegning side 8 av 8"></a>
+      <figcaption>Side 8 av 8</figcaption>
     </figure>
 </section>
 
@@ -477,7 +481,7 @@
      Mangler navnet, brukes DOR_INDEKS som reserve. Opprinnelig farge huskes,
      saa beiset eik ikke blir lys naar doerene vises igjen. */
   const innmat = document.getElementById('innmat');
-  const DOR_INDEKS = 0;
+  const DOR_INDEKS = 3;
   const dorMat = () => {
     const ms = mv.model ? mv.model.materials : [];
     const f = ms.filter(m => /FRONT/i.test(m.name || ''));
@@ -601,7 +605,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261014102135').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261020154726').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
