@@ -13,6 +13,7 @@ Hver ordre ligger i egen mappe og serveres via GitHub Pages.
 - [2026-076-P4-E006-Garderobe](https://faginnredning3d.github.io/3d/2026-076-P4-E006-Garderobe/) – Marken 37, 12 personlige garderobeskap E006 (REV B 20.10.2026)
 - `2026-076-PLAN-2-C016-BOKHYLLE2` — Bokhylle 2 C016, Marken 37 (LAB Entreprenør)
 - [2026-076-Forrom-P4-E013](https://faginnredning3d.github.io/3d/2026-076-Forrom-P4-E013/) – Servant forrom E013, Marken 37 (REV B 20.10.2026)
+- [2025-284-C04-Resepsjon-disk](https://faginnredning3d.github.io/3d/2025-284-C04-Resepsjon-disk/) – Solheimsvatnet, resepsjonsdisk C04 (REV A 21.10.2026, SolidWorks)
 
 Modellene eksporteres fra imos iX med **VR Link** (VRML + teksturmappe) og konverteres
 til glTF før publisering. Konverteringsverktøyet ligger på fellesen under
