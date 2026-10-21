@@ -38,6 +38,12 @@ t = re.sub(r'<span class="kunde">.*?</span>', '<span class="kunde">' + c["kunde"
 t = re.sub(r'(<model-viewer[^>]*?\salt=")[^"]*(")', lambda m: m.group(1) + c["alt"] + m.group(2), t, count=1, flags=re.S)
 aside = open(os.path.join(k, "aside.html"), encoding="utf-8").read()
 t = re.sub(r"  <aside>.*?</aside>", lambda m: aside, t, count=1, flags=re.S)
+# Fast linje paa alle kundesider (Marius 21.10.2026): produksjonstid fra godkjent tegning.
+PRODTID = ('    <section class="blokk prodtid">\n      <h2>Produksjonstid</h2>\n'
+           '      <p>Normal produksjonstid er <strong>8&nbsp;uker fra godkjent tegning</strong>, med mindre annet er avtalt.</p>\n'
+           '    </section>\n')
+if "blokk prodtid" not in t:
+    t = re.sub(r"(<aside>\s*\n)", lambda m: m.group(1) + PRODTID, t, count=1)
 
 if c.get("innmat") is None:
     t = re.sub(r'\s*<button id="innmat"[^>]*>.*?</button>', "", t)

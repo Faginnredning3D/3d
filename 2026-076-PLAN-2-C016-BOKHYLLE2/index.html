@@ -223,6 +223,10 @@
   .kantnote { color: var(--ink-soft); font-size: 11px; }
   @media (max-width: 520px) { .kantforkl { bottom: 56px; } }
 
+  /* --- produksjonstid --- */
+  .prodtid { background: color-mix(in srgb, var(--spark) 14%, var(--surface)); border-top-color: var(--spark); padding: 12px 14px 14px; border-radius: 0 0 3px 3px; }
+  .prodtid p { margin: 0; font-size: 14px; }
+
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 <script>
@@ -304,6 +308,10 @@
   </div>
 
   <aside>
+    <section class="blokk prodtid">
+      <h2>Produksjonstid</h2>
+      <p>Normal produksjonstid er <strong>8&nbsp;uker fra godkjent tegning</strong>, med mindre annet er avtalt.</p>
+    </section>
     <section class="blokk">
       <h2>Oppsett</h2>
       <dl>
