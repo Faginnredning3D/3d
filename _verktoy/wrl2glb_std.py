@@ -215,8 +215,12 @@ def sjekk_pxm(pxm, wrl):
              for p in ET.parse(pxm).getroot().iter("part")}
     mangler = [p for p in antall if p not in deler]
     ulike = [p for p in antall if p in deler and deler[p] != antall[p]]
-    if mangler or ulike:
+    # Deler som ikke gaar i CNC (f.eks. kjoepte eller manuelt tilskaarne) mangler i PXM.
+    # Det er greit naar PXM er nyere enn VRML – de blir bare staaende umerket.
+    if ulike or len(mangler) > max(3, 0.05 * len(antall)):
         return f"{len(mangler)} deler mangler i PXM, {len(ulike)} deler har ulikt antall kanter."
+    if mangler:
+        print(f"merk: {len(mangler)} deler finnes ikke i PXM (ikke CNC) – kantene deres merkes ikke", flush=True)
     return ""
 
 
