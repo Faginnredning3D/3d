@@ -184,6 +184,7 @@ class Bucket:
 # og K er samme nummer som kantens cid i PXM. Fargen i VRML kan ikke brukes:
 # imos gir kanter uten kantlist samme dekor som flaten.
 KANTDATA = {}          # {del-id: {cid: "ABS_1,0_F7927"}}
+HOPP_OVER = set()      # del-ID-er der VRML og PXM ikke har like mange kanter
 
 
 def les_pxm(sti):
@@ -217,10 +218,14 @@ def sjekk_pxm(pxm, wrl):
     ulike = [p for p in antall if p in deler and deler[p] != antall[p]]
     # Deler som ikke gaar i CNC (f.eks. kjoepte eller manuelt tilskaarne) mangler i PXM.
     # Det er greit naar PXM er nyere enn VRML – de blir bare staaende umerket.
-    if ulike or len(mangler) > max(3, 0.05 * len(antall)):
+    # Formede deler (buer) kan ha annet antall kantflater enn konturen i PXM – de hoppes over.
+    avvik = len(mangler) + len(ulike)
+    if avvik > max(3, 0.05 * len(antall)):
         return f"{len(mangler)} deler mangler i PXM, {len(ulike)} deler har ulikt antall kanter."
-    if mangler:
-        print(f"merk: {len(mangler)} deler finnes ikke i PXM (ikke CNC) – kantene deres merkes ikke", flush=True)
+    if avvik:
+        print(f"merk: {len(mangler)} deler finnes ikke i PXM (ikke CNC) og {len(ulike)} har ulikt "
+              f"antall kanter – kantene deres merkes ikke", flush=True)
+    HOPP_OVER.update(ulike)
     return ""
 
 
@@ -228,7 +233,7 @@ def kant_navn(app, kant, coord):
     """Materialnavn for en kantflate: «KANT:<kantlist>», med FRONT foran paa doerer.
     Tom streng naar kanten ikke har kantlist (eller PXM mangler)."""
     m = re.match(r"BT(\d+)CO$", (coord or {}).get("_name") or "")
-    if not m or m.group(1) not in KANTDATA:
+    if not m or m.group(1) not in KANTDATA or m.group(1) in HOPP_OVER:
         return ""
     band = KANTDATA[m.group(1)].get(kant)
     if not band:
