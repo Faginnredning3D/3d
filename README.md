@@ -25,3 +25,5 @@ Sidene er merket `noindex` — de skal nås av den som får lenken, ikke via sø
 - [2026-196-P3-Speilvegg](https://faginnredning3d.github.io/3d/2026-196-P3-Speilvegg/) – Fysak Iskanten (INN AS), speilvegg dansesal (REV A 22.10.2026, modell fra SolidWorks-data)
 - [2026-198-Kafe-Krakk-rektangulaer](https://faginnredning3d.github.io/3d/2026-198-Kafe-Krakk-rektangulaer/) – Fjaak Chocolate, 7 krakker rektangulær eik/Forbo (REV A 22.10.2026, SolidWorks)
 - [2026-198-Kafe-Krakk-rund](https://faginnredning3d.github.io/3d/2026-198-Kafe-Krakk-rund/) – Fjaak Chocolate, 7 krakker rund eik/Forbo (REV A 22.10.2026, SolidWorks)
+- [2026-196-P1-Ballrom](https://faginnredning3d.github.io/3d/2026-196-P1-Ballrom/) – Fysak Iskanten (INN AS), perforerte veggplater ballrom (REV A 22.10.2026)
+- [2026-196-P2-Dansesal](https://faginnredning3d.github.io/3d/2026-196-P2-Dansesal/) – Fysak Iskanten (INN AS), perforerte veggplater dansesal (REV A 22.10.2026)
