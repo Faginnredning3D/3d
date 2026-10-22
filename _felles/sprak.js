@@ -119,6 +119,9 @@
       let n;
       while ((n = w.nextNode())) n.nodeType === 3 ? behandleTekst(n) : behandleAttr(n);
     }
+    // Våre egne endringer må ikke leses som ny norsk originaltekst (da ble ikke
+    // språkbytte fra f.eks. spansk til russisk gjort). Kast dem fra køen.
+    vakt.takeRecords();
     skriver = false;
   }
 
