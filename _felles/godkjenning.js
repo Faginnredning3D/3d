@@ -194,6 +194,7 @@
   function vilkarHtml() {
     return el('div', { class: 'gk-vilkar', tabindex: 0 },
       el('h3', {}, `${VILKAR.tittel} · versjon ${VILKAR.versjon}`),
+      el('p', { class: 'gk-sprak-merknad' }, 'Oversettelsen er til informasjon. Ved tvil gjelder den norske teksten.'),
       el('p', {}, VILKAR.ingress),
       VILKAR.punkter.map(([h, t], i) => [el('h4', {}, `${i + 1}. ${h}`), el('p', {}, t)]));
   }
