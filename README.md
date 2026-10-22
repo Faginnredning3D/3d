@@ -22,6 +22,7 @@ til glTF før publisering. Konverteringsverktøyet ligger på fellesen under
 Sidene er merket `noindex` — de skal nås av den som får lenken, ikke via søkemotor.
 - [2026-076-PLAN-2-C016-TEKJOKKEN](https://faginnredning3d.github.io/3d/2026-076-PLAN-2-C016-TEKJOKKEN/) – Marken 37, tekjøkken C016 (REV A 21.10.2026, modell fra SolidWorks)
 - [2026-076-PLAN-2-C017-BOKHYLLE1](https://faginnredning3d.github.io/3d/2026-076-PLAN-2-C017-BOKHYLLE1/) – Marken 37, bokhylle C017 (REV A 21.10.2026)
+- [2026-076-PLAN-2-C017-BOKHYLLE3](https://faginnredning3d.github.io/3d/2026-076-PLAN-2-C017-BOKHYLLE3/) – Marken 37, bokhylle 3 C017 (REV A 22.10.2026)
 - [2026-196-P3-Speilvegg](https://faginnredning3d.github.io/3d/2026-196-P3-Speilvegg/) – Fysak Iskanten (INN AS), speilvegg dansesal (REV A 22.10.2026, modell fra SolidWorks-data)
 - [2026-198-Kafe-Krakk-rektangulaer](https://faginnredning3d.github.io/3d/2026-198-Kafe-Krakk-rektangulaer/) – Fjaak Chocolate, 7 krakker rektangulær eik/Forbo (REV A 22.10.2026, SolidWorks)
 - [2026-198-Kafe-Krakk-rund](https://faginnredning3d.github.io/3d/2026-198-Kafe-Krakk-rund/) – Fjaak Chocolate, 7 krakker rund eik/Forbo (REV A 22.10.2026, SolidWorks)

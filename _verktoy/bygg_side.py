@@ -37,7 +37,9 @@ t = re.sub(r"<h1>.*?</h1>", "<h1>" + c["h1"] + "</h1>", t, count=1, flags=re.S)
 t = re.sub(r'<span class="kunde">.*?</span>', '<span class="kunde">' + c["kunde"] + "</span>", t, count=1, flags=re.S)
 t = re.sub(r'(<model-viewer[^>]*?\salt=")[^"]*(")', lambda m: m.group(1) + c["alt"] + m.group(2), t, count=1, flags=re.S)
 aside = open(os.path.join(k, "aside.html"), encoding="utf-8").read()
-t = re.sub(r"  <aside>.*?</aside>", lambda m: aside, t, count=1, flags=re.S)
+t, n_aside = re.subn(r"[ 	]*<aside>.*?</aside>", lambda m: aside, t, count=1, flags=re.S)
+if n_aside != 1:
+    sys.exit("FEIL: fant ikke <aside> i malen")
 # Fast linje paa alle kundesider (Marius 21.10.2026): produksjonstid fra godkjent tegning.
 PRODTID = ('    <section class="blokk prodtid">\n      <h2>Produksjonstid</h2>\n'
            '      <p>Normal produksjonstid er <strong>8&nbsp;uker fra godkjent tegning</strong>, med mindre annet er avtalt.</p>\n'
@@ -81,6 +83,8 @@ print("bygget", dst, "sider:", len(sider), "versjon:", stamp)
 # Språk: siden får språkvelgeren fra malen, men spesifikasjonene må oversettes.
 import subprocess
 r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "sprak_mangler.py"), dst],
-                   capture_output=True, text=True, encoding="utf-8")
-print(r.stdout.strip().splitlines()[0] if r.stdout.strip() else r.stderr.strip())
+                   capture_output=True, text=True, encoding="utf-8", errors="replace",
+                   env=dict(os.environ, PYTHONIOENCODING="utf-8"))
+ut, feil = (r.stdout or "").strip(), (r.stderr or "").strip()
+print(ut.splitlines()[0] if ut else feil)
 print("OVERSETT tekstene i sprak/_mangler.json til pl es lt it ru ro (se 02 Kunnskap/34, avsnitt Språk) før publisering.")
