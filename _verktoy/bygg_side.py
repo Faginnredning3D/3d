@@ -77,3 +77,10 @@ t = re.sub(r"const SIDE_VERSJON = '\d+'", "const SIDE_VERSJON = '" + stamp + "'"
 open(os.path.join(dst, "versjon.txt"), "w").write(stamp)
 open(os.path.join(dst, "index.html"), "w", encoding="utf-8", newline="\n").write(t)
 print("bygget", dst, "sider:", len(sider), "versjon:", stamp)
+
+# Språk: siden får språkvelgeren fra malen, men spesifikasjonene må oversettes.
+import subprocess
+r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "sprak_mangler.py"), dst],
+                   capture_output=True, text=True, encoding="utf-8")
+print(r.stdout.strip().splitlines()[0] if r.stdout.strip() else r.stderr.strip())
+print("OVERSETT tekstene i sprak/_mangler.json til pl es lt it ru ro (se 02 Kunnskap/34, avsnitt Språk) før publisering.")
