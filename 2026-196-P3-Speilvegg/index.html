@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261022110850';
+    const SIDE_VERSJON = '20261022115742';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -250,7 +250,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261022110850"
+      src="modell.glb?v=20261022115742"
       alt="3D-modell av speilvegg i dansesal"
       camera-controls
       touch-action="none"
@@ -310,7 +310,7 @@
         <dt>Hj&oslash;rner</dt>
         <dd>R350 p&aring; de fire ytre hj&oslash;rnene</dd>
         <dt>Belysning</dt>
-        <dd>Indirekte LED i alu-profil bak speilkanten, skjult bak 75&nbsp;mm utstikk</dd>
+        <dd>Indirekte LED mot vegg &ndash; lysring rundt speilet. Skjult bak skjermlist og 10&nbsp;mm skyggekant</dd>
       </dl>
     </section>
 
@@ -320,11 +320,15 @@
         <dt>Speil</dt>
         <dd>6&nbsp;mm s&oslash;lvspeil, polert kant, fuge 2&nbsp;mm</dd>
         <dt>Bakplate</dt>
-        <dd>18&nbsp;mm plate pr. speil, frest felt for opphengslist</dd>
+        <dd>18&nbsp;mm plate pr. speil, 10&nbsp;mm inn fra speilkant (skyggekant), frest felt for opphengslist</dd>
         <dt>Ramme</dt>
         <dd>Stendere og sviller 48 &times; 48, buede rammedeler i hj&oslash;rnene</dd>
         <dt>Opphengslist</dt>
         <dd>18 &times; 80 med 45&deg; fas, to niv&aring;er pr. speil</dd>
+        <dt>LED</dt>
+        <dd>NorDesign COF Ultra Long 10&nbsp;W/m, 3000K, 24V, 970&nbsp;lm/m, CRI&gt;90 i alu-skinne Microstar LP1707 med opalt lokk</dd>
+        <dt>Skjermlist</dt>
+        <dd>12&nbsp;mm kryssfiner, sort, langs ytterkanten (buet i hj&oslash;rnene)</dd>
       </dl>
     </section>
 
@@ -344,46 +348,46 @@
       <h2>Tegninger</h2>
       <p>REV&nbsp;A &middot; 22.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-196-P3-Speilvegg-REV-A.pdf?v=20261022110850" download>Last ned PDF</a>
+    <a class="lastned" href="2026-196-P3-Speilvegg-REV-A.pdf?v=20261022115742" download>Last ned PDF</a>
   </div>
     <figure class="side">
-      <a href="sider/side-01.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261022110850" width="1500" height="2123" loading="lazy" alt="Tegning side 1 av 10"></a>
+      <a href="sider/side-01.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261022115742" width="1500" height="2123" loading="lazy" alt="Tegning side 1 av 10"></a>
       <figcaption>Side 1 av 10</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-02.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261022110850" width="1500" height="2123" loading="lazy" alt="Tegning side 2 av 10"></a>
+      <a href="sider/side-02.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261022115742" width="1500" height="2123" loading="lazy" alt="Tegning side 2 av 10"></a>
       <figcaption>Side 2 av 10</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-03.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261022110850" width="1500" height="2123" loading="lazy" alt="Tegning side 3 av 10"></a>
+      <a href="sider/side-03.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261022115742" width="1500" height="2123" loading="lazy" alt="Tegning side 3 av 10"></a>
       <figcaption>Side 3 av 10</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-04.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261022110850" width="1500" height="2123" loading="lazy" alt="Tegning side 4 av 10"></a>
+      <a href="sider/side-04.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261022115742" width="1500" height="2123" loading="lazy" alt="Tegning side 4 av 10"></a>
       <figcaption>Side 4 av 10</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-05.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261022110850" width="1500" height="2123" loading="lazy" alt="Tegning side 5 av 10"></a>
+      <a href="sider/side-05.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261022115742" width="1500" height="2123" loading="lazy" alt="Tegning side 5 av 10"></a>
       <figcaption>Side 5 av 10</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261022110850" width="2400" height="1698" loading="lazy" alt="Tegning side 6 av 10"></a>
+      <a href="sider/side-06.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261022115742" width="2400" height="1698" loading="lazy" alt="Tegning side 6 av 10"></a>
       <figcaption>Side 6 av 10</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261022110850" width="2400" height="1698" loading="lazy" alt="Tegning side 7 av 10"></a>
+      <a href="sider/side-07.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261022115742" width="2400" height="1698" loading="lazy" alt="Tegning side 7 av 10"></a>
       <figcaption>Side 7 av 10</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-08.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261022110850" width="2400" height="1698" loading="lazy" alt="Tegning side 8 av 10"></a>
+      <a href="sider/side-08.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261022115742" width="2400" height="1698" loading="lazy" alt="Tegning side 8 av 10"></a>
       <figcaption>Side 8 av 10</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-09.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261022110850" width="2400" height="1698" loading="lazy" alt="Tegning side 9 av 10"></a>
+      <a href="sider/side-09.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261022115742" width="2400" height="1698" loading="lazy" alt="Tegning side 9 av 10"></a>
       <figcaption>Side 9 av 10</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-10.png?v=20261022110850" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261022110850" width="2400" height="1698" loading="lazy" alt="Tegning side 10 av 10"></a>
+      <a href="sider/side-10.png?v=20261022115742" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261022115742" width="2400" height="1698" loading="lazy" alt="Tegning side 10 av 10"></a>
       <figcaption>Side 10 av 10</figcaption>
     </figure>
 </section>
@@ -584,7 +588,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261022110850').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261022115742').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
