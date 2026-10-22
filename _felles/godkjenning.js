@@ -37,6 +37,12 @@
 
   /* ---------- lagring (testmodus) / server ---------------------------- */
   const NOKKEL = 'fag-godkj:' + K.tegning;
+  // Testmodus: «?nullstill» i adressen sletter økt, godkjenning og logg for tegningen
+  // (for å vise godkjenningen på nytt). Parameteret fjernes fra adressen etterpå.
+  if (TEST && new URLSearchParams(location.search).has('nullstill')) {
+    try { Object.keys(localStorage).filter(k => k.startsWith(NOKKEL)).forEach(k => localStorage.removeItem(k)); } catch (_) {}
+    history.replaceState(null, '', location.pathname + location.hash);
+  }
   const les = (n, std) => { try { return JSON.parse(localStorage.getItem(NOKKEL + ':' + n)) ?? std; } catch (_) { return std; } };
   const skriv = (n, v) => { try { localStorage.setItem(NOKKEL + ':' + n, JSON.stringify(v)); } catch (_) {} };
 
