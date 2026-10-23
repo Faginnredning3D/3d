@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261023141925';
+    const SIDE_VERSJON = '20261023145945';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -250,7 +250,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261023141925"
+      src="modell.glb?v=20261023145945"
       alt="3D-modell av kaffenisje med eikefronter, steinbenk og hyllekasse"
       camera-controls
       touch-action="none"
@@ -271,6 +271,8 @@
     <div id="maaltalllag"></div>
 
     <div class="verktoy">
+      <button id="frontknapp" aria-pressed="false" title="Gjør frontene gjennomsiktige">Skjul fronter</button>
+      <button id="veggknapp" aria-pressed="false" title="Veggene er gjennomsiktige - skjul dem helt">Skjul vegger</button>
       <button id="maalknapp" aria-pressed="false" title="Klikk to punkter p&aring; modellen">M&aring;l</button>
       <button id="kantknapp" aria-pressed="false" hidden title="Vis hvilke kanter som har kantlist">Kantlist</button>
       <button id="angre" hidden>Angre</button>
@@ -308,7 +310,7 @@
         <dt>Nisje</dt>
         <dd class="kode">Kontrollm&aring;lt 3400 &times; 2800&nbsp;mm, profilert eikeforing i sider og himling</dd>
         <dt>Benkeskap</dt>
-        <dd class="kode">600 grut/s&oslash;ppel &middot; 834 fire skuffer &middot; 600 oppvaskmaskin &middot; 600 kum/Purewater &middot; 600 med innvendige skuffer, topp 900&nbsp;mm</dd>
+        <dd class="kode">600 d&oslash;r under kaffemaskin &middot; 834 fire skuffer &middot; 600 oppvaskmaskin &middot; 600 kum/Purewater &middot; 600 med innvendige skuffer, topp 900&nbsp;mm</dd>
         <dt>Hyllekasse</dt>
         <dd class="kode">1200 &times; 250 &times; 285&nbsp;mm, 530&nbsp;mm over benk, eikegavler, skjult opphengslist mot vegg</dd>
         <dt>Utstyr</dt>
@@ -320,7 +322,7 @@
       <h2>Materialer</h2>
       <dl>
         <dt>Fronter, sokkel, foring, hylle</dt>
-        <dd>19&nbsp;mm MDF eikefin&eacute;r, 1,5&nbsp;% hvitpigmentering, klarlakk glans 10</dd>
+        <dd>19&nbsp;mm MDF eikefin&eacute;r mix-match, 1,5&nbsp;% hvitpigmentering, klar matt lakk glans 10. Vedretning loddrett p&aring; fronter, vannrett p&aring; sokkel og hylle. Fargepr&oslash;ve godkjennes f&oslash;r produksjon.</dd>
         <dt>Grep</dt>
         <dd>Innfrest grep i overkant av frontene (skr&aring; fresing p&aring; baksiden), 30&nbsp;mm fingerluft</dd>
         <dt>Skrog</dt>
@@ -359,50 +361,50 @@
       <h2>Tegninger</h2>
       <p>REV&nbsp;A &middot; 23.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2025-284-C06-Kaffenisje-REV-A.pdf?v=20261023141925" download>Last ned PDF</a>
+    <a class="lastned" href="2025-284-C06-Kaffenisje-REV-A.pdf?v=20261023145945" download>Last ned PDF</a>
   </div>
     <figure class="side liggende">
-      <a href="sider/side-01.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 1 av 11"></a>
+      <a href="sider/side-01.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 1 av 11"></a>
       <figcaption>Side 1 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-02.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 2 av 11"></a>
+      <a href="sider/side-02.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 2 av 11"></a>
       <figcaption>Side 2 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-03.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 3 av 11"></a>
+      <a href="sider/side-03.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 3 av 11"></a>
       <figcaption>Side 3 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-04.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 11"></a>
+      <a href="sider/side-04.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 11"></a>
       <figcaption>Side 4 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-05.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 11"></a>
+      <a href="sider/side-05.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 11"></a>
       <figcaption>Side 5 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 11"></a>
+      <a href="sider/side-06.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 11"></a>
       <figcaption>Side 6 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 11"></a>
+      <a href="sider/side-07.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 11"></a>
       <figcaption>Side 7 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-08.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 11"></a>
+      <a href="sider/side-08.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 11"></a>
       <figcaption>Side 8 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-09.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 11"></a>
+      <a href="sider/side-09.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 11"></a>
       <figcaption>Side 9 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-10.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 11"></a>
+      <a href="sider/side-10.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 11"></a>
       <figcaption>Side 10 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-11.png?v=20261023141925" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261023141925" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 11"></a>
+      <a href="sider/side-11.png?v=20261023145945" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261023145945" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 11"></a>
       <figcaption>Side 11 av 11</figcaption>
     </figure>
 </section>
@@ -603,7 +605,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261023141925').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261023145945').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -936,7 +938,31 @@
 
   mv.addEventListener('camera-change', tegn);
   new ResizeObserver(tegn).observe(stage);
+
+  /* --- fronter og vegger (C06): materialer FRONT og VEGG ---------------- */
+  (() => {
+    const orig = new Map();
+    const mats = (test) => (mv.model ? mv.model.materials : []).filter(m => test(m.name || ''));
+    const alfa = (test, a) => mats(test).forEach(m => {
+      if (!orig.has(m)) orig.set(m, m.pbrMetallicRoughness.baseColorFactor.slice());
+      const c = orig.get(m), ny = a === null ? c[3] : a;
+      m.setAlphaMode(ny < 0.999 ? 'BLEND' : 'OPAQUE');
+      m.pbrMetallicRoughness.setBaseColorFactor([c[0], c[1], c[2], ny]);
+    });
+    const knapp = (id, test, av, paaTekst, avTekst) => {
+      const k = document.getElementById(id);
+      k.addEventListener('click', () => {
+        if (!mats(test).length) return;          // modellen er ikke lastet ennå
+        const paa = k.getAttribute('aria-pressed') !== 'true';
+        alfa(test, paa ? av : null);
+        k.setAttribute('aria-pressed', String(paa)); k.textContent = paa ? paaTekst : avTekst;
+      });
+    };
+    knapp('frontknapp', n => /FRONT/i.test(n), 0.12, 'Vis fronter', 'Skjul fronter');
+    knapp('veggknapp', n => n === 'VEGG', 0.0, 'Vis vegger', 'Skjul vegger');
+  })();
 </script>
 
+<script src="../_felles/sprak.js?v=20261022112504" defer></script>
 </body>
 </html>
