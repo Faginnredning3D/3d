@@ -22,7 +22,11 @@
   "Tilpasset kassen i høyre hjørne (2067 minus ca. 20 mm gulv). Kjøkkenet bygges 2040 og fores ikke over skapene. Sokkel 120, benkehøyde 900.": "Adaptado al cajón de la esquina derecha (2067 menos aprox. 20 mm de suelo). La cocina mide 2040 y no se reviste por encima. Zócalo 120, altura de encimera 900.",
   "Profilhåndtak på benkeskapene – type ikke avklart, derfor ikke vist": "Tiradores de perfil en los muebles bajos – tipo sin definir, por eso no se muestran",
   "Skråtak og kasse i høyre hjørne er vist. Det er åpent opp til skråtaket (inntil ca. 800 mm) – ikke foret over skapene.": "Se muestran el techo inclinado y el cajón de la esquina derecha. Queda abierto hasta el techo inclinado (hasta aprox. 800 mm) – sin revestir por encima.",
-  "Tak": "Techo"
+  "Tak": "Techo",
+  "Grep": "Tiradores",
+  "Benkeskap:": "Muebles bajos:",
+  "ikke avklart": "sin definir",
+  "– profilhåndtak eller TIP-ON, derfor ikke vist. Overskap: gripelist 20 mm.": "– tirador de perfil o TIP-ON, por eso no se muestra. Muebles altos: tirador perfil de 20 mm."
  },
  "maler": {}
 }

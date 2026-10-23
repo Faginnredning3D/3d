@@ -22,7 +22,11 @@
   "Tilpasset kassen i høyre hjørne (2067 minus ca. 20 mm gulv). Kjøkkenet bygges 2040 og fores ikke over skapene. Sokkel 120, benkehøyde 900.": "Pritaikyta prie dėžės dešiniajame kampe (2067 minus apie 20 mm grindų). Virtuvė 2040 aukščio, virš spintelių neužtaisoma. Cokolis 120, stalviršio aukštis 900.",
   "Profilhåndtak på benkeskapene – type ikke avklart, derfor ikke vist": "Profilinės rankenėlės ant apatinių spintelių – tipas nepatikslintas, todėl nepavaizduotos",
   "Skråtak og kasse i høyre hjørne er vist. Det er åpent opp til skråtaket (inntil ca. 800 mm) – ikke foret over skapene.": "Pavaizduotos nuožulnios lubos ir dėžė dešiniajame kampe. Iki nuožulnių lubų paliekama atvira erdvė (iki apie 800 mm) – virš spintelių neužtaisoma.",
-  "Tak": "Lubos"
+  "Tak": "Lubos",
+  "Grep": "Rankenėlės",
+  "Benkeskap:": "Apatinės spintelės:",
+  "ikke avklart": "nepatikslinta",
+  "– profilhåndtak eller TIP-ON, derfor ikke vist. Overskap: gripelist 20 mm.": "– profilinė rankenėlė arba TIP-ON, todėl nepavaizduota. Viršutinės spintelės: 20 mm rankenėlės juosta."
  },
  "maler": {}
 }
