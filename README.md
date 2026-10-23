@@ -29,3 +29,4 @@ Sidene er merket `noindex` — de skal nås av den som får lenken, ikke via sø
 - [2026-198-Kafe-Krakk-rund](https://faginnredning3d.github.io/3d/2026-198-Kafe-Krakk-rund/) – Fjaak Chocolate, 7 krakker rund eik/Forbo (REV A 22.10.2026, SolidWorks)
 - [2026-196-P1-Ballrom](https://faginnredning3d.github.io/3d/2026-196-P1-Ballrom/) – Fysak Iskanten (INN AS), perforerte veggplater ballrom (REV A 22.10.2026)
 - [2026-196-P2-Dansesal](https://faginnredning3d.github.io/3d/2026-196-P2-Dansesal/) – Fysak Iskanten (INN AS), perforerte veggplater dansesal (REV A 22.10.2026)
+- [2026-196-P4-Ballrom-vest](https://faginnredning3d.github.io/3d/2026-196-P4-Ballrom-vest/) – Fysak Iskanten (INN AS), perforerte veggplater ballrom vest (REV A 23.10.2026)
