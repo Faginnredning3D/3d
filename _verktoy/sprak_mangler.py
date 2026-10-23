@@ -34,11 +34,17 @@ tekster = list(dict.fromkeys(p.t))
 def last(f):
     return json.load(io.open(f, encoding='utf-8')) if os.path.exists(f) else {'tekster': {}, 'maler': {}}
 
+# Maler som i sprak.js bare gjelder tall (TALLMALER) maa bare matche tall her ogsaa,
+# ellers blir f.eks. '{0} av {1}' regnet som oversettelse av hele setninger med ' av '.
+_js = io.open(os.path.join(rot, '_felles', 'sprak.js'), encoding='utf-8').read()
+_m = re.search(r"TALLMALER = new Set\(\[(.*?)\]\)", _js, re.S)
+TALLMALER = set(re.findall(r"'([^']*)'", _m.group(1))) if _m else set()
+
 mangler = set()
 for k in SPRAK:
     felles, egen = last(os.path.join(rot, '_felles', 'sprak', f'{k}.json')), last(os.path.join(side, 'sprak', f'{k}.json'))
     ord_ = {**felles['tekster'], **egen['tekster']}
-    maler = [re.compile('^' + re.escape(m).replace(r'\{0\}', '.+?').replace(r'\{1\}', '.+?').replace(r'\{2\}', '.+?') + '$')
+    maler = [re.compile('^' + re.sub(r'\\\{\d\\\}', lambda _, t=m in TALLMALER: r'(\d+)' if t else '(.+?)', re.escape(m)) + '$')
              for m in {**felles['maler'], **egen['maler']}]
     for t in tekster:
         if t not in ord_ and not any(m.match(t) for m in maler):
