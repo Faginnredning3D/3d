@@ -6,7 +6,8 @@
  * En side kan ha egne tillegg i <sidemappe>/sprak/<kode>.json (samme format).
  *
  * Språk velges i nedtrekkslista øverst, eller med ?sprak=pl i lenken (lenke til kunde).
- * Valget huskes i nettleseren. Norsk er standard.
+ * Lenken åpner ALLTID på norsk (Marius 27.10.2026). Valget gjelder bare i fanen som er åpen
+ * (sessionStorage) og skrives ikke inn i adressen, så en kopiert lenke er alltid norsk.
  */
 (function () {
   'use strict';
@@ -27,8 +28,8 @@
   const origAttr = new WeakMap();     // element -> {attr: norsk}
   let skriver = false;
 
-  const lagret = () => { try { return localStorage.getItem('fag-sprak'); } catch (_) { return null; } };
-  const lagre = (k) => { try { localStorage.setItem('fag-sprak', k); } catch (_) {} };
+  const lagret = () => { try { return sessionStorage.getItem('fag-sprak'); } catch (_) { return null; } };
+  const lagre = (k) => { try { sessionStorage.setItem('fag-sprak', k); } catch (_) {} };
   const normal = (s) => s.replace(/\s+/g, ' ').trim();
   const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -146,9 +147,6 @@
     document.documentElement.lang = sprak;
     if (lagreValg) {
       lagre(sprak);
-      const u = new URL(location.href);
-      if (sprak === 'nb') u.searchParams.delete('sprak'); else u.searchParams.set('sprak', sprak);
-      history.replaceState(null, '', u);
     }
     velger.value = sprak;
     behandle(document.body);
@@ -192,7 +190,7 @@
     const kunde = hode && hode.querySelector('.kunde');
     if (kunde) kunde.after(boks); else if (hode) hode.append(boks); else document.body.prepend(boks);
     vakt.observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTR });
-    settSprak(velgStart(), new URLSearchParams(location.search).has('sprak'));
+    settSprak(velgStart(), false);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', monter); else monter();
 })();
