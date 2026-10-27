@@ -22,6 +22,7 @@ til glTF før publisering. Konverteringsverktøyet ligger på fellesen under
 Sidene er merket `noindex` — de skal nås av den som får lenken, ikke via søkemotor.
 - [2026-076-PLAN-2-C016-TEKJOKKEN](https://faginnredning3d.github.io/3d/2026-076-PLAN-2-C016-TEKJOKKEN/) – Marken 37, tekjøkken C016 (REV A 21.10.2026, modell fra SolidWorks)
 - [2026-076-PLAN-4-E006-TEKJOKKEN](https://faginnredning3d.github.io/3d/2026-076-PLAN-4-E006-TEKJOKKEN/) – Marken 37, tekjøkken E006 korridor plan 4 (REV A 23.10.2026)
+- [2026-076-PLAN-4-E006-AVFALL](https://faginnredning3d.github.io/3d/2026-076-PLAN-4-E006-AVFALL/) – Marken 37, avfallsstasjon E006 korridor plan 4 (REV A 27.10.2026)
 - [2026-076-PLAN-2-C017-BOKHYLLE1](https://faginnredning3d.github.io/3d/2026-076-PLAN-2-C017-BOKHYLLE1/) – Marken 37, bokhylle C017 (REV A 21.10.2026)
 - [2026-076-PLAN-2-C017-BOKHYLLE3](https://faginnredning3d.github.io/3d/2026-076-PLAN-2-C017-BOKHYLLE3/) – Marken 37, bokhylle 3 C017 (REV A 22.10.2026)
 - [2026-076-PLAN-2-C016-BOKHYLLE1](https://faginnredning3d.github.io/3d/2026-076-PLAN-2-C016-BOKHYLLE1/) – Marken 37, bokhylle 1 C016 (REV A 23.10.2026)
