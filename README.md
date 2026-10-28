@@ -32,3 +32,8 @@ Sidene er merket `noindex` — de skal nås av den som får lenken, ikke via sø
 - [2026-196-P1-Ballrom](https://faginnredning3d.github.io/3d/2026-196-P1-Ballrom/) – Fysak Iskanten (INN AS), perforerte veggplater ballrom (REV A 22.10.2026)
 - [2026-196-P2-Dansesal](https://faginnredning3d.github.io/3d/2026-196-P2-Dansesal/) – Fysak Iskanten (INN AS), perforerte veggplater dansesal (REV A 22.10.2026)
 - [2026-196-P4-Ballrom-vest](https://faginnredning3d.github.io/3d/2026-196-P4-Ballrom-vest/) – Fysak Iskanten (INN AS), perforerte veggplater ballrom vest (REV A 23.10.2026)
+- [2026-174-IA08-Spilevegg](https://faginnredning3d.github.io/3d/2026-174-IA08-Spilevegg/) – Fitjar Folkebibliotek (Engevik & Tislevoll), spilevegg IA.08 sort beiset eik (REV A 28.10.2026, SolidWorks)
+- [2026-174-IA07-Sittehule](https://faginnredning3d.github.io/3d/2026-174-IA07-Sittehule/) – Fitjar Folkebibliotek (Engevik & Tislevoll), sittehule «Bølge» IA.07 (REV A 28.10.2026, SolidWorks)
+- [2026-174-IA05-Bokhylle](https://faginnredning3d.github.io/3d/2026-174-IA05-Bokhylle/) – Fitjar Folkebibliotek (Engevik & Tislevoll), bokhylle ungdomsavdeling IA.05 (REV A 28.10.2026, SolidWorks)
+- [2026-174-Sittenisje-ungdomsavd](https://faginnredning3d.github.io/3d/2026-174-Sittenisje-ungdomsavd/) – Fitjar Folkebibliotek (Engevik & Tislevoll), sittenisje med bord, ungdomsavdeling (REV A 28.10.2026, SolidWorks)
+- [2026-174-IA06-Laneautomat](https://faginnredning3d.github.io/3d/2026-174-IA06-Laneautomat/) – Fitjar Folkebibliotek (Engevik & Tislevoll), innredning låneautomat IA.06 (REV A 28.10.2026, SolidWorks)
