@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261026095658';
+    const SIDE_VERSJON = '20261029164052';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -250,7 +250,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261026095658"
+      src="modell.glb?v=20261029164052"
       alt="3D-modell av kaffenisje med eikefronter, steinbenk og hyllekasse"
       camera-controls
       touch-action="none"
@@ -297,6 +297,7 @@
     <div class="kantforkl" id="kantforkl" hidden></div>
   </div>
 
+
   <aside>
     <section class="blokk prodtid">
       <h2>Produksjonstid</h2>
@@ -308,13 +309,13 @@
         <dt>Rom</dt>
         <dd>Kaffenisje, Solheimsvatnet Pluss</dd>
         <dt>Nisje</dt>
-        <dd class="kode">Kontrollm&aring;lt 3400 &times; 2800&nbsp;mm, profilert eikeforing i sider og himling</dd>
+        <dd class="kode">Kontrollm&aring;lt 3400 &times; 2800&nbsp;mm, profilert eikeforing 20/40/20 i sider og himling, 45&deg; gj&aelig;ring i hj&oslash;rnene</dd>
         <dt>Benkeskap</dt>
-        <dd class="kode">600 d&oslash;r under kaffemaskin &middot; 834 fire skuffer &middot; 600 oppvaskmaskin &middot; 600 kum/Purewater &middot; 600 med innvendige skuffer, topp 900&nbsp;mm</dd>
+        <dd class="kode">600 d&oslash;r under kaffemaskin &middot; 834 fire skuffer med 50&nbsp;mm &aring;pen spalte &middot; 600 oppvaskmaskin &middot; 600 kum/Purewater &middot; 600 med innvendige skuffer, topp 900&nbsp;mm</dd>
         <dt>Hyllekasse</dt>
         <dd class="kode">1200 &times; 250 &times; 285&nbsp;mm, 530&nbsp;mm over benk, eikegavler, skjult opphengslist mot vegg</dd>
         <dt>Utstyr</dt>
-        <dd>Kaffemaskin WMF 1500 S+, Purewater-t&aring;rn (Culligan PUREone S), underlimt kum og batteri leveres av andre &ndash; vist som illustrasjon. Oppvaskmaskin Miele PFD 104 SCVi XXL med integrert eikefront.</dd>
+        <dd>Kaffemaskin WMF 1500 S+, Purewater-t&aring;rn (Culligan PUREone S), underlimt st&aring;lkum og batteri leveres av andre &ndash; vist som illustrasjon. Oppvaskmaskin Miele PFD 104 SCVi XXL med integrert eikefront.</dd>
       </dl>
     </section>
 
@@ -322,11 +323,13 @@
       <h2>Materialer</h2>
       <dl>
         <dt>Fronter, sokkel, foring, hylle</dt>
-        <dd>19&nbsp;mm MDF eikefin&eacute;r mix-match, 1,5&nbsp;% hvitpigmentering, klar matt lakk glans 10. Vedretning loddrett p&aring; fronter, vannrett p&aring; sokkel og hylle. Fargepr&oslash;ve godkjennes f&oslash;r produksjon.</dd>
+        <dd>19&nbsp;mm MDF eikefin&eacute;r mix-match, 1,5&nbsp;% hvitpigmentering, klar matt lakk glans 10. Vedretning vannrett p&aring; alt. Fargepr&oslash;ve godkjennes f&oslash;r produksjon.</dd>
+        <dt>Foring</dt>
+        <dd>Profil 20/40/20: eik 20&nbsp;mm, kjerne 40&nbsp;mm trukket 10&nbsp;mm inn, eik 20&nbsp;mm &ndash; alt i eik med samme utf&oslash;relse som frontene</dd>
         <dt>Grep</dt>
-        <dd>Innfrest grep i overkant av frontene (skr&aring; fresing p&aring; baksiden), 30&nbsp;mm fingerluft</dd>
+        <dd>Innfrest grep i overkant av frontene (skr&aring; fresing p&aring; baksiden). 30&nbsp;mm fingerluft over d&oslash;rene, 50&nbsp;mm &aring;pen spalte over skuffene.</dd>
         <dt>Skrog</dt>
-        <dd>Hvit melamin med eikekant</dd>
+        <dd>Hvit melamin med eikekant. Skuffeskapet og skuffene er sorte innvendig.</dd>
         <dt>Benkeplate</dt>
         <dd>C&aelig;sarstone 20&nbsp;mm, farge 4130 Clamshell (S&aelig;thre)</dd>
       </dl>
@@ -347,7 +350,7 @@
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        Tegning REV&nbsp;A, 23.10.2026 &ndash; til godkjenning. Hull i benkeplaten er forel&oslash;pige og bekreftes av Ulveseth. M&aring;l kontrolleres p&aring; stedet f&oslash;r produksjon. Rendering kan avvike fra originalen og er kun en illustrasjon. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
+        Tegning REV&nbsp;B, 29.10.2026 &ndash; til godkjenning, kommentarene fra Metropolis er tatt inn. Hull i benkeplaten er forel&oslash;pige og bekreftes av Ulveseth. M&aring;l kontrolleres p&aring; stedet f&oslash;r produksjon. Rendering kan avvike fra originalen og er kun en illustrasjon. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
       </p>
     </section>
   </aside>
@@ -359,53 +362,57 @@
   <div class="teg-hode">
     <div>
       <h2>Tegninger</h2>
-      <p>REV&nbsp;A &middot; 23.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+      <p>REV&nbsp;B &middot; 29.10.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2025-284-C06-Kaffenisje-REV-A.pdf?v=20261026095658" download>Last ned PDF</a>
+    <a class="lastned" href="2025-284-C06-Kaffenisje-REV-B.pdf?v=20261029164052" download>Last ned PDF</a>
   </div>
     <figure class="side liggende">
-      <a href="sider/side-01.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 1 av 11"></a>
-      <figcaption>Side 1 av 11</figcaption>
+      <a href="sider/side-01.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 1 av 12"></a>
+      <figcaption>Side 1 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-02.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 2 av 11"></a>
-      <figcaption>Side 2 av 11</figcaption>
+      <a href="sider/side-02.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 2 av 12"></a>
+      <figcaption>Side 2 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-03.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 3 av 11"></a>
-      <figcaption>Side 3 av 11</figcaption>
+      <a href="sider/side-03.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 3 av 12"></a>
+      <figcaption>Side 3 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-04.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 11"></a>
-      <figcaption>Side 4 av 11</figcaption>
+      <a href="sider/side-04.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 12"></a>
+      <figcaption>Side 4 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-05.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 11"></a>
-      <figcaption>Side 5 av 11</figcaption>
+      <a href="sider/side-05.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 12"></a>
+      <figcaption>Side 5 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 11"></a>
-      <figcaption>Side 6 av 11</figcaption>
+      <a href="sider/side-06.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 12"></a>
+      <figcaption>Side 6 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 11"></a>
-      <figcaption>Side 7 av 11</figcaption>
+      <a href="sider/side-07.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 12"></a>
+      <figcaption>Side 7 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-08.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 11"></a>
-      <figcaption>Side 8 av 11</figcaption>
+      <a href="sider/side-08.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 12"></a>
+      <figcaption>Side 8 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-09.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 11"></a>
-      <figcaption>Side 9 av 11</figcaption>
+      <a href="sider/side-09.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 12"></a>
+      <figcaption>Side 9 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-10.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 11"></a>
-      <figcaption>Side 10 av 11</figcaption>
+      <a href="sider/side-10.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 12"></a>
+      <figcaption>Side 10 av 12</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-11.png?v=20261026095658" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261026095658" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 11"></a>
-      <figcaption>Side 11 av 11</figcaption>
+      <a href="sider/side-11.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 12"></a>
+      <figcaption>Side 11 av 12</figcaption>
+    </figure>
+    <figure class="side liggende">
+      <a href="sider/side-12.png?v=20261029164052" target="_blank" rel="noopener"><img src="sider/side-12.png?v=20261029164052" width="1819" height="1287" loading="lazy" alt="Tegning side 12 av 12"></a>
+      <figcaption>Side 12 av 12</figcaption>
     </figure>
 </section>
 
@@ -605,7 +612,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261026095658').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261029164052').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
