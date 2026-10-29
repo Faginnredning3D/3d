@@ -37,3 +37,5 @@ Sidene er merket `noindex` — de skal nås av den som får lenken, ikke via sø
 - [2026-174-IA05-Bokhylle](https://faginnredning3d.github.io/3d/2026-174-IA05-Bokhylle/) – Fitjar Folkebibliotek (Engevik & Tislevoll), bokhylle ungdomsavdeling IA.05 (REV A 28.10.2026, SolidWorks)
 - [2026-174-Sittenisje-ungdomsavd](https://faginnredning3d.github.io/3d/2026-174-Sittenisje-ungdomsavd/) – Fitjar Folkebibliotek (Engevik & Tislevoll), sittenisje med bord, ungdomsavdeling (REV A 28.10.2026, SolidWorks)
 - [2026-174-IA06-Laneautomat](https://faginnredning3d.github.io/3d/2026-174-IA06-Laneautomat/) – Fitjar Folkebibliotek (Engevik & Tislevoll), innredning låneautomat IA.06 (REV A 28.10.2026, SolidWorks)
+- [2026-156-Restaurant-A-08-08-Sofabenk-ved-WC](https://faginnredning3d.github.io/3d/2026-156-Restaurant-A-08-08-Sofabenk-ved-WC/) – Søtt og Salt Marken 37 (Input interior), sofabenk ved WC A-08-08 eikefinér (28.10.2026, SolidWorks)
+- [2026-156-Restaurant-A-08-10-Dobbel-sofa](https://faginnredning3d.github.io/3d/2026-156-Restaurant-A-08-10-Dobbel-sofa/) – Søtt og Salt Marken 37 (Input interior), dobbel sofa A-08-10 eikefinér (28.10.2026, SolidWorks)
