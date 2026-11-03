@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261103150538';
+    const SIDE_VERSJON = '20261103150857';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -250,7 +250,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261016142951"
+      src="modell.glb?v=20261103150857"
       alt="3D-modell av 6 personlige garderobeskap i rom D027"
       camera-controls
       touch-action="none"
@@ -618,7 +618,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261016142951').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261103150857').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
