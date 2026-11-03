@@ -19,7 +19,14 @@
   "Bakplate": "Задняя панель",
   "120 × H 800 med lokk og hullvindu Ø300": "120 × В 800 с крышкой и круглым окошком Ø300",
   "1290 × 1900, hele veggen inne i hulen": "1290 × 1900, вся стена внутри уголка",
-  "Mørk blå NCS S 6020-B30G: portal, halvvegg, bakplate og 6 bølger. Lys blå NCS S 4020-B50G: 4 bølger (nr 3, 5, 7, 9)": "Тёмно-синий NCS S 6020-B30G: портал, низкая стенка, задняя панель и 6 волн. Светло-синий NCS S 4020-B50G: 4 волны (№ 3, 5, 7, 9)"
+  "Mørk blå NCS S 6020-B30G: portal, halvvegg, bakplate og 6 bølger. Lys blå NCS S 4020-B50G: 4 bølger (nr 3, 5, 7, 9)": "Тёмно-синий NCS S 6020-B30G: портал, низкая стенка, задняя панель и 6 волн. Светло-синий NCS S 4020-B50G: 4 волны (№ 3, 5, 7, 9)",
+  "Vegglist": "Настенная планка",
+  "30 × 80, 1420–1500 over gulv. Bølgene står på listen": "30 × 80, 1420–1500 от пола. Волны стоят на планке",
+  "Plassering": "Расположение",
+  "Veggen til høyre sett fra inngangen": "Стена справа, если смотреть от входа",
+  "Mørk blå NCS S 6020-B30G: portal, halvvegg, vegglist og 6 bølger. Lys blå NCS S 4020-B50G: 4 bølger (nr 3, 5, 7, 9)": "Тёмно-синий NCS S 6020-B30G: портал, низкая стенка, настенная планка и 6 волн. Светло-синий NCS S 4020-B50G: 4 волны (№ 3, 5, 7, 9)",
+  "Lakkert i NCS-farger": "Лакировано в цветах NCS",
+  "Tegning REV B, 03.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Чертёж REV B, 03.11.2026 – на утверждение. Визуализация может отличаться от оригинала. Точные детали см. в производственном чертеже."
  },
  "maler": {}
 }
