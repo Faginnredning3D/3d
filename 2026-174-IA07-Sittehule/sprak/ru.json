@@ -26,7 +26,9 @@
   "Veggen til høyre sett fra inngangen": "Стена справа, если смотреть от входа",
   "Mørk blå NCS S 6020-B30G: portal, halvvegg, vegglist og 6 bølger. Lys blå NCS S 4020-B50G: 4 bølger (nr 3, 5, 7, 9)": "Тёмно-синий NCS S 6020-B30G: портал, низкая стенка, настенная планка и 6 волн. Светло-синий NCS S 4020-B50G: 4 волны (№ 3, 5, 7, 9)",
   "Lakkert i NCS-farger": "Лакировано в цветах NCS",
-  "Tegning REV B, 03.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Чертёж REV B, 03.11.2026 – на утверждение. Визуализация может отличаться от оригинала. Точные детали см. в производственном чертеже."
+  "Tegning REV B, 03.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Чертёж REV B, 03.11.2026 – на утверждение. Визуализация может отличаться от оригинала. Точные детали см. в производственном чертеже.",
+  "30 × 260, 1640–1900 over gulv. Bølgene hektes inn i listen": "30 × 260, 1640–1900 от пола. Волны зацепляются за планку",
+  "30 × 260, 1640–1900 over gulv. Bølgene har 2 tapper inn i listen": "30 × 260, 1640–1900 от пола. У волн 2 шипа, входящих в планку"
  },
  "maler": {}
 }
