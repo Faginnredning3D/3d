@@ -23,6 +23,12 @@ for f in os.listdir(os.path.join(dst, "sider")):
 k = c["kilde"]
 shutil.copy(os.path.join(k, "modell.glb"), os.path.join(dst, "modell.glb"))
 shutil.copy(os.path.join(k, "snap.json"), os.path.join(dst, "snap.json"))
+# Bevegelig visning (sim3d.js): kilde med sim\-mappe (sim.json + GLB-er) gir siden
+# åpne/lukke-knapper og klikkbare dører/skuffer. Uten sim\ virker siden som før.
+if os.path.isdir(os.path.join(k, "sim")):
+    if os.path.isdir(os.path.join(dst, "sim")):
+        shutil.rmtree(os.path.join(dst, "sim"))
+    shutil.copytree(os.path.join(k, "sim"), os.path.join(dst, "sim"))
 shutil.copy(os.path.join(k, "samlet.pdf"), os.path.join(dst, c["pdfnavn"]))
 sider = sorted(f for f in os.listdir(os.path.join(k, "sider")) if f.endswith(".png"))
 for f in sider:
@@ -75,6 +81,8 @@ t = re.sub(r'<section class="tegninger".*?</section>', lambda m: seksjon, t, cou
 
 t = re.sub(r"modell\.glb\?v=\d+", "modell.glb?v=" + stamp, t)
 t = re.sub(r"snap\.json\?v=\d+", "snap.json?v=" + stamp, t)
+t = re.sub(r"sim3d\.js\?v=\d+", "sim3d.js?v=" + stamp, t)
+t = re.sub(r"versjon: '\d+'", "versjon: '" + stamp + "'", t)
 t = re.sub(r"const SIDE_VERSJON = '\d+'", "const SIDE_VERSJON = '" + stamp + "'", t)
 open(os.path.join(dst, "versjon.txt"), "w").write(stamp)
 open(os.path.join(dst, "index.html"), "w", encoding="utf-8", newline="\n").write(t)

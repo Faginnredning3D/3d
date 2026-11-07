@@ -234,6 +234,12 @@
     }).catch(() => {});
   })();
 </script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
 </head>
 <body>
 
@@ -968,6 +974,19 @@
     knapp('frontknapp', n => /FRONT/i.test(n), 0.12, 'Vis fronter', 'Skjul fronter');
     knapp('veggknapp', n => n === 'VEGG', 0.0, 'Vis vegger', 'Skjul vegger');
   })();
+</script>
+
+<script type="module">
+  /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
+  import { startSim } from '../_felles/sim3d.js?v=20261107221500';
+  startSim({
+    stage: document.getElementById('stage'),
+    mv: document.getElementById('mv'),
+    hint: document.getElementById('hint'),
+    verktoy: document.querySelector('.verktoy'),
+    standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
+    versjon: '20261107221500',
+  }).catch(() => {});
 </script>
 
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>
