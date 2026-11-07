@@ -84,9 +84,9 @@ function passform() {
 addEventListener('resize', passform); passform();
 
 const laster = new GLTFLoader();
-const last = (fil) => new Promise((ok, feil) => laster.load(fil + '?v=202611071733', g => ok(g.scene), undefined, feil));
+const last = (fil) => new Promise((ok, feil) => laster.load(fil + '?v=202611071751', g => ok(g.scene), undefined, feil));
 
-const meta = await (await fetch('sim.json?v=202611071733')).json();
+const meta = await (await fetch('sim.json?v=202611071751')).json();
 const grupper = {};           // id -> {parent, indre(container), meta, andel, maal}
 const korpus = await last('korpus.glb');
 scene.add(korpus);
@@ -112,7 +112,7 @@ for (const b of meta.beslag) {
 }
 document.getElementById('lasting').remove();
 
-const DOR_FOR_INDRE = { M1_utr:'M1_dor', M5_innv1:'M5_dor', M5_innv2:'M5_dor', M5_innv3:'M5_dor' };
+const DOR_FOR_INDRE = { M5_innv1:'M5_dor', M5_innv2:'M5_dor', M5_innv3:'M5_dor' };
 function sett_maal(id, v) {
   grupper[id].maal = v;
   if (v > 0 && DOR_FOR_INDRE[id]) grupper[DOR_FOR_INDRE[id]].maal = 1;   // åpne døra for innvendig skuff
@@ -160,7 +160,7 @@ const panel = document.getElementById('beslag');
 document.getElementById('liste').onclick = async () => {
   if (panel.style.display === 'block') { panel.style.display = 'none'; return; }
   if (!panel.innerHTML) {
-    const d = await (await fetch('beslagsliste.json?v=202611071733')).json();
+    const d = await (await fetch('beslagsliste.json?v=202611071751')).json();
     let h = '<h2>Beslag og utstyr — som i imos-utkjøringen</h2><table><tr><th>Antall</th><th>Artikkel</th><th>Lev.</th><th>Beskrivelse</th></tr>';
     for (const r of d.beslag) {
       h += `<tr class="${r.avvik ? 'avvik' : ''}"><td>${r.antall}</td><td>${r.art}</td><td>${r.lev}</td><td>${r.tekst}` +
@@ -176,4 +176,5 @@ document.getElementById('liste').onclick = async () => {
 </script>
 </body>
 </html>
+
 

@@ -1,8 +1,17 @@
 {
  "beslag": [
   {
+   "tekst": "Opphengsvinkel hvit (vegg)",
+   "antall": 8,
+   "art": "-",
+   "lev": "-",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": "hylleoppheng"
+  },
+  {
    "tekst": "Sentrumstapp 08x35",
-   "antall": 80,
+   "antall": 102,
    "art": "ST 08x35",
    "lev": "Jekta",
    "lagerfort": true,
@@ -38,7 +47,7 @@
   },
   {
    "tekst": "TANDEMBOX plus BLUMOTION skinne NL=500 mm, 30 kg (par)",
-   "antall": 8,
+   "antall": 7,
    "art": "558.5001B",
    "lev": "Blum",
    "lagerfort": true,
@@ -46,45 +55,18 @@
    "merknad": ""
   },
   {
-   "tekst": "TANDEMBOX antaro side D=83 mm NL=500 (par)",
-   "antall": 1,
-   "art": "358M5002SA + ZRG.437RSIC",
-   "lev": "Blum",
-   "lagerfort": true,
-   "avvik": false,
-   "merknad": "Side M + reling (høy bakside D)"
-  },
-  {
-   "tekst": "Frontfeste TANDEMBOX INSERTA (par)",
-   "antall": 8,
-   "art": "ZSF.3902",
+   "tekst": "TANDEMBOX antaro side M=83 mm NL=500 (par)",
+   "antall": 7,
+   "art": "358M5002SA",
    "lev": "Blum",
    "lagerfort": true,
    "avvik": false,
    "merknad": ""
   },
   {
-   "tekst": "Bakstykkefeste tre høyde D (par)",
-   "antall": 1,
-   "art": "295.4704",
-   "lev": "Blum",
-   "lagerfort": true,
-   "avvik": false,
-   "merknad": "imos-kode BLUM_4800460"
-  },
-  {
-   "tekst": "Antaro relingsfeste/høy front D (par)",
-   "antall": 1,
-   "art": "ZRG.437RSIC",
-   "lev": "Blum",
-   "lagerfort": true,
-   "avvik": false,
-   "merknad": "reling 500 mm"
-  },
-  {
-   "tekst": "TANDEMBOX antaro side M=83 mm NL=500 (par)",
+   "tekst": "Frontfeste TANDEMBOX INSERTA (par)",
    "antall": 7,
-   "art": "358M5002SA",
+   "art": "ZSF.3902",
    "lev": "Blum",
    "lagerfort": true,
    "avvik": false,
@@ -100,7 +82,7 @@
    "merknad": "imos-kode BLUM_4799432"
   },
   {
-   "tekst": "Skruer opphengslist vegg i spikerslag (ca. c/c 300)",
+   "tekst": "Skruer vegg til opphengslist (etter veggtype)",
    "antall": 5,
    "art": "-",
    "lev": "-",

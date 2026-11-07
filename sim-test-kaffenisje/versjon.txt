@@ -1,1 +1,1 @@
-versjon 202611071733
+versjon 202611071751 (siste rev 05.11 + delt hengsel)
