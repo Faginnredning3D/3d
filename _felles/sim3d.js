@@ -181,5 +181,7 @@ export async function startSim(o) {
 
   orbitTil('32deg 72deg');
   visSim();                      // bevegelig visning er standard når sim-data finnes
-  return { visSim, visMV, apneAlt, lukkAlt, erAktiv: () => aktiv };
+  const api = { visSim, visMV, apneAlt, lukkAlt, erAktiv: () => aktiv, kamera, ctrl, grupper };
+  window.FAGSIM = api;           // feilsøking/verifikasjon fra konsollen
+  return api;
 }
