@@ -1,0 +1,144 @@
+{
+ "beslag": [
+  {
+   "tekst": "Sentrumstapp 08x35",
+   "antall": 80,
+   "art": "ST 08x35",
+   "lev": "Jekta",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": ""
+  },
+  {
+   "tekst": "Sokkelben m/feste justerbar H80mm",
+   "antall": 16,
+   "art": "H80 just.",
+   "lev": "-",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": ""
+  },
+  {
+   "tekst": "CLIP top BLUMOTION 110°, INSERTA (hengsel)",
+   "antall": 6,
+   "art": "71B3590",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": true,
+   "merknad": "C06 REV B spesifiserer INSERTA (71B9590) - IKKE lagerført. Lagerført standard 71B3590 (skru) vist i modellen."
+  },
+  {
+   "tekst": "CLIP montasjeplate rett 0 mm, EXPANDO",
+   "antall": 6,
+   "art": "177H3100E",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": ""
+  },
+  {
+   "tekst": "TANDEMBOX plus BLUMOTION skinne NL=500 mm, 30 kg (par)",
+   "antall": 8,
+   "art": "558.5001B",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": ""
+  },
+  {
+   "tekst": "TANDEMBOX antaro side D=83 mm NL=500 (par)",
+   "antall": 1,
+   "art": "358M5002SA + ZRG.437RSIC",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": "Side M + reling (høy bakside D)"
+  },
+  {
+   "tekst": "Frontfeste TANDEMBOX INSERTA (par)",
+   "antall": 8,
+   "art": "ZSF.3902",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": ""
+  },
+  {
+   "tekst": "Bakstykkefeste tre høyde D (par)",
+   "antall": 1,
+   "art": "295.4704",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": "imos-kode BLUM_4800460"
+  },
+  {
+   "tekst": "Antaro relingsfeste/høy front D (par)",
+   "antall": 1,
+   "art": "ZRG.437RSIC",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": "reling 500 mm"
+  },
+  {
+   "tekst": "TANDEMBOX antaro side M=83 mm NL=500 (par)",
+   "antall": 7,
+   "art": "358M5002SA",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": ""
+  },
+  {
+   "tekst": "Bakstykkefeste tre høyde M (par)",
+   "antall": 7,
+   "art": "295.4404",
+   "lev": "Blum",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": "imos-kode BLUM_4799432"
+  },
+  {
+   "tekst": "Skruer opphengslist vegg i spikerslag (ca. c/c 300)",
+   "antall": 5,
+   "art": "-",
+   "lev": "-",
+   "lagerfort": true,
+   "avvik": false,
+   "merknad": ""
+  }
+ ],
+ "hvitevarer": [
+  {
+   "navn": "WMF 1500 S+ kaffemaskin",
+   "antall": 1,
+   "lev": "WMF",
+   "merknad": "kundens - utsparing grut/tilkobling i benkeplate"
+  },
+  {
+   "navn": "Miele PFD 104 SCVi XXL oppvaskmaskin",
+   "antall": 1,
+   "lev": "Miele",
+   "merknad": "integrert front M3"
+  },
+  {
+   "navn": "Culligan PUREone S (tårn + kjøler + CO2)",
+   "antall": 1,
+   "lev": "Culligan",
+   "merknad": "Ø35 tårn + batteri i benkeplate"
+  },
+  {
+   "navn": "Underlimt kum 400x190",
+   "antall": 1,
+   "lev": "-",
+   "merknad": "mål etter valgt kum (BLANCO ANDANO 180-IF i grunnlaget)"
+  },
+  {
+   "navn": "Melkekjøler",
+   "antall": 1,
+   "lev": "-",
+   "merknad": "kundens"
+  }
+ ]
+}

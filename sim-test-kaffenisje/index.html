@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>C06 Kaffenisje — simulering</title>
+<style>
+:root { --gronn:#1C342E; --sand:#DFD8C4; --lime:#DCF263; }
+* { box-sizing:border-box; margin:0; }
+body { font-family:Inter,system-ui,Segoe UI,Arial,sans-serif; background:#f1efe9; color:#1C342E; }
+header { background:var(--gronn); color:var(--sand); padding:12px 18px; display:flex; flex-wrap:wrap; gap:8px 16px; align-items:baseline; }
+header h1 { font-size:17px; font-weight:600; letter-spacing:.3px; }
+header .sub { font-size:12.5px; opacity:.85; }
+#scene { position:relative; height:calc(100vh - 118px); min-height:420px; }
+canvas { display:block; }
+#verktoy { display:flex; gap:8px; flex-wrap:wrap; padding:9px 14px; background:#e7e3d8; align-items:center; }
+button { font:600 13px Inter,system-ui,sans-serif; border:1.5px solid var(--gronn); background:#fff;
+  color:var(--gronn); border-radius:7px; padding:7px 14px; cursor:pointer; }
+button:hover { background:var(--lime); }
+#hint { font-size:12.5px; color:#4b5a51; margin-left:auto; }
+#lasting { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:#4b5a51; background:#f1efe9; }
+#beslag { position:absolute; top:10px; right:10px; max-width:430px; max-height:calc(100% - 20px); overflow:auto;
+  background:#fffdf7; border:1.5px solid var(--gronn); border-radius:10px; padding:14px 16px; display:none;
+  box-shadow:0 6px 24px rgba(0,0,0,.18); }
+#beslag h2 { font-size:14px; margin-bottom:8px; }
+#beslag table { border-collapse:collapse; font-size:12px; width:100%; }
+#beslag td, #beslag th { padding:3px 6px; border-bottom:1px solid #e4ddc9; text-align:left; vertical-align:top; }
+#beslag th { background:var(--gronn); color:var(--sand); position:sticky; top:-14px; }
+#beslag .avvik { background:#fff2b8; font-weight:700; }
+#beslag .merk { font-size:11px; color:#6b6248; }
+footer { font-size:11px; color:#6b6248; padding:6px 14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>FAGINNREDNING · 2025-284 Solheimsvatnet · C06 Kaffenisje</h1>
+  <span class="sub">SIMULERINGSTEST — trykk på dører og skuffer · ikke produksjonsgrunnlag</span>
+</header>
+<div id="verktoy">
+  <button id="apne">Åpne alt</button>
+  <button id="lukk">Lukk alt</button>
+  <button id="liste">Beslagsliste</button>
+  <span id="hint">Trykk på en dør eller skuff for å åpne/lukke · dra for å rotere · rull for zoom</span>
+</div>
+<div id="scene">
+  <div id="lasting">Laster 3D-modell …</div>
+  <div id="beslag"></div>
+</div>
+<footer>Hengsler: Blum CLIP top BLUMOTION 110° · Skuffer: TANDEMBOX antaro NL500 · Modell generert fra produksjonsgrunnlaget</footer>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const holder = document.getElementById('scene');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf1efe9);
+const kamera = new THREE.PerspectiveCamera(38, 1, 10, 60000);
+kamera.position.set(5200, 2900, 5600);
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+holder.appendChild(renderer.domElement);
+const ctrl = new OrbitControls(kamera, renderer.domElement);
+ctrl.target.set(1700, 1150, 150);
+ctrl.enableDamping = true; ctrl.maxPolarAngle = Math.PI * 0.55; ctrl.minDistance = 900; ctrl.maxDistance = 16000;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0xcfcabb, 1.05));
+const d1 = new THREE.DirectionalLight(0xffffff, 1.3); d1.position.set(4000, 6000, 7000); scene.add(d1);
+const d2 = new THREE.DirectionalLight(0xfff3e0, 0.5); d2.position.set(-5000, 3500, -2000); scene.add(d2);
+
+function passform() {
+  const b = holder.getBoundingClientRect();
+  kamera.aspect = b.width / b.height; kamera.updateProjectionMatrix();
+  renderer.setSize(b.width, b.height); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+}
+addEventListener('resize', passform); passform();
+
+const laster = new GLTFLoader();
+const last = (fil) => new Promise((ok, feil) => laster.load(fil + '?v=202611071733', g => ok(g.scene), undefined, feil));
+
+const meta = await (await fetch('sim.json?v=202611071733')).json();
+const grupper = {};           // id -> {parent, indre(container), meta, andel, maal}
+const korpus = await last('korpus.glb');
+scene.add(korpus);
+
+for (const g of meta.grupper) {
+  const parent = new THREE.Group(); const indre = new THREE.Group();
+  const p = g.pivot;
+  parent.position.set(p[0], p[1], p[2]); indre.position.set(-p[0], -p[1], -p[2]);
+  parent.add(indre); scene.add(parent);
+  const inner = await last(g.glb);
+  inner.traverse(o => o.userData.gruppe = g.id);
+  indre.add(inner);
+  grupper[g.id] = { parent, indre, meta:g, andel:0, maal:0 };
+}
+const artCache = {};
+for (const b of meta.beslag) {
+  if (!artCache[b.glb]) artCache[b.glb] = await last(b.glb);
+  const inst = artCache[b.glb].clone(true);
+  const m = new THREE.Matrix4().fromArray(b.matrise);
+  inst.applyMatrix4(m);
+  if (b.gruppe) { inst.traverse(o => o.userData.gruppe = b.gruppe); grupper[b.gruppe].indre.add(inst); }
+  else scene.add(inst);
+}
+document.getElementById('lasting').remove();
+
+const DOR_FOR_INDRE = { M1_utr:'M1_dor', M5_innv1:'M5_dor', M5_innv2:'M5_dor', M5_innv3:'M5_dor' };
+function sett_maal(id, v) {
+  grupper[id].maal = v;
+  if (v > 0 && DOR_FOR_INDRE[id]) grupper[DOR_FOR_INDRE[id]].maal = 1;   // åpne døra for innvendig skuff
+}
+document.getElementById('apne').onclick = () => Object.keys(grupper).forEach(id => sett_maal(id, grupper[id].meta.indre ? 0.8 : 1));
+document.getElementById('lukk').onclick = () => Object.keys(grupper).forEach(id => grupper[id].maal = 0);
+
+const ray = new THREE.Raycaster(); const pek = new THREE.Vector2();
+let nede = null;
+renderer.domElement.addEventListener('pointerdown', e => nede = [e.clientX, e.clientY]);
+renderer.domElement.addEventListener('pointerup', e => {
+  if (!nede || Math.hypot(e.clientX - nede[0], e.clientY - nede[1]) > 6) return;   // dra = rotasjon
+  const b = renderer.domElement.getBoundingClientRect();
+  pek.x = ((e.clientX - b.left) / b.width) * 2 - 1; pek.y = -((e.clientY - b.top) / b.height) * 2 + 1;
+  ray.setFromCamera(pek, kamera);
+  for (const h of ray.intersectObjects(scene.children, true)) {
+    let o = h.object, id = null;
+    while (o) { if (o.userData.gruppe) { id = o.userData.gruppe; break; } o = o.parent; }
+    if (id) { sett_maal(id, grupper[id].maal > 0.05 ? 0 : (grupper[id].meta.indre ? 0.8 : 1)); break; }
+    break;   // traff korpus/benkeplate: gjør ingenting
+  }
+});
+
+const klokke = new THREE.Clock();
+function tegn() {
+  requestAnimationFrame(tegn);
+  const dt = Math.min(klokke.getDelta(), 0.05);
+  for (const id in grupper) {
+    const g = grupper[id];
+    const d = g.maal - g.andel;
+    if (Math.abs(d) > 1e-4) {
+      g.andel += Math.sign(d) * Math.min(Math.abs(d), dt * 1.4);
+      const t = g.andel < 0 ? 0 : g.andel;
+      if (g.meta.type === 'dor') g.parent.rotation.y = g.meta.fortegn * THREE.MathUtils.degToRad(g.meta.vinkel) * t;
+      else g.parent.position.z = g.meta.pivot[2] + g.meta.slag * t;
+    }
+  }
+  ctrl.update();
+  renderer.render(scene, kamera);
+}
+tegn();
+
+// ---------------- beslagsliste ----------------
+const panel = document.getElementById('beslag');
+document.getElementById('liste').onclick = async () => {
+  if (panel.style.display === 'block') { panel.style.display = 'none'; return; }
+  if (!panel.innerHTML) {
+    const d = await (await fetch('beslagsliste.json?v=202611071733')).json();
+    let h = '<h2>Beslag og utstyr — som i imos-utkjøringen</h2><table><tr><th>Antall</th><th>Artikkel</th><th>Lev.</th><th>Beskrivelse</th></tr>';
+    for (const r of d.beslag) {
+      h += `<tr class="${r.avvik ? 'avvik' : ''}"><td>${r.antall}</td><td>${r.art}</td><td>${r.lev}</td><td>${r.tekst}` +
+           (r.merknad ? `<div class="merk">${r.merknad}</div>` : '') + '</td></tr>';
+    }
+    h += '</table><h2 style="margin-top:10px">Hvitevarer/utstyr</h2><table><tr><th>Antall</th><th>Lev.</th><th>Beskrivelse</th></tr>';
+    for (const r of d.hvitevarer) h += `<tr><td>${r.antall}</td><td>${r.lev}</td><td>${r.navn}<div class="merk">${r.merknad}</div></td></tr>`;
+    h += '</table>';
+    panel.innerHTML = h;
+  }
+  panel.style.display = 'block';
+};
+</script>
+</body>
+</html>
+
