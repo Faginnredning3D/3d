@@ -49,6 +49,8 @@ export async function startSim(o) {
   const korpus = await last('korpus.glb');
   scene.add(korpus);
   ramme.expandByObject(korpus);
+  const veggMesh = [];           // romveggene (materiale VEGG): kan skjules også i simuleringen
+  korpus.traverse(x => { if (x.isMesh && /^vegg$/i.test((x.material && x.material.name) || '')) veggMesh.push(x); });
 
   for (const g of meta.grupper) {
     const parent = new THREE.Group(); const indre = new THREE.Group();
@@ -104,7 +106,9 @@ export async function startSim(o) {
     const b = lerret.getBoundingClientRect();
     pek.x = ((e.clientX - b.left) / b.width) * 2 - 1; pek.y = -((e.clientY - b.top) / b.height) * 2 + 1;
     ray.setFromCamera(pek, kamera);
+    const synlig = (obj) => { for (let x = obj; x; x = x.parent) if (x.visible === false) return false; return true; };
     for (const h of ray.intersectObjects(scene.children, true)) {
+      if (!synlig(h.object)) continue;   // skjulte vegger (raycasteren ser dem fortsatt) skal ikke fange klikket
       let x = h.object, id = null;
       while (x) { if (x.userData.gruppe) { id = x.userData.gruppe; break; } x = x.parent; }
       if (id) settMaal(id, grupper[id].maal > 0.05 ? 0 : (grupper[id].meta.indre ? 0.8 : 1));
@@ -166,9 +170,27 @@ export async function startSim(o) {
   }
 
   // model-viewer-knappene bytter til den visningen de hører til
-  for (const id of ['maalknapp', 'kantknapp', 'frontknapp', 'veggknapp']) {
+  for (const id of ['maalknapp', 'kantknapp', 'frontknapp']) {
     const k = document.getElementById(id);
     if (k) k.addEventListener('click', visMV);
+  }
+  // «Skjul vegger» virker også i simuleringen (Marius 08.11: må kunne trykke GJENNOM skjult vegg
+  // og åpne skuffer). Sidens egen handler toggler model-viewer-materialene + aria-pressed først;
+  // her speiles tilstanden på sim-veggene i stedet for å bytte visning.
+  const vk = document.getElementById('veggknapp');
+  if (vk) {
+    if (veggMesh.length) {
+      let veggSkjult = false;
+      vk.addEventListener('click', () => {
+        veggSkjult = !veggSkjult;
+        veggMesh.forEach(m => m.visible = !veggSkjult);
+        // sidens model-viewer-handler hopper over toggling til modellen er lastet: hold knappen i synk selv
+        if ((vk.getAttribute('aria-pressed') === 'true') !== veggSkjult) {
+          vk.setAttribute('aria-pressed', String(veggSkjult));
+          vk.textContent = veggSkjult ? 'Vis vegger' : 'Skjul vegger';
+        }
+      });
+    } else vk.addEventListener('click', visMV);   // sim uten vegger: oppfør deg som før
   }
   // visningsterningen virker i begge visninger
   document.querySelectorAll('.terning button[data-orbit]').forEach(b =>
