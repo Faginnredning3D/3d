@@ -1,1 +1,1 @@
-versjon 20261108194500 (Antaro-sider inn til LB-87, jf. B01)
+versjon 20261108211500 (gjennomgaende sarger)
