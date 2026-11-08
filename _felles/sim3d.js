@@ -132,7 +132,10 @@ export async function startSim(o) {
         g.andel += Math.sign(d) * Math.min(Math.abs(d), dt * 1.4);
         const t = Math.max(0, g.andel);
         if (g.meta.type === 'dor') g.parent.rotation.y = g.meta.fortegn * g.meta.vinkel * Math.PI / 180 * t;
-        else g.parent.position.z = g.meta.pivot[2] + g.meta.slag * t;
+        else {
+          const r = g.meta.retn || [0, 0, 1], s = g.meta.slag * t, p = g.meta.pivot;   // retn: skuffens utrekksretning (eldre sim.json: +z)
+          g.parent.position.set(p[0] + r[0] * s, p[1] + r[1] * s, p[2] + r[2] * s);
+        }
       }
     }
     ctrl.update();
