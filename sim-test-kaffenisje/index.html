@@ -84,9 +84,9 @@ function passform() {
 addEventListener('resize', passform); passform();
 
 const laster = new GLTFLoader();
-const last = (fil) => new Promise((ok, feil) => laster.load(fil + '?v=202611072215', g => ok(g.scene), undefined, feil));
+const last = (fil) => new Promise((ok, feil) => laster.load(fil + '?v=20261108194500', g => ok(g.scene), undefined, feil));
 
-const meta = await (await fetch('sim.json?v=202611072215')).json();
+const meta = await (await fetch('sim.json?v=20261108194500')).json();
 const grupper = {};           // id -> {parent, indre(container), meta, andel, maal}
 const korpus = await last('korpus.glb');
 scene.add(korpus);
@@ -160,7 +160,7 @@ const panel = document.getElementById('beslag');
 document.getElementById('liste').onclick = async () => {
   if (panel.style.display === 'block') { panel.style.display = 'none'; return; }
   if (!panel.innerHTML) {
-    const d = await (await fetch('beslagsliste.json?v=202611072215')).json();
+    const d = await (await fetch('beslagsliste.json?v=20261108194500')).json();
     let h = '<h2>Beslag og utstyr — som i imos-utkjøringen</h2><table><tr><th>Antall</th><th>Artikkel</th><th>Lev.</th><th>Beskrivelse</th></tr>';
     for (const r of d.beslag) {
       h += `<tr class="${r.avvik ? 'avvik' : ''}"><td>${r.antall}</td><td>${r.art}</td><td>${r.lev}</td><td>${r.tekst}` +
