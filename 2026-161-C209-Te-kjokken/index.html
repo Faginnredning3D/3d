@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261109095500';
+    const SIDE_VERSJON = '20261109123006';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -233,6 +233,12 @@
       }
     }).catch(() => {});
   })();
+</script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
 </script>
 </head>
 <body>
@@ -250,7 +256,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261109113848"
+      src="modell.glb?v=20261109123006"
       alt="3D-modell av te-kjøkken C209"
       camera-controls
       touch-action="none"
@@ -271,6 +277,8 @@
     <div id="maaltalllag"></div>
 
     <div class="verktoy">
+      <button id="frontknapp" aria-pressed="false" title="Gjør frontene gjennomsiktige">Skjul fronter</button>
+      <button id="veggknapp" aria-pressed="false" title="Veggene er gjennomsiktige - skjul dem helt">Skjul vegger</button>
       <button id="maalknapp" aria-pressed="false" title="Klikk to punkter p&aring; modellen">M&aring;l</button>
       <button id="kantknapp" aria-pressed="false" hidden title="Vis hvilke kanter som har kantlist">Kantlist</button>
       <button id="angre" hidden>Angre</button>
@@ -308,7 +316,7 @@
         <dt>M&aring;l</dt>
         <dd class="kode">L 4230 &times; H 2400 &times; D 600&nbsp;mm</dd>
         <dt>Seksjoner</dt>
-        <dd>Kj&oslash;leskap i benkeh&oslash;yde &middot; vask &middot; skuffer &middot; skuffer &middot; h&oslash;yskap &middot; vinskap, foringer 40&nbsp;mm mellom</dd>
+        <dd>Kj&oslash;leskap i benkeh&oslash;yde &middot; vask &middot; skuffer &middot; skuffer &middot; h&oslash;yskap &middot; vinskap</dd>
         <dt>Benk</dt>
         <dd class="kode">Benkeh&oslash;yde 870&nbsp;mm, stein 30&nbsp;mm</dd>
       </dl>
@@ -317,22 +325,27 @@
     <section class="blokk">
       <h2>Materialer</h2>
       <dl>
-        <dt>Fronter og foringer</dt>
+        <dt>Fronter og omramming</dt>
         <dd>Eik, mattlakk NCS S7805-B01G</dd>
         <dt>Benkeplate</dt>
         <dd>Lundhs Blue granitt, polert</dd>
         <dt>Hyller</dt>
         <dd>Eikefin&eacute;r mix-match crown cut, naturfarget</dd>
+        <dt>H&aring;ndtak</dt>
+        <dd>Beslag Design VS-C 192 - rustfritt stål finish &ndash; Beslagonline.no art.nr 339904-11</dd>
+        <dt>Skuffer og d&oslash;rer</dt>
+        <dd>Treskuffer p&aring; Blum MOVENTO, Blum CLIP top-hengsler</dd>
       </dl>
     </section>
 
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        Tegning REV&nbsp;A, 03.11.2026 &ndash; til gjennomsyn. Hvitevarer og gr&aring; vegger er kun illustrasjon. Rendering kan avvike fra originalen. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
+        Tegning REV&nbsp;A &ndash; til gjennomsyn. Hvitevarer og gr&aring; vegger er kun illustrasjon. Rendering kan avvike fra originalen. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
       </p>
     </section>
   </aside>
+
 
 
 </div>
@@ -341,36 +354,36 @@
   <div class="teg-hode">
     <div>
       <h2>Tegninger</h2>
-      <p>REV&nbsp;A &middot; 03.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+      <p>REV&nbsp;A &middot; 09.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-161-C209-Te-kjokken-REV-A.pdf?v=20261109113848" download>Last ned PDF</a>
+    <a class="lastned" href="2026-161-C209-Te-kjokken-REV-A.pdf?v=20261109123006" download>Last ned PDF</a>
   </div>
     <figure class="side liggende">
-      <a href="sider/side-01.png?v=20261109113848" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261109113848" width="1819" height="1287" loading="lazy" alt="Tegning side 1 av 7"></a>
+      <a href="sider/side-01.png?v=20261109123006" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261109123006" width="1819" height="1287" loading="lazy" alt="Tegning side 1 av 7"></a>
       <figcaption>Side 1 av 7</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-02.png?v=20261109113848" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261109113848" width="1819" height="1287" loading="lazy" alt="Tegning side 2 av 7"></a>
+      <a href="sider/side-02.png?v=20261109123006" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261109123006" width="1819" height="1287" loading="lazy" alt="Tegning side 2 av 7"></a>
       <figcaption>Side 2 av 7</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-03.png?v=20261109113848" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261109113848" width="1819" height="1287" loading="lazy" alt="Tegning side 3 av 7"></a>
+      <a href="sider/side-03.png?v=20261109123006" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261109123006" width="1819" height="1287" loading="lazy" alt="Tegning side 3 av 7"></a>
       <figcaption>Side 3 av 7</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-04.png?v=20261109113848" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261109113848" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 7"></a>
+      <a href="sider/side-04.png?v=20261109123006" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261109123006" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 7"></a>
       <figcaption>Side 4 av 7</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-05.png?v=20261109113848" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261109113848" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 7"></a>
+      <a href="sider/side-05.png?v=20261109123006" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261109123006" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 7"></a>
       <figcaption>Side 5 av 7</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261109113848" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261109113848" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 7"></a>
+      <a href="sider/side-06.png?v=20261109123006" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261109123006" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 7"></a>
       <figcaption>Side 6 av 7</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261109113848" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261109113848" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 7"></a>
+      <a href="sider/side-07.png?v=20261109123006" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261109123006" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 7"></a>
       <figcaption>Side 7 av 7</figcaption>
     </figure>
 </section>
@@ -571,7 +584,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261109113848').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261109123006').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -904,8 +917,43 @@
 
   mv.addEventListener('camera-change', tegn);
   new ResizeObserver(tegn).observe(stage);
+
+  /* --- fronter og vegger (C06): materialer FRONT og VEGG ---------------- */
+  (() => {
+    const orig = new Map();
+    const mats = (test) => (mv.model ? mv.model.materials : []).filter(m => test(m.name || ''));
+    const alfa = (test, a) => mats(test).forEach(m => {
+      if (!orig.has(m)) orig.set(m, m.pbrMetallicRoughness.baseColorFactor.slice());
+      const c = orig.get(m), ny = a === null ? c[3] : a;
+      m.setAlphaMode(ny < 0.999 ? 'BLEND' : 'OPAQUE');
+      m.pbrMetallicRoughness.setBaseColorFactor([c[0], c[1], c[2], ny]);
+    });
+    const knapp = (id, test, av, paaTekst, avTekst) => {
+      const k = document.getElementById(id);
+      k.addEventListener('click', () => {
+        if (!mats(test).length) return;          // modellen er ikke lastet ennå
+        const paa = k.getAttribute('aria-pressed') !== 'true';
+        alfa(test, paa ? av : null);
+        k.setAttribute('aria-pressed', String(paa)); k.textContent = paa ? paaTekst : avTekst;
+      });
+    };
+    knapp('frontknapp', n => /FRONT/i.test(n), 0.12, 'Vis fronter', 'Skjul fronter');
+    knapp('veggknapp', n => n === 'VEGG', 0.0, 'Vis vegger', 'Skjul vegger');
+  })();
 </script>
 
+<script type="module">
+  /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
+  import { startSim } from '../_felles/sim3d.js?v=20261109123006';
+  startSim({
+    stage: document.getElementById('stage'),
+    mv: document.getElementById('mv'),
+    hint: document.getElementById('hint'),
+    verktoy: document.querySelector('.verktoy'),
+    standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
+    versjon: '20261109123006',
+  }).catch(() => {});
+</script>
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>
 </body>
 </html>
