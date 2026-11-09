@@ -250,7 +250,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261020110635"
+      src="modell.glb?v=20261109121332"
       alt="3D-modell av 5 personlige garderobeskap i rom D017"
       camera-controls
       touch-action="none"
@@ -314,7 +314,7 @@
         <dt>Over skapene</dt>
         <dd>Foring 218&nbsp;mm opp til himling (total 2318&nbsp;mm)</dd>
         <dt>D&oslash;rer</dt>
-        <dd>Innfelt 18&nbsp;mm</dd>
+        <dd>Innfelt 20&nbsp;mm</dd>
         <dt>Innvendig</dt>
         <dd>Fast hattehylle, garderobestang rustfritt st&aring;l &oslash;25&nbsp;mm, justerbar skohylle</dd>
       </dl>
@@ -342,7 +342,7 @@
         <dt>Hengsler</dt>
         <dd>Blum CLIP top BLUMOTION 110&deg; med demping, 3 pr. d&oslash;r</dd>
         <dt>L&aring;s</dt>
-        <dd>Mekanisk kodel&aring;s, 1 pr. skap (5 stk) &ndash; endelig l&aring;s avklares f&oslash;r produksjon. Modellen viser Euro-Locks A170.</dd>
+        <dd>H&auml;fele 235.63.506 mekanisk kodel&aring;s med tallhjul, s&oslash;lv &ndash; 1 pr. skap (5 stk). L&aring;ssenter 900&nbsp;mm fra gulv</dd>
         <dt>L&aring;sehake</dt>
         <dd>H&auml;fele 239.47.604, st&aring;l forniklet</dd>
         <dt>Stang</dt>
@@ -623,7 +623,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261020110635').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261109121332').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
