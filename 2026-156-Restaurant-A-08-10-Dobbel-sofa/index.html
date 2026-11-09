@@ -222,11 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-<<<<<<< HEAD
-    const SIDE_VERSJON = '20261109095500';
-=======
     const SIDE_VERSJON = '20261109200333';
->>>>>>> e2aa3d1 (2026-156 sofaer rev B 09.11.2026: beis, vange 40 R36, R33 trekkplater, putemål)
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;

@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-20261109095500
-=======
 20261109200329
->>>>>>> e2aa3d1 (2026-156 sofaer rev B 09.11.2026: beis, vange 40 R36, R33 trekkplater, putemål)
