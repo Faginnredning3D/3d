@@ -60,6 +60,9 @@ def main():
     alle = {}
     prims = g["meshes"][0]["primitives"]
     for pr in prims:
+        matnavn = g["materials"][pr["material"]].get("name", "") if "material" in pr else ""
+        if "vegg" in matnavn.lower():
+            continue     # vegger er illustrasjon: kantlister paa dem blir staaende igjen naar veggen skjules
         pos = acc(g, buf, pr["attributes"]["POSITION"])
         if len(pos) > MAKS_VERT:
             continue
