@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261105203343';
+    const SIDE_VERSJON = '20261109083000';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -806,7 +806,7 @@
     hjulVent = true;
     requestAnimationFrame(() => {
       hjulVent = false;
-      const f = Math.min(2.5, Math.max(0.4, Math.exp(hjulSum * 0.0015)));
+      const f = Math.min(1.35, Math.max(0.75, Math.exp(hjulSum * 0.0006)));
       hjulSum = 0;
       const treff = mv.positionAndNormalFromPoint(hjulPos.x, hjulPos.y);
       let { C, T } = kameraNaa();
