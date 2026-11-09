@@ -115,13 +115,16 @@ export async function startSim(o) {
   }
   lerret.addEventListener('pointerdown', e => {
     if (e.pointerType === 'touch' || e.button !== 0) return;
-    dra = { x: e.clientX, y: e.clientY, P: punktUnder(e.clientX, e.clientY) || ctrl.target.clone(), id: e.pointerId };
+    dra = { x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY, flyttet: 0,
+            P: punktUnder(e.clientX, e.clientY) || ctrl.target.clone(), id: e.pointerId };
     try { lerret.setPointerCapture(e.pointerId); } catch (_) {}
   });
   lerret.addEventListener('pointermove', e => {
     if (!dra || e.pointerId !== dra.id) return;
     const dx = e.clientX - dra.x, dy = e.clientY - dra.y;
     dra.x = e.clientX; dra.y = e.clientY;
+    dra.flyttet = Math.max(dra.flyttet, Math.hypot(e.clientX - dra.x0, e.clientY - dra.y0));
+    if (dra.flyttet <= 6) return;   // museklikk har alltid litt jitter: ikke rotér før det er et ekte dra (som index.html)
     if (dx || dy) drei(dra.P, dx, dy);
   });
   const slippDra = e => {
