@@ -65,6 +65,23 @@
    "indre": false
   },
   {
+   "id": "skuff_K1_2",
+   "glb": "skuff_K1_2.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
    "id": "skuff_K3_2",
    "glb": "skuff_K3_2.glb",
    "type": "skuff",
@@ -212,6 +229,23 @@
   {
    "id": "skuff_K3_3",
    "glb": "skuff_K3_3.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_K1_1",
+   "glb": "skuff_K1_1.glb",
    "type": "skuff",
    "pivot": [
     0,
