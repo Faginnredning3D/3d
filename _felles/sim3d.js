@@ -81,17 +81,51 @@ export async function startSim(o) {
     return null;
   }
   const MIN_AVSTAND = 120;   // mm, som model-viewer-blokken i index.html
-  function hjulZoom() {
-    if (!hjulSum) return;
-    const f = Math.min(1.35, Math.max(0.75, Math.exp(hjulSum * 0.0006)));
-    hjulSum = 0;
-    // mot punktet på modellen under musa, ellers mot siktepunktet - som model-viewer-visningen
-    const P = punktUnder(hjulX, hjulY) || ctrl.target.clone();
+  function zoomMot(f, x, y) {
+    // mot punktet på modellen under musa/fingrene, ellers mot siktepunktet - som model-viewer-visningen
+    const P = punktUnder(x, y) || ctrl.target.clone();
     const r0 = kamera.position.distanceTo(ctrl.target);
     if (f < 1 && r0 * f < MIN_AVSTAND) return;
     kamera.position.sub(P).multiplyScalar(f).add(P);
     ctrl.target.sub(P).multiplyScalar(f).add(P);
   }
+  function hjulZoom() {
+    if (!hjulSum) return;
+    const f = Math.min(1.35, Math.max(0.75, Math.exp(hjulSum * 0.0006)));
+    hjulSum = 0;
+    zoomMot(f, hjulX, hjulY);
+  }
+  /* --- klypezoom på telefon/nettbrett (Marius 09.11: «zoomen må alltid fungere»): enableZoom=false over slår
+     også av OrbitControls' klyp, så to fingre zoomer her mot midtpunktet mellom fingrene (panorering med to
+     fingre og rotasjon med én finger går fortsatt via OrbitControls). Et klyp skal aldri åpne/lukke en dør. --- */
+  const finger = new Map();
+  let klypD = 0, klypBrukt = false;
+  const fingrene = () => [...finger.values()];
+  const fingerAvstand = () => { const [a, b] = fingrene(); return Math.hypot(a.x - b.x, a.y - b.y); };
+  lerret.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'touch') return;
+    if (finger.size === 0) klypBrukt = false;                 // ny berøring
+    finger.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (finger.size >= 2) { klypBrukt = true; klypD = finger.size === 2 ? fingerAvstand() : 0; }
+  });
+  lerret.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'touch' || !finger.has(e.pointerId)) return;
+    finger.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (finger.size !== 2 || !klypD) return;
+    const d = fingerAvstand();
+    if (d < 1) return;
+    const f = Math.min(1.35, Math.max(0.75, klypD / d));      // fingrene fra hverandre = nærmere
+    klypD = d;
+    const [a, b] = fingrene();
+    zoomMot(f, (a.x + b.x) / 2, (a.y + b.y) / 2);
+  });
+  const slippFinger = e => {
+    if (!finger.delete(e.pointerId)) return;
+    klypD = finger.size === 2 ? fingerAvstand() : 0;
+  };
+  lerret.addEventListener('pointerup', slippFinger);
+  lerret.addEventListener('pointercancel', slippFinger);
+  lerret.addEventListener('pointerleave', slippFinger);
 
   /* --- rotasjon rundt punktet man tar tak i (identisk med model-viewer-blokken i index.html):
      venstre-dra dreier kamera OG siktepunkt rundt punktet under musa (gir: loddrett akse gjennom P,
@@ -248,6 +282,7 @@ export async function startSim(o) {
   lerret.addEventListener('pointerdown', e => nede = [e.clientX, e.clientY]);
   lerret.addEventListener('pointerup', e => {
     if (!nede || Math.hypot(e.clientX - nede[0], e.clientY - nede[1]) > 6) return;   // dra = rotasjon
+    if (e.pointerType === 'touch' && klypBrukt) return;                              // klyp/to fingre = zoom, ikke klikk
     const cx = e.clientX, cy = e.clientY;
     clearTimeout(klikkTimer);
     klikkTimer = setTimeout(() => {      // vent på ev. dobbeltklikk (gå inn på punkt), som i index.html
