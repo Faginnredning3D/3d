@@ -34,15 +34,43 @@ export async function startSim(o) {
   lerret.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:none;touch-action:none;';
   o.mv.insertAdjacentElement('afterend', lerret);
 
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xcfcabb, 1.05));
-  const d1 = new THREE.DirectionalLight(0xffffff, 1.3); d1.position.set(4000, 6000, 7000); scene.add(d1);
-  const d2 = new THREE.DirectionalLight(0xfff3e0, 0.5); d2.position.set(-5000, 3500, -2000); scene.add(d2);
+  // dempet lys: summen skal ikke klippe fargene mot hvitt (Marius 09.11: eik skal se ut som eik)
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xcfcabb, 0.85));
+  const d1 = new THREE.DirectionalLight(0xffffff, 0.55); d1.position.set(4000, 6000, 7000); scene.add(d1);
+  const d2 = new THREE.DirectionalLight(0xfff3e0, 0.3); d2.position.set(-5000, 3500, -2000); scene.add(d2);
 
-  // zoomToCursor deler på lerretsbredden: slipp aldri hjul-events gjennom til et usynlig lerret (NaN-kamera)
-  lerret.addEventListener('wheel', e => { if (!lerret.clientWidth) e.stopImmediatePropagation(); }, true);
   const ctrl = new OrbitControls(kamera, lerret);
   ctrl.enableDamping = true; ctrl.maxPolarAngle = Math.PI * 0.55;
-  ctrl.zoomSpeed = 0.4; ctrl.zoomToCursor = true; ctrl.screenSpacePanning = true;
+  ctrl.screenSpacePanning = true;
+  // Egen hjulzoom mot musepekeren (Marius 09.11): OrbitControls zoomer en fast prosent pr event
+  // uansett deltaY, så touchpad/presisjonsmus (mange små events) fyker gjennom modellen.
+  // NØYAKTIG samme formel som model-viewer-blokken i index.html (Marius er fornøyd med den):
+  // f = exp(sum deltaY * 0.0006), klemt [0.75, 1.35] pr skjermbilde.
+  ctrl.enableZoom = false;
+  let hjulSum = 0, hjulX = 0, hjulY = 0;
+  lerret.addEventListener('wheel', e => {
+    e.preventDefault();
+    hjulSum += e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+    hjulX = e.clientX; hjulY = e.clientY;
+  }, { passive: false });
+  function hjulZoom() {
+    if (!hjulSum) return;
+    const f = Math.min(1.35, Math.max(0.75, Math.exp(hjulSum * 0.0006)));
+    hjulSum = 0;
+    const rect = lerret.getBoundingClientRect();
+    if (rect.width < 2 || rect.height < 2) return;
+    const d0 = kamera.position.distanceTo(ctrl.target);
+    const k = Math.min(Math.max(d0 * f, ctrl.minDistance), ctrl.maxDistance) / d0;
+    if (k === 1) return;
+    // skaler kamera + target om punktet under pekeren i target-planet, så pekerpunktet står stille
+    const ndc = { x: ((hjulX - rect.x) / rect.width) * 2 - 1, y: -((hjulY - rect.y) / rect.height) * 2 + 1 };
+    const D = new THREE.Vector3(ndc.x, ndc.y, 0.5).unproject(kamera).sub(kamera.position).normalize();
+    const N = ctrl.target.clone().sub(kamera.position).normalize();
+    const t = ctrl.target.clone().sub(kamera.position).dot(N) / Math.max(D.dot(N), 0.05);
+    const C = kamera.position.clone().addScaledVector(D, t);
+    kamera.position.sub(C).multiplyScalar(k).add(C);
+    ctrl.target.sub(C).multiplyScalar(k).add(C);
+  }
 
   const laster = new GLTFLoader();
   const last = (fil) => new Promise((ok, feil) => laster.load('sim/' + fil + '?v=' + o.versjon, g => ok(g.scene), undefined, feil));
@@ -51,7 +79,13 @@ export async function startSim(o) {
   const kantMat = new THREE.LineBasicMaterial({ color: 0x1a1a1a, transparent: true, opacity: 0.85 });
   function kanter(obj) {
     obj.traverse(x => {
-      if (!x.isMesh || x.userData.harKant || /^vegg$/i.test((x.material && x.material.name) || '')) return;
+      if (!x.isMesh) return;
+      // GLB-fargene er autorert som skjermfarger (sRGB): konverter til lineært én gang pr materiale,
+      // ellers vises eikefronter o.l. blasse/grå (glTF tolker baseColorFactor som lineær)
+      if (x.material && x.material.color && !x.material.userData.fargeOK) {
+        x.material.color.convertSRGBToLinear(); x.material.userData.fargeOK = true;
+      }
+      if (x.userData.harKant || /^vegg$/i.test((x.material && x.material.name) || '')) return;
       if (x.material) { x.material.polygonOffset = true; x.material.polygonOffsetFactor = 1; x.material.polygonOffsetUnits = 1; }
       const l = new THREE.LineSegments(new THREE.EdgesGeometry(x.geometry, 25), kantMat);
       l.raycast = () => {}; x.add(l); x.userData.harKant = true;
@@ -143,6 +177,9 @@ export async function startSim(o) {
   function tegn() {
     if (!aktiv) return;
     requestAnimationFrame(tegn);
+    steg();
+  }
+  function steg() {
     const dt = Math.min(klokke.getDelta(), 0.05);
     for (const id in grupper) {
       const g = grupper[id];
@@ -157,6 +194,13 @@ export async function startSim(o) {
         }
       }
     }
+    // dybdepresisjon: near/far følger kameraavstanden, ellers slår skjulte kantlinjer gjennom
+    // flatene når man zoomer ut (near 10 mot far 80000 gir for grovt dybdebuffer)
+    const dk = kamera.position.distanceTo(ctrl.target);
+    kamera.near = Math.max(50, dk / 50);
+    kamera.far = Math.max(kamera.near * 100, dk + 4 * R);
+    kamera.updateProjectionMatrix();
+    hjulZoom();
     ctrl.update();
     renderer.render(scene, kamera);
   }
@@ -171,6 +215,19 @@ export async function startSim(o) {
       if (k && k.getAttribute('aria-pressed') === 'true') k.click();
     }
     aktiv = true;
+    // ta med kameraet fra model-viewer, så visningsbyttet ikke merkes (Marius 09.11)
+    try {
+      if (o.mv.loaded && o.mv.getCameraOrbit) {
+        const ob = o.mv.getCameraOrbit(), tg = o.mv.getCameraTarget();
+        const r = ob.radius * 1000;
+        if (isFinite(r) && r > 1) {
+          ctrl.target.set(tg.x * 1000, tg.y * 1000, tg.z * 1000);
+          kamera.position.set(ctrl.target.x + r * Math.sin(ob.phi) * Math.sin(ob.theta),
+                              ctrl.target.y + r * Math.cos(ob.phi),
+                              ctrl.target.z + r * Math.sin(ob.phi) * Math.cos(ob.theta));
+        }
+      }
+    } catch (e) {}
     o.mv.style.visibility = 'hidden';
     lerret.style.display = 'block';
     if (o.hint) o.hint.textContent = simHint;
@@ -179,6 +236,16 @@ export async function startSim(o) {
   function visMV() {
     if (!aktiv) return;
     aktiv = false;
+    // gi kameraet tilbake til model-viewer i samme posisjon
+    try {
+      const off = kamera.position.clone().sub(ctrl.target), r = off.length();
+      if (isFinite(r) && r > 1) {
+        const phi = Math.acos(Math.min(1, Math.max(-1, off.y / r)));
+        const th = Math.atan2(off.x, off.z);
+        o.mv.cameraTarget = `${ctrl.target.x / 1000}m ${ctrl.target.y / 1000}m ${ctrl.target.z / 1000}m`;
+        o.mv.cameraOrbit = `${th}rad ${phi}rad ${r / 1000}m`;
+      }
+    } catch (e) {}
     lerret.style.display = 'none';
     o.mv.style.visibility = '';
     if (o.hint && o.standardHint) o.hint.textContent = o.standardHint;
@@ -221,7 +288,7 @@ export async function startSim(o) {
 
   orbitTil('32deg 72deg');
   visSim();                      // bevegelig visning er standard når sim-data finnes
-  const api = { visSim, visMV, apneAlt, lukkAlt, erAktiv: () => aktiv, kamera, ctrl, grupper };
+  const api = { visSim, visMV, apneAlt, lukkAlt, erAktiv: () => aktiv, kamera, ctrl, grupper, tegnFrame: steg };
   window.FAGSIM = api;           // feilsøking/verifikasjon fra konsollen
   return api;
 }
