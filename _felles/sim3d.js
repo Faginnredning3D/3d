@@ -34,14 +34,20 @@ export async function startSim(o) {
   lerret.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:none;touch-action:none;';
   o.mv.insertAdjacentElement('afterend', lerret);
 
-  // dempet lys: summen skal ikke klippe fargene mot hvitt (Marius 09.11: eik skal se ut som eik)
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xcfcabb, 0.85));
-  const d1 = new THREE.DirectionalLight(0xffffff, 0.55); d1.position.set(4000, 6000, 7000); scene.add(d1);
-  const d2 = new THREE.DirectionalLight(0xfff3e0, 0.3); d2.position.set(-5000, 3500, -2000); scene.add(d2);
+  // samme lys som model-viewer (Marius 09.11: sim skal se UT SOM vanlig visning, ikke mørkere):
+  // model-viewer sitt «neutral» environment er generert fra three sin RoomEnvironment,
+  // og tone-mapping="neutral" tilsvarer NeutralToneMapping (fallback ACESFilmic på eldre three)
+  renderer.toneMapping = THREE.NeutralToneMapping !== undefined ? THREE.NeutralToneMapping : THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
   const ctrl = new OrbitControls(kamera, lerret);
-  ctrl.enableDamping = true; ctrl.maxPolarAngle = Math.PI * 0.55;
+  ctrl.enableDamping = true;
+  ctrl.minPolarAngle = 0.03; ctrl.maxPolarAngle = Math.PI - 0.03;   // samme klemming som index.html
   ctrl.screenSpacePanning = true;
+  ctrl.mouseButtons.LEFT = null;   // venstre-dra håndteres av drei() (pivot under musa); touch går som før
   // Egen hjulzoom mot musepekeren (Marius 09.11): OrbitControls zoomer en fast prosent pr event
   // uansett deltaY, så touchpad/presisjonsmus (mange små events) fyker gjennom modellen.
   // NØYAKTIG samme formel som model-viewer-blokken i index.html (Marius er fornøyd med den):
@@ -53,24 +59,86 @@ export async function startSim(o) {
     hjulSum += e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
     hjulX = e.clientX; hjulY = e.clientY;
   }, { passive: false });
+  // synlighet opp foreldrekjeden (skjulte vegger skal verken fange klikk, zoom eller rotasjonspivot)
+  const synligOpp = (obj) => { for (let x = obj; x; x = x.parent) if (x.visible === false) return false; return true; };
+  // vegger er halvtransparente sett utenfra (B01: alpha 0,28): man ser møblene gjennom dem, så de
+  // skal heller ikke fange klikk/pivot/zoom - ellers "dør" alle klikk når kameraet står utenfor rommet
+  const treffbar = (obj) => {
+    if (!synligOpp(obj)) return false;
+    const m = obj.material;
+    if (m && /^vegg$/i.test(m.name || '')) return false;
+    if (m && m.transparent && m.opacity < 0.5) return false;
+    return true;
+  };
+  const pekRay = new THREE.Raycaster(), pekNdc = new THREE.Vector2();
+  function punktUnder(cx, cy) {
+    const rect = lerret.getBoundingClientRect();
+    if (rect.width < 2 || rect.height < 2) return null;
+    pekNdc.x = ((cx - rect.x) / rect.width) * 2 - 1;
+    pekNdc.y = -((cy - rect.y) / rect.height) * 2 + 1;
+    pekRay.setFromCamera(pekNdc, kamera);
+    for (const h of pekRay.intersectObjects(scene.children, true)) if (treffbar(h.object)) return h.point.clone();
+    return null;
+  }
+  const MIN_AVSTAND = 120;   // mm, som model-viewer-blokken i index.html
   function hjulZoom() {
     if (!hjulSum) return;
     const f = Math.min(1.35, Math.max(0.75, Math.exp(hjulSum * 0.0006)));
     hjulSum = 0;
-    const rect = lerret.getBoundingClientRect();
-    if (rect.width < 2 || rect.height < 2) return;
-    const d0 = kamera.position.distanceTo(ctrl.target);
-    const k = Math.min(Math.max(d0 * f, ctrl.minDistance), ctrl.maxDistance) / d0;
-    if (k === 1) return;
-    // skaler kamera + target om punktet under pekeren i target-planet, så pekerpunktet står stille
-    const ndc = { x: ((hjulX - rect.x) / rect.width) * 2 - 1, y: -((hjulY - rect.y) / rect.height) * 2 + 1 };
-    const D = new THREE.Vector3(ndc.x, ndc.y, 0.5).unproject(kamera).sub(kamera.position).normalize();
-    const N = ctrl.target.clone().sub(kamera.position).normalize();
-    const t = ctrl.target.clone().sub(kamera.position).dot(N) / Math.max(D.dot(N), 0.05);
-    const C = kamera.position.clone().addScaledVector(D, t);
-    kamera.position.sub(C).multiplyScalar(k).add(C);
-    ctrl.target.sub(C).multiplyScalar(k).add(C);
+    // mot punktet på modellen under musa, ellers mot siktepunktet - som model-viewer-visningen
+    const P = punktUnder(hjulX, hjulY) || ctrl.target.clone();
+    const r0 = kamera.position.distanceTo(ctrl.target);
+    if (f < 1 && r0 * f < MIN_AVSTAND) return;
+    kamera.position.sub(P).multiplyScalar(f).add(P);
+    ctrl.target.sub(P).multiplyScalar(f).add(P);
   }
+
+  /* --- rotasjon rundt punktet man tar tak i (identisk med model-viewer-blokken i index.html):
+     venstre-dra dreier kamera OG siktepunkt rundt punktet under musa (gir: loddrett akse gjennom P,
+     stigning: kameraets høyre-akse gjennom P), så punktet ligger i ro på skjermen. Touch går
+     fortsatt via OrbitControls. --- */
+  const FART = 0.006;        // radianer pr skjermpiksel, samme som index.html
+  const OPP = new THREE.Vector3(0, 1, 0);
+  let dra = null;
+  function drei(P, dx, dy) {
+    const C = kamera.position, T = ctrl.target;
+    const a = -dx * FART;
+    C.sub(P).applyAxisAngle(OPP, a).add(P);
+    T.sub(P).applyAxisAngle(OPP, a).add(P);
+    const hoyre = new THREE.Vector3().subVectors(T, C).normalize().cross(OPP).normalize();
+    const b = -dy * FART;
+    const C2 = C.clone().sub(P).applyAxisAngle(hoyre, b).add(P);
+    const T2 = T.clone().sub(P).applyAxisAngle(hoyre, b).add(P);
+    const off = new THREE.Vector3().subVectors(C2, T2);
+    const phi2 = Math.acos(Math.min(1, Math.max(-1, off.y / off.length())));
+    if (phi2 > 0.03 && phi2 < Math.PI - 0.03) { C.copy(C2); T.copy(T2); }
+  }
+  lerret.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'touch' || e.button !== 0) return;
+    dra = { x: e.clientX, y: e.clientY, P: punktUnder(e.clientX, e.clientY) || ctrl.target.clone(), id: e.pointerId };
+    try { lerret.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+  lerret.addEventListener('pointermove', e => {
+    if (!dra || e.pointerId !== dra.id) return;
+    const dx = e.clientX - dra.x, dy = e.clientY - dra.y;
+    dra.x = e.clientX; dra.y = e.clientY;
+    if (dx || dy) drei(dra.P, dx, dy);
+  });
+  const slippDra = e => {
+    if (!dra || e.pointerId !== dra.id) return;
+    dra = null;
+    try { lerret.releasePointerCapture(e.pointerId); } catch (_) {}
+  };
+  lerret.addEventListener('pointerup', slippDra);
+  lerret.addEventListener('pointercancel', slippDra);
+  lerret.addEventListener('dblclick', e => {
+    const P = punktUnder(e.clientX, e.clientY);   // dobbeltklikk = gå inn på punktet, som i index.html
+    if (!P) return;
+    const r1 = Math.max(250, kamera.position.distanceTo(ctrl.target) * 0.35);
+    const retn = new THREE.Vector3().subVectors(kamera.position, ctrl.target).normalize();
+    ctrl.target.copy(P);
+    kamera.position.copy(P).addScaledVector(retn, r1);
+  });
 
   const laster = new GLTFLoader();
   const last = (fil) => new Promise((ok, feil) => laster.load('sim/' + fil + '?v=' + o.versjon, g => ok(g.scene), undefined, feil));
@@ -125,7 +193,7 @@ export async function startSim(o) {
   const senter = ramme.getCenter(new THREE.Vector3());
   const R = ramme.getSize(new THREE.Vector3()).length() / 2;
   ctrl.target.copy(senter);
-  ctrl.minDistance = 150; ctrl.maxDistance = R * 6;   // 150 mm: helt inntil detaljer uten å havne inne i modellen
+  ctrl.minDistance = 1; ctrl.maxDistance = R * 6;   // minsteavstand håndteres av MIN_AVSTAND-vakta (120 mm, som mv)
   function orbitTil(bane) {
     const [t, p] = bane.split(' ');
     const th = parseFloat(t) * Math.PI / 180, ph = parseFloat(p) * Math.PI / 180;
@@ -148,22 +216,26 @@ export async function startSim(o) {
   const lukkAlt = () => Object.keys(grupper).forEach(id => grupper[id].maal = 0);
 
   const ray = new THREE.Raycaster(); const pek = new THREE.Vector2();
-  let nede = null;
+  let nede = null, klikkTimer = null;
   lerret.addEventListener('pointerdown', e => nede = [e.clientX, e.clientY]);
   lerret.addEventListener('pointerup', e => {
     if (!nede || Math.hypot(e.clientX - nede[0], e.clientY - nede[1]) > 6) return;   // dra = rotasjon
-    const b = lerret.getBoundingClientRect();
-    pek.x = ((e.clientX - b.left) / b.width) * 2 - 1; pek.y = -((e.clientY - b.top) / b.height) * 2 + 1;
-    ray.setFromCamera(pek, kamera);
-    const synlig = (obj) => { for (let x = obj; x; x = x.parent) if (x.visible === false) return false; return true; };
-    for (const h of ray.intersectObjects(scene.children, true)) {
-      if (!synlig(h.object)) continue;   // skjulte vegger (raycasteren ser dem fortsatt) skal ikke fange klikket
-      let x = h.object, id = null;
-      while (x) { if (x.userData.gruppe) { id = x.userData.gruppe; break; } x = x.parent; }
-      if (id) settMaal(id, grupper[id].maal > 0.05 ? 0 : (grupper[id].meta.indre ? 0.8 : 1));
-      break;   // traff korpus/benkeplate: gjør ingenting
-    }
+    const cx = e.clientX, cy = e.clientY;
+    clearTimeout(klikkTimer);
+    klikkTimer = setTimeout(() => {      // vent på ev. dobbeltklikk (gå inn på punkt), som i index.html
+      const b = lerret.getBoundingClientRect();
+      pek.x = ((cx - b.left) / b.width) * 2 - 1; pek.y = -((cy - b.top) / b.height) * 2 + 1;
+      ray.setFromCamera(pek, kamera);
+      for (const h of ray.intersectObjects(scene.children, true)) {
+        if (!treffbar(h.object)) continue;   // skjulte/gjennomsiktige vegger skal ikke fange klikket
+        let x = h.object, id = null;
+        while (x) { if (x.userData.gruppe) { id = x.userData.gruppe; break; } x = x.parent; }
+        if (id) settMaal(id, grupper[id].maal > 0.05 ? 0 : (grupper[id].meta.indre ? 0.8 : 1));
+        break;   // traff korpus/benkeplate: gjør ingenting
+      }
+    }, 260);
   });
+  lerret.addEventListener('dblclick', () => clearTimeout(klikkTimer));
 
   /* --- tegnesløyfe (bare når visningen er aktiv) --- */
   let aktiv = false;
@@ -216,15 +288,18 @@ export async function startSim(o) {
     }
     aktiv = true;
     // ta med kameraet fra model-viewer, så visningsbyttet ikke merkes (Marius 09.11)
+    // NB: model-viewer sine «m» er GLB-enheter, dvs. mm i våre modeller - ALDRI skaler med 1000
     try {
       if (o.mv.loaded && o.mv.getCameraOrbit) {
         const ob = o.mv.getCameraOrbit(), tg = o.mv.getCameraTarget();
-        const r = ob.radius * 1000;
+        const r = ob.radius;
         if (isFinite(r) && r > 1) {
-          ctrl.target.set(tg.x * 1000, tg.y * 1000, tg.z * 1000);
+          ctrl.target.set(tg.x, tg.y, tg.z);
           kamera.position.set(ctrl.target.x + r * Math.sin(ob.phi) * Math.sin(ob.theta),
                               ctrl.target.y + r * Math.cos(ob.phi),
                               ctrl.target.z + r * Math.sin(ob.phi) * Math.cos(ob.theta));
+          const fv = o.mv.getFieldOfView && o.mv.getFieldOfView();
+          if (isFinite(fv) && fv > 1) { kamera.fov = fv; kamera.updateProjectionMatrix(); }
         }
       }
     } catch (e) {}
@@ -242,8 +317,9 @@ export async function startSim(o) {
       if (isFinite(r) && r > 1) {
         const phi = Math.acos(Math.min(1, Math.max(-1, off.y / r)));
         const th = Math.atan2(off.x, off.z);
-        o.mv.cameraTarget = `${ctrl.target.x / 1000}m ${ctrl.target.y / 1000}m ${ctrl.target.z / 1000}m`;
-        o.mv.cameraOrbit = `${th}rad ${phi}rad ${r / 1000}m`;
+        o.mv.cameraTarget = `${ctrl.target.x}m ${ctrl.target.y}m ${ctrl.target.z}m`;
+        o.mv.cameraOrbit = `${th}rad ${phi}rad ${r}m`;
+        if (o.mv.jumpCameraToGoal) o.mv.jumpCameraToGoal();
       }
     } catch (e) {}
     lerret.style.display = 'none';
