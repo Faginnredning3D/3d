@@ -51,7 +51,14 @@
   "L 2950 × H 2305 × D 742,4 mm": "L 2950 × H 2305 × P 742,4 mm",
   "Dekksider og toppplate 742,4 dype – flukter med fast felt foran sjakt, ingen glipe": "Fianchi e cielo profondi 742,4 – a filo con il pannello fisso davanti al cavedio, senza fessure",
   "Blanco Andano 500-U, 500 × 400 × 190, underlimt rustfritt": "Blanco Andano 500-U, 500 × 400 × 190, sottotop, acciaio inox",
-  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, sottotop, acciaio inox"
+  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, sottotop, acciaio inox",
+  "Benk 900, 650 til underkant overskapsdør, gulv til himling 2311 (kontrollmål)": "Piano 900, 650 fino al bordo inferiore delle ante pensili, pavimento–soffitto 2311 (misura di controllo)",
+  "L 2950 × H 2311 × D 742,4 mm": "L 2950 × H 2311 × P 742,4 mm",
+  "Tegning REV C, 09.11.2026 – høyde 2311 etter kontrollmål til underkant himling (var 2305), overskapene er 6 mm høyere. Benkeplata flukter med dørfront, og benkeplata har egen bestillingstegning. Hull for blandebatteri og PureWater må bekreftes av rørlegger før produksjon. Håndtak, kjøleskapsmodell og dybden på fast felt foran sjakt avklares. Mål må kontrolleres på stedet.": "Disegno REV C, 09.11.2026 – altezza 2311 secondo la misura di controllo al filo inferiore del soffitto (prima 2305), i pensili sono più alti di 6 mm. Il piano è a filo con le ante e ha un proprio disegno d'ordine. I fori per il miscelatore e PureWater devono essere confermati dall'idraulico prima della produzione. Maniglie, modello del frigorifero e profondità del pannello fisso davanti al cavedio da definire. Le misure vanno verificate in loco.",
+  "Gjør frontene gjennomsiktige": "Rendi trasparenti i frontali",
+  "Skjul fronter": "Nascondi frontali",
+  "Skjul vegger": "Nascondi pareti",
+  "Veggene er gjennomsiktige - skjul dem helt": "Le pareti sono trasparenti – nascondile del tutto"
  },
  "maler": {}
 }

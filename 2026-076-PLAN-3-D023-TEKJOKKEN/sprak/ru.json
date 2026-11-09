@@ -51,7 +51,14 @@
   "L 2950 × H 2305 × D 742,4 mm": "Д 2950 × В 2305 × Г 742,4 мм",
   "Dekksider og toppplate 742,4 dype – flukter med fast felt foran sjakt, ingen glipe": "Боковые панели и верхняя панель глубиной 742,4 – заподлицо с глухой панелью перед шахтой, без зазора",
   "Blanco Andano 500-U, 500 × 400 × 190, underlimt rustfritt": "Blanco Andano 500-U, 500 × 400 × 190, подстольный монтаж, нержавеющая сталь",
-  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, подстольный монтаж, нержавеющая сталь"
+  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, подстольный монтаж, нержавеющая сталь",
+  "Benk 900, 650 til underkant overskapsdør, gulv til himling 2311 (kontrollmål)": "Столешница 900, 650 до низа дверей верхних шкафов, пол–потолок 2311 (контрольный замер)",
+  "L 2950 × H 2311 × D 742,4 mm": "Д 2950 × В 2311 × Г 742,4 мм",
+  "Tegning REV C, 09.11.2026 – høyde 2311 etter kontrollmål til underkant himling (var 2305), overskapene er 6 mm høyere. Benkeplata flukter med dørfront, og benkeplata har egen bestillingstegning. Hull for blandebatteri og PureWater må bekreftes av rørlegger før produksjon. Håndtak, kjøleskapsmodell og dybden på fast felt foran sjakt avklares. Mål må kontrolleres på stedet.": "Чертёж REV C, 09.11.2026 – высота 2311 по контрольному замеру до низа потолка (было 2305), верхние шкафы выше на 6 мм. Столешница заподлицо с фасадами дверей и имеет отдельный чертёж для заказа. Отверстия для смесителя и PureWater должен подтвердить сантехник до начала производства. Ручки, модель холодильника и глубина глухой панели перед шахтой уточняются. Размеры проверить на месте.",
+  "Gjør frontene gjennomsiktige": "Сделать фасады прозрачными",
+  "Skjul fronter": "Скрыть фасады",
+  "Skjul vegger": "Скрыть стены",
+  "Veggene er gjennomsiktige - skjul dem helt": "Стены прозрачные — скрыть их полностью"
  },
  "maler": {}
 }

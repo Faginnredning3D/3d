@@ -51,7 +51,14 @@
   "L 2950 × H 2305 × D 742,4 mm": "L 2950 × A 2305 × P 742,4 mm",
   "Dekksider og toppplate 742,4 dype – flukter med fast felt foran sjakt, ingen glipe": "Costados y tapa superior de 742,4 de fondo – enrasados con el panel fijo delante del patinillo, sin rendija",
   "Blanco Andano 500-U, 500 × 400 × 190, underlimt rustfritt": "Blanco Andano 500-U, 500 × 400 × 190, bajoencimera, acero inoxidable",
-  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, bajoencimera, acero inoxidable"
+  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, bajoencimera, acero inoxidable",
+  "Benk 900, 650 til underkant overskapsdør, gulv til himling 2311 (kontrollmål)": "Encimera 900, 650 hasta el borde inferior de las puertas altas, suelo a techo 2311 (medida de control)",
+  "L 2950 × H 2311 × D 742,4 mm": "L 2950 × A 2311 × P 742,4 mm",
+  "Tegning REV C, 09.11.2026 – høyde 2311 etter kontrollmål til underkant himling (var 2305), overskapene er 6 mm høyere. Benkeplata flukter med dørfront, og benkeplata har egen bestillingstegning. Hull for blandebatteri og PureWater må bekreftes av rørlegger før produksjon. Håndtak, kjøleskapsmodell og dybden på fast felt foran sjakt avklares. Mål må kontrolleres på stedet.": "Plano REV C, 09.11.2026 – altura 2311 según la medida de control hasta la cara inferior del techo (antes 2305), los armarios altos son 6 mm más altos. La encimera queda enrasada con el frente de las puertas y tiene su propio plano de pedido. Los orificios para el grifo y PureWater deben ser confirmados por el fontanero antes de la producción. Tiradores, modelo de frigorífico y fondo del panel fijo delante del patinillo por definir. Las medidas deben comprobarse in situ.",
+  "Gjør frontene gjennomsiktige": "Hacer los frentes transparentes",
+  "Skjul fronter": "Ocultar frentes",
+  "Skjul vegger": "Ocultar paredes",
+  "Veggene er gjennomsiktige - skjul dem helt": "Las paredes son transparentes: ocultarlas por completo"
  },
  "maler": {}
 }

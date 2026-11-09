@@ -51,7 +51,14 @@
   "L 2950 × H 2305 × D 742,4 mm": "I 2950 × A 2305 × G 742,4 mm",
   "Dekksider og toppplate 742,4 dype – flukter med fast felt foran sjakt, ingen glipe": "Šoninės ir viršutinė plokštės 742,4 gylio – lygios su fiksuota plokšte prie šachtos, be tarpo",
   "Blanco Andano 500-U, 500 × 400 × 190, underlimt rustfritt": "Blanco Andano 500-U, 500 × 400 × 190, montuojama iš apačios, nerūdijantis plienas",
-  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, montuojama iš apačios, nerūdijantis plienas"
+  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, montuojama iš apačios, nerūdijantis plienas",
+  "Benk 900, 650 til underkant overskapsdør, gulv til himling 2311 (kontrollmål)": "Stalviršis 900, 650 iki viršutinių spintelių durų apačios, grindys–lubos 2311 (kontrolinis matavimas)",
+  "L 2950 × H 2311 × D 742,4 mm": "I 2950 × A 2311 × G 742,4 mm",
+  "Tegning REV C, 09.11.2026 – høyde 2311 etter kontrollmål til underkant himling (var 2305), overskapene er 6 mm høyere. Benkeplata flukter med dørfront, og benkeplata har egen bestillingstegning. Hull for blandebatteri og PureWater må bekreftes av rørlegger før produksjon. Håndtak, kjøleskapsmodell og dybden på fast felt foran sjakt avklares. Mål må kontrolleres på stedet.": "Brėžinys REV C, 09.11.2026 – aukštis 2311 pagal kontrolinį matavimą iki lubų apačios (buvo 2305), viršutinės spintelės 6 mm aukštesnės. Stalviršis lygus su durelių frontu ir turi atskirą užsakymo brėžinį. Maišytuvo ir PureWater angas prieš gamybą turi patvirtinti santechnikas. Rankenėlės, šaldytuvo modelis ir fiksuotos plokštės prieš šachtą gylis tikslinami. Matmenis būtina patikrinti vietoje.",
+  "Gjør frontene gjennomsiktige": "Padaryti frontus permatomus",
+  "Skjul fronter": "Slėpti frontus",
+  "Skjul vegger": "Slėpti sienas",
+  "Veggene er gjennomsiktige - skjul dem helt": "Sienos permatomos – paslėpti jas visiškai"
  },
  "maler": {}
 }

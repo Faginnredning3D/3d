@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261109200446';
+    const SIDE_VERSJON = '20261109201933';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -233,6 +233,12 @@
       }
     }).catch(() => {});
   })();
+</script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
 </script>
 </head>
 <body>
@@ -250,7 +256,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261109200446"
+      src="modell.glb?v=20261109201933"
       alt="3D-modell av tekjøkken D023"
       camera-controls
       touch-action="none"
@@ -260,8 +266,9 @@
       shadow-softness="0.8"
       exposure="1"
       environment-image="neutral"
-      camera-orbit="28deg 76deg 75%"
+      camera-orbit="32deg 72deg 100%"
       min-camera-orbit="auto auto 120m"
+      max-camera-orbit="auto auto 30000m"
       min-field-of-view="2deg"
       interpolation-decay="60">
     </model-viewer>
@@ -270,8 +277,9 @@
     <div id="maaltalllag"></div>
 
     <div class="verktoy">
+      <button id="frontknapp" aria-pressed="false" title="Gjør frontene gjennomsiktige">Skjul fronter</button>
+      <button id="veggknapp" hidden aria-pressed="false" title="Veggene er gjennomsiktige - skjul dem helt">Skjul vegger</button>
       <button id="maalknapp" aria-pressed="false" title="Klikk to punkter p&aring; modellen">M&aring;l</button>
-      <button id="innmat" aria-pressed="false" title="Gj&oslash;r d&oslash;rene gjennomsiktige">Vis innmat</button>
       <button id="kantknapp" aria-pressed="false" hidden title="Vis hvilke kanter som har kantlist">Kantlist</button>
       <button id="angre" hidden>Angre</button>
       <button id="nullstill" hidden>T&oslash;m alle</button>
@@ -287,7 +295,7 @@
       <button data-orbit="0deg 90deg 100%">Front</button>
       <button data-orbit="90deg 90deg 100%">H&oslash;yre</button>
       <button class="tom" tabindex="-1" aria-hidden="true"></button>
-      <button data-orbit="28deg 76deg 75%">3D</button>
+      <button data-orbit="32deg 72deg 100%">3D</button>
       <button data-orbit="180deg 90deg 100%">Bak</button>
     </div>
 
@@ -355,7 +363,6 @@
   </aside>
 
 
-
 </div>
 
 <section class="tegninger" id="tegninger">
@@ -364,50 +371,50 @@
       <h2>Tegninger</h2>
       <p>REV&nbsp;C &middot; 09.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-076-PLAN-3-D023-TEKJOKKEN-REV-C.pdf?v=20261109200446" download>Last ned PDF</a>
+    <a class="lastned" href="2026-076-PLAN-3-D023-TEKJOKKEN-REV-C.pdf?v=20261109201933" download>Last ned PDF</a>
   </div>
     <figure class="side">
-      <a href="sider/side-01.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261109200446" width="1300" height="1840" loading="lazy" alt="Tegning side 1 av 11"></a>
+      <a href="sider/side-01.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261109201933" width="1300" height="1840" loading="lazy" alt="Tegning side 1 av 11"></a>
       <figcaption>Side 1 av 11</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-02.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261109200446" width="1300" height="1840" loading="lazy" alt="Tegning side 2 av 11"></a>
+      <a href="sider/side-02.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261109201933" width="1300" height="1840" loading="lazy" alt="Tegning side 2 av 11"></a>
       <figcaption>Side 2 av 11</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-03.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261109200446" width="1300" height="1840" loading="lazy" alt="Tegning side 3 av 11"></a>
+      <a href="sider/side-03.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261109201933" width="1300" height="1840" loading="lazy" alt="Tegning side 3 av 11"></a>
       <figcaption>Side 3 av 11</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-04.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261109200446" width="1300" height="1840" loading="lazy" alt="Tegning side 4 av 11"></a>
+      <a href="sider/side-04.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261109201933" width="1300" height="1840" loading="lazy" alt="Tegning side 4 av 11"></a>
       <figcaption>Side 4 av 11</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-05.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261109200446" width="1300" height="1840" loading="lazy" alt="Tegning side 5 av 11"></a>
+      <a href="sider/side-05.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261109201933" width="1300" height="1840" loading="lazy" alt="Tegning side 5 av 11"></a>
       <figcaption>Side 5 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261109200446" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 11"></a>
+      <a href="sider/side-06.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261109201933" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 11"></a>
       <figcaption>Side 6 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261109200446" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 11"></a>
+      <a href="sider/side-07.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261109201933" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 11"></a>
       <figcaption>Side 7 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-08.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261109200446" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 11"></a>
+      <a href="sider/side-08.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261109201933" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 11"></a>
       <figcaption>Side 8 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-09.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261109200446" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 11"></a>
+      <a href="sider/side-09.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261109201933" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 11"></a>
       <figcaption>Side 9 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-10.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261109200446" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 11"></a>
+      <a href="sider/side-10.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261109201933" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 11"></a>
       <figcaption>Side 10 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-11.png?v=20261109200446" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261109200446" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 11"></a>
+      <a href="sider/side-11.png?v=20261109201933" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261109201933" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 11"></a>
       <figcaption>Side 11 av 11</figcaption>
     </figure>
 </section>
@@ -501,34 +508,9 @@
     const rect = mv.getBoundingClientRect();
     const vfov = (mv.getFieldOfView?.() || 30) * Math.PI / 180;
     const hfov = 2 * Math.atan(Math.tan(vfov / 2) * rect.width / Math.max(1, rect.height));
-    fokus = { mal: `${c[0]}m ${c[1]}m ${c[2]}m`, r: Math.round(R * 0.92 / Math.sin(Math.min(vfov, hfov) / 2)) };
+    fokus = { mal: `${c[0]}m ${c[1]}m ${c[2]}m`, r: Math.round(R * 1.3 / Math.sin(Math.min(vfov, hfov) / 2)) };
   }
 
-  /* --- innmat: doerene er materialene merket FRONT i modellen --------------
-     (imos-utseender med __FRONT__ faar navnet FRONT i konverteringen).
-     Mangler navnet, brukes DOR_INDEKS som reserve. Opprinnelig farge huskes,
-     saa beiset eik ikke blir lys naar doerene vises igjen. */
-  const innmat = document.getElementById('innmat');
-  const DOR_INDEKS = 3;
-  const dorMat = () => {
-    const ms = mv.model ? mv.model.materials : [];
-    const f = ms.filter(m => /FRONT/i.test(m.name || ''));
-    return f.length ? f : (ms[DOR_INDEKS] ? [ms[DOR_INDEKS]] : []);
-  };
-  const origFarge = new Map();
-  innmat.addEventListener('click', () => {
-    const ms = dorMat();
-    if (!ms.length) return;
-    const vis = innmat.getAttribute('aria-pressed') !== 'true';
-    ms.forEach(m => {
-      if (!origFarge.has(m)) origFarge.set(m, m.pbrMetallicRoughness.baseColorFactor.slice());
-      const c = origFarge.get(m);
-      m.setAlphaMode(vis ? 'BLEND' : 'OPAQUE');
-      m.pbrMetallicRoughness.setBaseColorFactor([c[0], c[1], c[2], vis ? 0.12 : c[3]]);
-    });
-    innmat.setAttribute('aria-pressed', String(vis));
-    innmat.textContent = vis ? 'Vis dører' : 'Vis innmat';
-  });
 
   /* --- kantlist: kantene med kantlist er egne materialer «KANT:<type>» -----
      (konverteren henter kantlist per kant fra imos sin PXM-fil). Knappen farger
@@ -633,7 +615,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261109200446').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261109201933').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -966,8 +948,43 @@
 
   mv.addEventListener('camera-change', tegn);
   new ResizeObserver(tegn).observe(stage);
+
+  /* --- fronter og vegger (C06): materialer FRONT og VEGG ---------------- */
+  (() => {
+    const orig = new Map();
+    const mats = (test) => (mv.model ? mv.model.materials : []).filter(m => test(m.name || ''));
+    const alfa = (test, a) => mats(test).forEach(m => {
+      if (!orig.has(m)) orig.set(m, m.pbrMetallicRoughness.baseColorFactor.slice());
+      const c = orig.get(m), ny = a === null ? c[3] : a;
+      m.setAlphaMode(ny < 0.999 ? 'BLEND' : 'OPAQUE');
+      m.pbrMetallicRoughness.setBaseColorFactor([c[0], c[1], c[2], ny]);
+    });
+    const knapp = (id, test, av, paaTekst, avTekst) => {
+      const k = document.getElementById(id);
+      k.addEventListener('click', () => {
+        if (!mats(test).length) return;          // modellen er ikke lastet ennå
+        const paa = k.getAttribute('aria-pressed') !== 'true';
+        alfa(test, paa ? av : null);
+        k.setAttribute('aria-pressed', String(paa)); k.textContent = paa ? paaTekst : avTekst;
+      });
+    };
+    knapp('frontknapp', n => /FRONT/i.test(n), 0.12, 'Vis fronter', 'Skjul fronter');
+    knapp('veggknapp', n => n === 'VEGG', 0.0, 'Vis vegger', 'Skjul vegger');
+  })();
 </script>
 
+<script type="module">
+  /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
+  import { startSim } from '../_felles/sim3d.js?v=20261109201933';
+  startSim({
+    stage: document.getElementById('stage'),
+    mv: document.getElementById('mv'),
+    hint: document.getElementById('hint'),
+    verktoy: document.querySelector('.verktoy'),
+    standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
+    versjon: '20261109201933',
+  }).catch(() => {});
+</script>
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>
 </body>
 </html>

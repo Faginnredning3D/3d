@@ -51,7 +51,14 @@
   "L 2950 × H 2305 × D 742,4 mm": "Dł 2950 × W 2305 × G 742,4 mm",
   "Dekksider og toppplate 742,4 dype – flukter med fast felt foran sjakt, ingen glipe": "Panele boczne i płyta górna głębokości 742,4 – zlicowane ze stałym panelem przed szachtem, bez szczeliny",
   "Blanco Andano 500-U, 500 × 400 × 190, underlimt rustfritt": "Blanco Andano 500-U, 500 × 400 × 190, podwieszany, stal nierdzewna",
-  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, podwieszany, stal nierdzewna"
+  "Blanco Andano 450-U, 450 × 400 × 190, underlimt rustfritt": "Blanco Andano 450-U, 450 × 400 × 190, podwieszany, stal nierdzewna",
+  "Benk 900, 650 til underkant overskapsdør, gulv til himling 2311 (kontrollmål)": "Blat 900, 650 do dolnej krawędzi drzwi szafek górnych, podłoga–sufit 2311 (pomiar kontrolny)",
+  "L 2950 × H 2311 × D 742,4 mm": "Dł 2950 × W 2311 × G 742,4 mm",
+  "Tegning REV C, 09.11.2026 – høyde 2311 etter kontrollmål til underkant himling (var 2305), overskapene er 6 mm høyere. Benkeplata flukter med dørfront, og benkeplata har egen bestillingstegning. Hull for blandebatteri og PureWater må bekreftes av rørlegger før produksjon. Håndtak, kjøleskapsmodell og dybden på fast felt foran sjakt avklares. Mål må kontrolleres på stedet.": "Rysunek REV C, 09.11.2026 – wysokość 2311 według pomiaru kontrolnego do spodu sufitu (było 2305), szafki górne są wyższe o 6 mm. Blat jest zlicowany z frontami drzwi i ma osobny rysunek zamówieniowy. Otwory na baterię i PureWater muszą zostać potwierdzone przez hydraulika przed produkcją. Uchwyty, model lodówki i głębokość stałego panelu przed szachtem do ustalenia. Wymiary należy sprawdzić na miejscu.",
+  "Gjør frontene gjennomsiktige": "Ustaw fronty jako przezroczyste",
+  "Skjul fronter": "Ukryj fronty",
+  "Skjul vegger": "Ukryj ściany",
+  "Veggene er gjennomsiktige - skjul dem helt": "Ściany są przezroczyste – ukryj je całkowicie"
  },
  "maler": {}
 }
