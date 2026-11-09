@@ -38,15 +38,30 @@ export async function startSim(o) {
   const d1 = new THREE.DirectionalLight(0xffffff, 1.3); d1.position.set(4000, 6000, 7000); scene.add(d1);
   const d2 = new THREE.DirectionalLight(0xfff3e0, 0.5); d2.position.set(-5000, 3500, -2000); scene.add(d2);
 
+  // zoomToCursor deler på lerretsbredden: slipp aldri hjul-events gjennom til et usynlig lerret (NaN-kamera)
+  lerret.addEventListener('wheel', e => { if (!lerret.clientWidth) e.stopImmediatePropagation(); }, true);
   const ctrl = new OrbitControls(kamera, lerret);
   ctrl.enableDamping = true; ctrl.maxPolarAngle = Math.PI * 0.55;
+  ctrl.zoomSpeed = 0.4; ctrl.zoomToCursor = true; ctrl.screenSpacePanning = true;
 
   const laster = new GLTFLoader();
   const last = (fil) => new Promise((ok, feil) => laster.load('sim/' + fil + '?v=' + o.versjon, g => ok(g.scene), undefined, feil));
 
+  // 3D-visning alltid skyggelagt MED svarte kantlinjer (Marius 09.11) - gjelder også sim-scenen
+  const kantMat = new THREE.LineBasicMaterial({ color: 0x1a1a1a, transparent: true, opacity: 0.85 });
+  function kanter(obj) {
+    obj.traverse(x => {
+      if (!x.isMesh || x.userData.harKant || /^vegg$/i.test((x.material && x.material.name) || '')) return;
+      if (x.material) { x.material.polygonOffset = true; x.material.polygonOffsetFactor = 1; x.material.polygonOffsetUnits = 1; }
+      const l = new THREE.LineSegments(new THREE.EdgesGeometry(x.geometry, 25), kantMat);
+      l.raycast = () => {}; x.add(l); x.userData.harKant = true;
+    });
+    return obj;
+  }
+
   const ramme = new THREE.Box3();
   const grupper = {};            // id -> {parent, indre(container), meta, andel, maal}
-  const korpus = await last('korpus.glb');
+  const korpus = kanter(await last('korpus.glb'));
   scene.add(korpus);
   ramme.expandByObject(korpus);
   const veggMesh = [];           // romveggene (materiale VEGG): kan skjules også i simuleringen
@@ -57,7 +72,7 @@ export async function startSim(o) {
     const p = g.pivot;
     parent.position.set(p[0], p[1], p[2]); indre.position.set(-p[0], -p[1], -p[2]);
     parent.add(indre); scene.add(parent);
-    const inner = await last(g.glb);
+    const inner = kanter(await last(g.glb));
     inner.traverse(x => x.userData.gruppe = g.id);
     indre.add(inner);
     grupper[g.id] = { parent, indre, meta: g, andel: 0, maal: 0 };
@@ -65,7 +80,7 @@ export async function startSim(o) {
   }
   const artCache = {};
   for (const b of meta.beslag) {
-    if (!artCache[b.glb]) artCache[b.glb] = await last(b.glb);
+    if (!artCache[b.glb]) artCache[b.glb] = kanter(await last(b.glb));
     const inst = artCache[b.glb].clone(true);
     inst.applyMatrix4(new THREE.Matrix4().fromArray(b.matrise));
     if (b.gruppe) { inst.traverse(x => x.userData.gruppe = b.gruppe); grupper[b.gruppe].indre.add(inst); }
@@ -76,7 +91,7 @@ export async function startSim(o) {
   const senter = ramme.getCenter(new THREE.Vector3());
   const R = ramme.getSize(new THREE.Vector3()).length() / 2;
   ctrl.target.copy(senter);
-  ctrl.minDistance = R * 0.25; ctrl.maxDistance = R * 6;
+  ctrl.minDistance = 150; ctrl.maxDistance = R * 6;   // 150 mm: helt inntil detaljer uten å havne inne i modellen
   function orbitTil(bane) {
     const [t, p] = bane.split(' ');
     const th = parseFloat(t) * Math.PI / 180, ph = parseFloat(p) * Math.PI / 180;

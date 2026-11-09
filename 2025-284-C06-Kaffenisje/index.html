@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261109083000';
+    const SIDE_VERSJON = '20261109090500';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -978,7 +978,7 @@
 
 <script type="module">
   /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
-  import { startSim } from '../_felles/sim3d.js?v=20261108093000';
+  import { startSim } from '../_felles/sim3d.js?v=20261109090500';
   startSim({
     stage: document.getElementById('stage'),
     mv: document.getElementById('mv'),
