@@ -144,7 +144,19 @@ export async function startSim(o) {
   });
 
   const laster = new GLTFLoader();
-  const last = (fil) => new Promise((ok, feil) => laster.load('sim/' + fil + '?v=' + o.versjon, g => ok(g.scene), undefined, feil));
+  const lastEnGang = (fil) => new Promise((ok, feil) => laster.load('sim/' + fil + '?v=' + o.versjon, g => ok(g.scene), undefined, feil));
+  // GitHub Pages svarer av og til 503 på enkeltfiler: prøv igjen før vi gir opp, ellers
+  // dør hele sim-oppstarten på én fil og siden står uten Åpne/Lukk alt (Marius 09.11)
+  async function last(fil) {
+    const vent = [300, 800, 1500];
+    for (let i = 0; ; i++) {
+      try { return await lastEnGang(fil); }
+      catch (e) {
+        if (i >= vent.length) throw e;
+        await new Promise(r => setTimeout(r, vent[i]));
+      }
+    }
+  }
 
   // 3D-visning alltid skyggelagt MED svarte kantlinjer (Marius 09.11) - gjelder også sim-scenen
   const kantMat = new THREE.LineBasicMaterial({ color: 0x1a1a1a, transparent: true, opacity: 0.85 });
@@ -172,20 +184,33 @@ export async function startSim(o) {
   const veggMesh = [];           // romveggene (materiale VEGG): kan skjules også i simuleringen
   korpus.traverse(x => { if (x.isMesh && /^vegg$/i.test((x.material && x.material.name) || '')) veggMesh.push(x); });
 
-  for (const g of meta.grupper) {
+  // alle gruppe- og beslags-GLB-er parallelt (raskere, færre timeouts), og fail-soft:
+  // en fil som feiler etter alle forsøkene hoppes over - resten av simuleringen virker
+  const artNavn = [...new Set(meta.beslag.map(b => b.glb))];
+  const [gLast, aLast] = await Promise.all([
+    Promise.allSettled(meta.grupper.map(g => last(g.glb))),
+    Promise.allSettled(artNavn.map(n => last(n))),
+  ]);
+  meta.grupper.forEach((g, i) => {
+    if (gLast[i].status !== 'fulfilled') { console.warn('sim: hoppet over gruppe', g.glb, gLast[i].reason); return; }
     const parent = new THREE.Group(); const indre = new THREE.Group();
     const p = g.pivot;
     parent.position.set(p[0], p[1], p[2]); indre.position.set(-p[0], -p[1], -p[2]);
     parent.add(indre); scene.add(parent);
-    const inner = kanter(await last(g.glb));
+    const inner = kanter(gLast[i].value);
     inner.traverse(x => x.userData.gruppe = g.id);
     indre.add(inner);
     grupper[g.id] = { parent, indre, meta: g, andel: 0, maal: 0 };
     ramme.expandByObject(parent);
-  }
+  });
   const artCache = {};
+  artNavn.forEach((n, i) => {
+    if (aLast[i].status === 'fulfilled') artCache[n] = kanter(aLast[i].value);
+    else console.warn('sim: hoppet over beslag', n, aLast[i].reason);
+  });
   for (const b of meta.beslag) {
-    if (!artCache[b.glb]) artCache[b.glb] = kanter(await last(b.glb));
+    if (!artCache[b.glb]) continue;
+    if (b.gruppe && !grupper[b.gruppe]) continue;
     const inst = artCache[b.glb].clone(true);
     inst.applyMatrix4(new THREE.Matrix4().fromArray(b.matrise));
     if (b.gruppe) { inst.traverse(x => x.userData.gruppe = b.gruppe); grupper[b.gruppe].indre.add(inst); }
