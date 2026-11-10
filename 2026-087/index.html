@@ -219,7 +219,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=202610121321"
+      src="modell.glb?v=202611101347"
       alt="3D-modell av testleilighet: kj&oslash;kken, garderobe og skapmodul"
       camera-controls
       touch-action="none"
@@ -513,7 +513,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=202610121321').then(r => r.json()).then(d => {
+  fetch('snap.json?v=202611101347').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
