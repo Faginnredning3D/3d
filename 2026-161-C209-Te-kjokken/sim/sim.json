@@ -1,8 +1,21 @@
 {
  "grupper": [
   {
-   "id": "skuff_K3_1",
-   "glb": "skuff_K3_1.glb",
+   "id": "dor_K6",
+   "glb": "dor_K6.glb",
+   "type": "dor",
+   "pivot": [
+    4188.0,
+    2130.0,
+    0.0
+   ],
+   "vinkel": 110.0,
+   "fortegn": 1,
+   "indre": false
+  },
+  {
+   "id": "skuff_K4_1",
+   "glb": "skuff_K4_1.glb",
    "type": "skuff",
    "pivot": [
     0,
@@ -35,8 +48,8 @@
    "indre": false
   },
   {
-   "id": "skuff_K1_1",
-   "glb": "skuff_K1_1.glb",
+   "id": "skuff_K1_2",
+   "glb": "skuff_K1_2.glb",
    "type": "skuff",
    "pivot": [
     0,
@@ -52,38 +65,38 @@
    "indre": false
   },
   {
-   "id": "dor_K6",
-   "glb": "dor_K6.glb",
+   "id": "skuff_K2_2",
+   "glb": "skuff_K2_2.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 420.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "dor_K1",
+   "glb": "dor_K1.glb",
    "type": "dor",
    "pivot": [
-    4188.0,
-    2130.0,
+    42.0,
+    2004.0,
     0.0
    ],
    "vinkel": 110.0,
-   "fortegn": 1,
+   "fortegn": -1,
    "indre": false
   },
   {
    "id": "skuff_K3_2",
    "glb": "skuff_K3_2.glb",
-   "type": "skuff",
-   "pivot": [
-    0,
-    0,
-    0
-   ],
-   "slag": 470.0,
-   "retn": [
-    0.0,
-    0.0,
-    1.0
-   ],
-   "indre": false
-  },
-  {
-   "id": "skuff_K2_1",
-   "glb": "skuff_K2_1.glb",
    "type": "skuff",
    "pivot": [
     0,
@@ -116,16 +129,20 @@
    "indre": false
   },
   {
-   "id": "dor_K1",
-   "glb": "dor_K1.glb",
-   "type": "dor",
+   "id": "skuff_K4_2",
+   "glb": "skuff_K4_2.glb",
+   "type": "skuff",
    "pivot": [
-    42.0,
-    2004.0,
-    0.0
+    0,
+    0,
+    0
    ],
-   "vinkel": 110.0,
-   "fortegn": -1,
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
    "indre": false
   },
   {
@@ -142,42 +159,8 @@
    "indre": false
   },
   {
-   "id": "skuff_K1_2",
-   "glb": "skuff_K1_2.glb",
-   "type": "skuff",
-   "pivot": [
-    0,
-    0,
-    0
-   ],
-   "slag": 470.0,
-   "retn": [
-    0.0,
-    0.0,
-    1.0
-   ],
-   "indre": false
-  },
-  {
-   "id": "skuff_K4_1",
-   "glb": "skuff_K4_1.glb",
-   "type": "skuff",
-   "pivot": [
-    0,
-    0,
-    0
-   ],
-   "slag": 470.0,
-   "retn": [
-    0.0,
-    0.0,
-    1.0
-   ],
-   "indre": false
-  },
-  {
-   "id": "skuff_K2_2",
-   "glb": "skuff_K2_2.glb",
+   "id": "skuff_K3_1",
+   "glb": "skuff_K3_1.glb",
    "type": "skuff",
    "pivot": [
     0,
@@ -210,15 +193,15 @@
    "indre": false
   },
   {
-   "id": "skuff_K3_3",
-   "glb": "skuff_K3_3.glb",
+   "id": "skuff_K2_1",
+   "glb": "skuff_K2_1.glb",
    "type": "skuff",
    "pivot": [
     0,
     0,
     0
    ],
-   "slag": 470.0,
+   "slag": 420.0,
    "retn": [
     0.0,
     0.0,
@@ -244,8 +227,25 @@
    "indre": false
   },
   {
-   "id": "skuff_K4_2",
-   "glb": "skuff_K4_2.glb",
+   "id": "skuff_K1_1",
+   "glb": "skuff_K1_1.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_K3_3",
+   "glb": "skuff_K3_3.glb",
    "type": "skuff",
    "pivot": [
     0,
