@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261109095500';
+    const SIDE_VERSJON = '20261112115840';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -233,6 +233,12 @@
       }
     }).catch(() => {});
   })();
+</script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
 </script>
 </head>
 <body>
@@ -250,7 +256,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261105193717"
+      src="modell.glb?v=20261112120000"
       alt="3D-modell av veggmontert avishylle i eikefin&eacute;r med speil og skap"
       camera-controls
       touch-action="none"
@@ -304,15 +310,15 @@
       <h2>Oppsett</h2>
       <dl>
         <dt>Mål</dt>
-        <dd>B 1660 &times; H 2000 &times; D 300&nbsp;mm &ndash; underkant 300 over gulv</dd>
+        <dd>B 1660 &times; H 2300 &times; D 300&nbsp;mm &ndash; st&aring;r p&aring; gulv</dd>
         <dt>Plassering</dt>
         <dd>Sentrert i nisjen (B 2112) &ndash; 226&nbsp;mm pr. side</dd>
         <dt>Skap</dt>
-        <dd>H 600 m/4 d&oslash;rer, grepkanal i topp, justerbare hylleplan</dd>
+        <dd>2 benkeskap m/4 d&oslash;rer, godkjent greplist i topp, sokkel H 80 i eik</dd>
         <dt>Avishyller</dt>
-        <dd>2 stk L 600 m/oppkant og st&aring;lstag</dd>
+        <dd>2 stk L 600 m/hel front</dd>
         <dt>Speil</dt>
-        <dd>Bronsert glass 800 &times; 800 (CG Glass) m/hylle over og LED</dd>
+        <dd>Bronsert glass 800 &times; 800 (CG Glass) m/hylle over og LED frest inn</dd>
       </dl>
     </section>
 
@@ -320,18 +326,18 @@
       <h2>Materialer</h2>
       <dl>
         <dt>Skrog og fronter</dt>
-        <dd>MDF 19 eikefin&eacute;r m/heltre eik kantlist, 1,5&nbsp;% hvitpigmentert klar lakk glans 10</dd>
+        <dd>MDF 19 eikefin&eacute;r m/heltre eik kantlist, 1,5&nbsp;% hvitpigmentert klar lakk glans 10, st&aring;ende ved</dd>
         <dt>Beslag</dt>
-        <dd>Alle synlige beslag sort RAL 9005 &ndash; st&aring;lstag sort</dd>
+        <dd>Alle synlige beslag sort RAL 9005</dd>
         <dt>Belysning</dt>
-        <dd>LED i speilnisjen (E-07, driver av elektriker)</dd>
+        <dd>LED-profil frest inn under hylla over speilet (driver av elektriker)</dd>
       </dl>
     </section>
 
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        Tegning REV&nbsp;A, 05.11.2026 &ndash; til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
+        Tegning REV&nbsp;A, 12.11.2026 &ndash; til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
       </p>
     </section>
   </aside>
@@ -343,37 +349,45 @@
   <div class="teg-hode">
     <div>
       <h2>Tegninger</h2>
-      <p>REV&nbsp;A &middot; 05.11.2026 &middot; Tegning til godkjenning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+      <p>REV&nbsp;A &middot; 12.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2025-284-C03-Avishylle-REV-A.pdf?v=20261105193717" download>Last ned PDF</a>
+    <a class="lastned" href="2025-284-C03-Avishylle-REV-A.pdf?v=20261112115840" download>Last ned PDF</a>
   </div>
-    <figure class="side liggende">
-      <a href="sider/side-01.png?v=20261105193717" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261105193717" width="1819" height="1287" loading="lazy" alt="Tegning side 1 av 7"></a>
-      <figcaption>Side 1 av 7</figcaption>
+    <figure class="side">
+      <a href="sider/side-01.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261112115840" width="909" height="1287" loading="lazy" alt="Tegning side 1 av 9"></a>
+      <figcaption>Side 1 av 9</figcaption>
+    </figure>
+    <figure class="side">
+      <a href="sider/side-02.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261112115840" width="909" height="1287" loading="lazy" alt="Tegning side 2 av 9"></a>
+      <figcaption>Side 2 av 9</figcaption>
+    </figure>
+    <figure class="side">
+      <a href="sider/side-03.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261112115840" width="909" height="1287" loading="lazy" alt="Tegning side 3 av 9"></a>
+      <figcaption>Side 3 av 9</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-02.png?v=20261105193717" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261105193717" width="1819" height="1287" loading="lazy" alt="Tegning side 2 av 7"></a>
-      <figcaption>Side 2 av 7</figcaption>
+      <a href="sider/side-04.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261112115840" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 9"></a>
+      <figcaption>Side 4 av 9</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-03.png?v=20261105193717" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261105193717" width="1819" height="1287" loading="lazy" alt="Tegning side 3 av 7"></a>
-      <figcaption>Side 3 av 7</figcaption>
+      <a href="sider/side-05.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261112115840" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 9"></a>
+      <figcaption>Side 5 av 9</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-04.png?v=20261105193717" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261105193717" width="1819" height="1287" loading="lazy" alt="Tegning side 4 av 7"></a>
-      <figcaption>Side 4 av 7</figcaption>
+      <a href="sider/side-06.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261112115840" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 9"></a>
+      <figcaption>Side 6 av 9</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-05.png?v=20261105193717" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261105193717" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 7"></a>
-      <figcaption>Side 5 av 7</figcaption>
+      <a href="sider/side-07.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261112115840" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 9"></a>
+      <figcaption>Side 7 av 9</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261105193717" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261105193717" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 7"></a>
-      <figcaption>Side 6 av 7</figcaption>
+      <a href="sider/side-08.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261112115840" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 9"></a>
+      <figcaption>Side 8 av 9</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261105193717" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261105193717" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 7"></a>
-      <figcaption>Side 7 av 7</figcaption>
+      <a href="sider/side-09.png?v=20261112115840" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261112115840" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 9"></a>
+      <figcaption>Side 9 av 9</figcaption>
     </figure>
 </section>
 
@@ -573,7 +587,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261105193717').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261112120000').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -906,6 +920,19 @@
 
   mv.addEventListener('camera-change', tegn);
   new ResizeObserver(tegn).observe(stage);
+</script>
+
+<script type="module">
+  /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
+  import { startSim } from '../_felles/sim3d.js?v=20261112114652';
+  startSim({
+    stage: document.getElementById('stage'),
+    mv: document.getElementById('mv'),
+    hint: document.getElementById('hint'),
+    verktoy: document.querySelector('.verktoy'),
+    standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
+    versjon: '20261112115840',
+  }).catch(() => {});
 </script>
 
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>

@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261111162108';
+    const SIDE_VERSJON = '20261112115543';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -233,6 +233,12 @@
       }
     }).catch(() => {});
   })();
+</script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
 </script>
 </head>
 <body>
@@ -924,6 +930,19 @@
 
   mv.addEventListener('camera-change', tegn);
   new ResizeObserver(tegn).observe(stage);
+</script>
+
+<script type="module">
+  /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
+  import { startSim } from '../_felles/sim3d.js?v=20261112114652';
+  startSim({
+    stage: document.getElementById('stage'),
+    mv: document.getElementById('mv'),
+    hint: document.getElementById('hint'),
+    verktoy: document.querySelector('.verktoy'),
+    standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
+    versjon: '20261112115543',
+  }).catch(() => {});
 </script>
 
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>

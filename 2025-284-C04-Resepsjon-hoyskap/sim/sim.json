@@ -1,0 +1,106 @@
+{
+ "grupper": [
+  {
+   "id": "A_skyvedor_bak",
+   "glb": "A_skyvedor_bak.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 276.3,
+   "retn": [
+    1,
+    0,
+    0
+   ],
+   "indre": false,
+   "dor": null
+  },
+  {
+   "id": "A_skyvedor_front",
+   "glb": "A_skyvedor_front.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 276.3,
+   "retn": [
+    -1,
+    0,
+    0
+   ],
+   "indre": false,
+   "dor": null
+  },
+  {
+   "id": "A_dor_ovre_venstre",
+   "glb": "A_dor_ovre_venstre.glb",
+   "type": "dor",
+   "pivot": [
+    83,
+    1635.0,
+    400
+   ],
+   "vinkel": 105.0,
+   "fortegn": -1,
+   "indre": false
+  },
+  {
+   "id": "A_dor_ovre_hoyre",
+   "glb": "A_dor_ovre_hoyre.glb",
+   "type": "dor",
+   "pivot": [
+    677,
+    1635.0,
+    400
+   ],
+   "vinkel": 105.0,
+   "fortegn": 1,
+   "indre": false
+  },
+  {
+   "id": "B_dor_nedre",
+   "glb": "B_dor_nedre.glb",
+   "type": "dor",
+   "pivot": [
+    763,
+    490.0,
+    400
+   ],
+   "vinkel": 105.0,
+   "fortegn": -1,
+   "indre": false
+  },
+  {
+   "id": "C_dor_venstre",
+   "glb": "C_dor_venstre.glb",
+   "type": "dor",
+   "pivot": [
+    1460,
+    1225.0,
+    805
+   ],
+   "vinkel": 105.0,
+   "fortegn": -1,
+   "indre": false
+  },
+  {
+   "id": "C_dor_hoyre",
+   "glb": "C_dor_hoyre.glb",
+   "type": "dor",
+   "pivot": [
+    2334,
+    1225.0,
+    805
+   ],
+   "vinkel": 105.0,
+   "fortegn": 1,
+   "indre": false
+  }
+ ],
+ "beslag": []
+}

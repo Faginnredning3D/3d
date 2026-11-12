@@ -1,0 +1,57 @@
+{
+ "grupper": [
+  {
+   "id": "Skap_1_dor_1",
+   "glb": "Skap_1_dor_1.glb",
+   "type": "dor",
+   "pivot": [
+    22,
+    499.5,
+    300
+   ],
+   "vinkel": 105.0,
+   "fortegn": -1,
+   "indre": false
+  },
+  {
+   "id": "Skap_1_dor_2",
+   "glb": "Skap_1_dor_2.glb",
+   "type": "dor",
+   "pivot": [
+    827.0,
+    499.5,
+    300
+   ],
+   "vinkel": 105.0,
+   "fortegn": 1,
+   "indre": false
+  },
+  {
+   "id": "Skap_2_dor_1",
+   "glb": "Skap_2_dor_1.glb",
+   "type": "dor",
+   "pivot": [
+    833.0,
+    499.5,
+    300
+   ],
+   "vinkel": 105.0,
+   "fortegn": -1,
+   "indre": false
+  },
+  {
+   "id": "Skap_2_dor_2",
+   "glb": "Skap_2_dor_2.glb",
+   "type": "dor",
+   "pivot": [
+    1638.0,
+    499.5,
+    300
+   ],
+   "vinkel": 105.0,
+   "fortegn": 1,
+   "indre": false
+  }
+ ],
+ "beslag": []
+}
