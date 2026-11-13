@@ -1,0 +1,141 @@
+{
+ "grupper": [
+  {
+   "id": "skuff_S1_2",
+   "glb": "skuff_S1_2.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_S4_2",
+   "glb": "skuff_S4_2.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_S4_1",
+   "glb": "skuff_S4_1.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_S3_2",
+   "glb": "skuff_S3_2.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_S3_1",
+   "glb": "skuff_S3_1.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_S2_2",
+   "glb": "skuff_S2_2.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_S2_1",
+   "glb": "skuff_S2_1.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff_S1_1",
+   "glb": "skuff_S1_1.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 720.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  }
+ ],
+ "beslag": []
+}
