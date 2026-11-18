@@ -256,7 +256,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261118115844"
+      src="modell.glb?v=20261118123727"
       alt="3D-modell av kjøkken med eikefronter, steinbenk, øy og høyskap"
       camera-controls
       touch-action="none"
@@ -353,7 +353,7 @@
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        3D-modell REV&nbsp;C, 18.11.2026 (tegningene under er REV&nbsp;B). Mål etter kontrollmåling 04.11.2026. Rendering kan avvike fra originalen. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
+        3D-modell REV&nbsp;D, 18.11.2026 (tegningene under er REV&nbsp;B). Mål etter kontrollmåling 04.11.2026. Rendering kan avvike fra originalen. Sjekk produksjonstegning for n&oslash;yaktige detaljer.
       </p>
     </section>
   </aside>
@@ -667,7 +667,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261118115844').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261118123727').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -1034,7 +1034,7 @@
     hint: document.getElementById('hint'),
     verktoy: document.querySelector('.verktoy'),
     standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
-    versjon: '20261118115844',
+    versjon: '20261118123727',
   }).catch(() => {});
 </script>
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>
