@@ -29,7 +29,17 @@
   "Veggene er gjennomsiktige - skjul dem helt": "Las paredes son transparentes: ocúltelas por completo",
   "Østvegg": "Pared este",
   "Øy": "Isla",
-  "140 mm eikefinér som frontene": "140 mm chapa de roble como los frentes"
+  "140 mm eikefinér som frontene": "140 mm chapa de roble como los frentes",
+  "Presentasjon": "Presentación",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Renders hechos con el mismo modelo que el plano. Pulse una imagen para verla a tamaño completo. El render puede diferir del original: el plano prevalece.",
+  "Kjøkkenet sett fra hjørnet": "La cocina vista desde la esquina",
+  "Sett forfra": "Vista frontal",
+  "Sett fra motsatt hjørne": "Vista desde la esquina opuesta",
+  "Høyskap i nisjen": "Armarios altos en el nicho",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Render: La cocina vista desde la esquina",
+  "Rendering: Sett forfra": "Render: Vista frontal",
+  "Rendering: Sett fra motsatt hjørne": "Render: Vista desde la esquina opuesta",
+  "Rendering: Høyskap i nisjen": "Render: Armarios altos en el nicho"
  },
  "maler": {}
 }

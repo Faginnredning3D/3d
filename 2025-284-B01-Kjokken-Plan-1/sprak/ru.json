@@ -29,7 +29,17 @@
   "Veggene er gjennomsiktige - skjul dem helt": "Стены прозрачные – скройте их полностью",
   "Østvegg": "Восточная стена",
   "Øy": "Остров",
-  "140 mm eikefinér som frontene": "140 мм шпон дуба как фасады"
+  "140 mm eikefinér som frontene": "140 мм шпон дуба как фасады",
+  "Presentasjon": "Презентация",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Визуализации сделаны по той же модели, что и чертёж. Нажмите на изображение, чтобы увидеть его целиком. Визуализация может отличаться от оригинала – действует чертёж.",
+  "Kjøkkenet sett fra hjørnet": "Кухня из угла",
+  "Sett forfra": "Вид спереди",
+  "Sett fra motsatt hjørne": "Вид из противоположного угла",
+  "Høyskap i nisjen": "Высокие шкафы в нише",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Визуализация: Кухня из угла",
+  "Rendering: Sett forfra": "Визуализация: Вид спереди",
+  "Rendering: Sett fra motsatt hjørne": "Визуализация: Вид из противоположного угла",
+  "Rendering: Høyskap i nisjen": "Визуализация: Высокие шкафы в нише"
  },
  "maler": {}
 }

@@ -29,7 +29,17 @@
   "Veggene er gjennomsiktige - skjul dem helt": "Ściany są przezroczyste – ukryj je całkowicie",
   "Østvegg": "Ściana wschodnia",
   "Øy": "Wyspa",
-  "140 mm eikefinér som frontene": "140 mm fornir dębowy jak fronty"
+  "140 mm eikefinér som frontene": "140 mm fornir dębowy jak fronty",
+  "Presentasjon": "Prezentacja",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Wizualizacje wykonane z tego samego modelu co rysunek. Kliknij obraz, aby zobaczyć pełny rozmiar. Wizualizacja może odbiegać od oryginału – obowiązuje rysunek.",
+  "Kjøkkenet sett fra hjørnet": "Kuchnia widziana z narożnika",
+  "Sett forfra": "Widok z przodu",
+  "Sett fra motsatt hjørne": "Widok z przeciwległego narożnika",
+  "Høyskap i nisjen": "Szafy wysokie we wnęce",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Wizualizacja: Kuchnia widziana z narożnika",
+  "Rendering: Sett forfra": "Wizualizacja: Widok z przodu",
+  "Rendering: Sett fra motsatt hjørne": "Wizualizacja: Widok z przeciwległego narożnika",
+  "Rendering: Høyskap i nisjen": "Wizualizacja: Szafy wysokie we wnęce"
  },
  "maler": {}
 }

@@ -29,7 +29,17 @@
   "Veggene er gjennomsiktige - skjul dem helt": "Pereții sunt transparenți – ascunde-i complet",
   "Østvegg": "Peretele de est",
   "Øy": "Insulă",
-  "140 mm eikefinér som frontene": "140 mm furnir de stejar ca fronturile"
+  "140 mm eikefinér som frontene": "140 mm furnir de stejar ca fronturile",
+  "Presentasjon": "Prezentare",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Randări realizate din același model ca desenul. Apăsați pe o imagine pentru dimensiunea completă. Randarea poate diferi de original – desenul este valabil.",
+  "Kjøkkenet sett fra hjørnet": "Bucătăria văzută din colț",
+  "Sett forfra": "Vedere din față",
+  "Sett fra motsatt hjørne": "Vedere din colțul opus",
+  "Høyskap i nisjen": "Dulapuri înalte în nișă",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Randare: Bucătăria văzută din colț",
+  "Rendering: Sett forfra": "Randare: Vedere din față",
+  "Rendering: Sett fra motsatt hjørne": "Randare: Vedere din colțul opus",
+  "Rendering: Høyskap i nisjen": "Randare: Dulapuri înalte în nișă"
  },
  "maler": {}
 }

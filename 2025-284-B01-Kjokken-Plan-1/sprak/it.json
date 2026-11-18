@@ -29,7 +29,17 @@
   "Veggene er gjennomsiktige - skjul dem helt": "Le pareti sono trasparenti: nascondile completamente",
   "Østvegg": "Parete est",
   "Øy": "Isola",
-  "140 mm eikefinér som frontene": "140 mm impiallacciato rovere come i frontali"
+  "140 mm eikefinér som frontene": "140 mm impiallacciato rovere come i frontali",
+  "Presentasjon": "Presentazione",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Render realizzati dallo stesso modello del disegno. Clicca su un’immagine per la dimensione intera. Il render può differire dall’originale: vale il disegno.",
+  "Kjøkkenet sett fra hjørnet": "La cucina vista dall’angolo",
+  "Sett forfra": "Vista frontale",
+  "Sett fra motsatt hjørne": "Vista dall’angolo opposto",
+  "Høyskap i nisjen": "Colonne nella nicchia",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Render: La cucina vista dall’angolo",
+  "Rendering: Sett forfra": "Render: Vista frontale",
+  "Rendering: Sett fra motsatt hjørne": "Render: Vista dall’angolo opposto",
+  "Rendering: Høyskap i nisjen": "Render: Colonne nella nicchia"
  },
  "maler": {}
 }

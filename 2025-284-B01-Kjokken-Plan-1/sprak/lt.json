@@ -29,7 +29,17 @@
   "Veggene er gjennomsiktige - skjul dem helt": "Sienos yra permatomos – paslėpkite jas visiškai",
   "Østvegg": "Rytinė siena",
   "Øy": "Sala",
-  "140 mm eikefinér som frontene": "140 mm ąžuolo lukštas kaip fasadai"
+  "140 mm eikefinér som frontene": "140 mm ąžuolo lukštas kaip fasadai",
+  "Presentasjon": "Pristatymas",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Vizualizacijos sukurtos iš to paties modelio kaip brėžinys. Spustelėkite paveikslėlį, kad matytumėte visą dydį. Vizualizacija gali skirtis nuo originalo – galioja brėžinys.",
+  "Kjøkkenet sett fra hjørnet": "Virtuvė iš kampo",
+  "Sett forfra": "Vaizdas iš priekio",
+  "Sett fra motsatt hjørne": "Vaizdas iš priešingo kampo",
+  "Høyskap i nisjen": "Aukštos spintos nišoje",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Vizualizacija: Virtuvė iš kampo",
+  "Rendering: Sett forfra": "Vizualizacija: Vaizdas iš priekio",
+  "Rendering: Sett fra motsatt hjørne": "Vizualizacija: Vaizdas iš priešingo kampo",
+  "Rendering: Høyskap i nisjen": "Vizualizacija: Aukštos spintos nišoje"
  },
  "maler": {}
 }
