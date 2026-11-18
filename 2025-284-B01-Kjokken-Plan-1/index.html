@@ -256,7 +256,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261118112226"
+      src="modell.glb?v=20261118115844"
       alt="3D-modell av kjøkken med eikefronter, steinbenk, øy og høyskap"
       camera-controls
       touch-action="none"
@@ -667,7 +667,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261118112226').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261118115844').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -1034,7 +1034,7 @@
     hint: document.getElementById('hint'),
     verktoy: document.querySelector('.verktoy'),
     standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
-    versjon: '20261118112226',
+    versjon: '20261118115844',
   }).catch(() => {});
 </script>
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>
