@@ -313,8 +313,13 @@ ANNOT = re.compile(r"imos(flag|label)", re.I)
 
 KANTNODE = re.compile(r"^Edge(\d+)$")
 
+# Beslag og hvitevarer ligger ikke paa en BT<id>CO-node, men under en egen
+# Transform «Purch<id>» der id-en er raden i imos sin IDBPURCH. De maa kunne
+# foelge en skuffegruppe, ellers blir grepet staaende igjen naar skuffen aapnes.
+PURCHNODE = re.compile(r"^Purch(\d+)$")
 
-def walk(node, mat, buckets, stats, kant=0):
+
+def walk(node, mat, buckets, stats, kant=0, purch=None):
     if not isinstance(node, dict):
         return
     nm = node.get("_name")
@@ -328,8 +333,11 @@ def walk(node, mat, buckets, stats, kant=0):
         km = KANTNODE.match(nm or "")
         if km:
             kant = int(km.group(1))
+        pm = PURCHNODE.match(nm or "")
+        if pm:
+            purch = pm.group(1)
         for ch in node.get("children", []) or []:
-            walk(ch, mat, buckets, stats, kant)
+            walk(ch, mat, buckets, stats, kant, purch)
         return
     if t == "Shape":
         geo = node.get("geometry")
@@ -343,7 +351,7 @@ def walk(node, mat, buckets, stats, kant=0):
         if not pts or not ci:
             return
         if BARE or UNNTATT:
-            pid = del_id(coord)
+            pid = del_id(coord) or purch
             if BARE and pid not in BARE:
                 return
             if UNNTATT and pid in UNNTATT:
