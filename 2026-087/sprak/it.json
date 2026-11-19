@@ -4,7 +4,15 @@
   "ABS i flatefarge": "ABS in tinta con il pannello",
   "Hyller i gang": "Ripiani del corridoio",
   "Kantes på alle sider": "Bordata su tutti i lati",
-  "Produseres i 19 mm": "Prodotti in 19 mm"
+  "Produseres i 19 mm": "Prodotti in 19 mm",
+  "Presentasjon": "Presentazione",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Render realizzati dallo stesso modello del disegno. Clicca su un’immagine per la dimensione intera. Il render può differire dall’originale: vale il disegno.",
+  "Kjøkkenet sett fra hjørnet": "La cucina vista dall’angolo",
+  "Sett forfra": "Vista frontale",
+  "Sett fra motsatt hjørne": "Vista dall’angolo opposto",
+  "Høyskap i nisjen": "Colonne nella nicchia",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Render: La cucina vista dall’angolo",
+  "Rendering: Sett forfra": "Render: Vista frontale"
  },
  "maler": {}
 }

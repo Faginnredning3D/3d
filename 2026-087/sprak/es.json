@@ -4,7 +4,15 @@
   "ABS i flatefarge": "ABS en el color del tablero",
   "Hyller i gang": "Baldas del pasillo",
   "Kantes på alle sider": "Canteado por todos los lados",
-  "Produseres i 19 mm": "Se fabrican en 19 mm"
+  "Produseres i 19 mm": "Se fabrican en 19 mm",
+  "Presentasjon": "Presentación",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Renders hechos con el mismo modelo que el plano. Pulse una imagen para verla a tamaño completo. El render puede diferir del original: el plano prevalece.",
+  "Kjøkkenet sett fra hjørnet": "La cocina vista desde la esquina",
+  "Sett forfra": "Vista frontal",
+  "Sett fra motsatt hjørne": "Vista desde la esquina opuesta",
+  "Høyskap i nisjen": "Armarios altos en el nicho",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Render: La cocina vista desde la esquina",
+  "Rendering: Sett forfra": "Render: Vista frontal"
  },
  "maler": {}
 }

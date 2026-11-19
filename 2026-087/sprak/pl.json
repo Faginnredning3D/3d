@@ -4,7 +4,15 @@
   "ABS i flatefarge": "ABS w kolorze płyty",
   "Hyller i gang": "Półki w korytarzu",
   "Kantes på alle sider": "Oklejane ze wszystkich stron",
-  "Produseres i 19 mm": "Produkowane w 19 mm"
+  "Produseres i 19 mm": "Produkowane w 19 mm",
+  "Presentasjon": "Prezentacja",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Wizualizacje wykonane z tego samego modelu co rysunek. Kliknij obraz, aby zobaczyć pełny rozmiar. Wizualizacja może odbiegać od oryginału – obowiązuje rysunek.",
+  "Kjøkkenet sett fra hjørnet": "Kuchnia widziana z narożnika",
+  "Sett forfra": "Widok z przodu",
+  "Sett fra motsatt hjørne": "Widok z przeciwległego narożnika",
+  "Høyskap i nisjen": "Szafy wysokie we wnęce",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Wizualizacja: Kuchnia widziana z narożnika",
+  "Rendering: Sett forfra": "Wizualizacja: Widok z przodu"
  },
  "maler": {}
 }

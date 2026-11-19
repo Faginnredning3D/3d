@@ -217,12 +217,21 @@
   .prodtid p { margin: 0; font-size: 14px; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  /* --- presentasjon (renderinger) --- */
+  .presentasjon { max-width: 1500px; margin: 0 auto; padding: 8px 16px 24px; display: grid; gap: 14px; }
+  .pres-hode { border-top: 2px solid var(--accent); padding-top: 12px; }
+  .pres-hode h2 { margin: 0 0 4px; }
+  .pres-hode p { margin: 0; font-size: 13px; color: var(--ink-soft); max-width: 70ch; }
+  .pres-rutenett { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .pres-rutenett figure { margin: 0; }
+  .pres-rutenett img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+  .pres-rutenett figcaption { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); padding-top: 6px; }
 </style>
 <script>
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261113134743';
+    const SIDE_VERSJON = '20261119121920';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -358,6 +367,17 @@
 
 
 </div>
+
+<section class="presentasjon" id="presentasjon">
+  <div class="pres-hode">
+    <h2>Presentasjon</h2>
+    <p>Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.</p>
+  </div>
+  <div class="pres-rutenett">
+    <figure><a href="render/perspektiv_venstre.jpg?v=20261119121920" target="_blank" rel="noopener"><img src="render/perspektiv_venstre_s.jpg?v=20261119121920" width="1200" height="800" loading="lazy" alt="Rendering: Kjøkkenet sett fra hjørnet"></a><figcaption>Kjøkkenet sett fra hjørnet</figcaption></figure>
+    <figure><a href="render/front.jpg?v=20261119121920" target="_blank" rel="noopener"><img src="render/front_s.jpg?v=20261119121920" width="1200" height="800" loading="lazy" alt="Rendering: Sett forfra"></a><figcaption>Sett forfra</figcaption></figure>
+  </div>
+</section>
 
 <section class="tegninger" id="tegninger">
   <div class="teg-hode">

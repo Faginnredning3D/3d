@@ -4,7 +4,15 @@
   "ABS i flatefarge": "ABS в цвет плиты",
   "Hyller i gang": "Полки в коридоре",
   "Kantes på alle sider": "Кромкуется со всех сторон",
-  "Produseres i 19 mm": "Изготавливаются из 19 мм"
+  "Produseres i 19 mm": "Изготавливаются из 19 мм",
+  "Presentasjon": "Презентация",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Визуализации сделаны по той же модели, что и чертёж. Нажмите на изображение, чтобы увидеть его целиком. Визуализация может отличаться от оригинала – действует чертёж.",
+  "Kjøkkenet sett fra hjørnet": "Кухня из угла",
+  "Sett forfra": "Вид спереди",
+  "Sett fra motsatt hjørne": "Вид из противоположного угла",
+  "Høyskap i nisjen": "Высокие шкафы в нише",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Визуализация: Кухня из угла",
+  "Rendering: Sett forfra": "Визуализация: Вид спереди"
  },
  "maler": {}
 }
