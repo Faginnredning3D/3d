@@ -217,12 +217,21 @@
   .prodtid p { margin: 0; font-size: 14px; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  /* --- presentasjon (renderinger) --- */
+  .presentasjon { max-width: 1500px; margin: 0 auto; padding: 8px 16px 24px; display: grid; gap: 14px; }
+  .pres-hode { border-top: 2px solid var(--accent); padding-top: 12px; }
+  .pres-hode h2 { margin: 0 0 4px; }
+  .pres-hode p { margin: 0; font-size: 13px; color: var(--ink-soft); max-width: 70ch; }
+  .pres-rutenett { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .pres-rutenett figure { margin: 0; }
+  .pres-rutenett img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+  .pres-rutenett figcaption { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); padding-top: 6px; }
 </style>
 <script>
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261116132155';
+    const SIDE_VERSJON = '20261119152606';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -256,7 +265,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261116132155"
+      src="modell.glb?v=20261119152606"
       alt="3D-modell av te-kjøkken C209"
       camera-controls
       touch-action="none"
@@ -314,11 +323,11 @@
         <dt>Rom</dt>
         <dd>C209 &ndash; kontor (1 stk)</dd>
         <dt>M&aring;l</dt>
-        <dd class="kode">L 4230 &times; H 2400 &times; D 600&nbsp;mm</dd>
+        <dd class="kode">Nisje 4233 &times; 2415&nbsp;mm, dybde 623&nbsp;mm, klaring 5&nbsp;mm</dd>
         <dt>Seksjoner</dt>
-        <dd>Kj&oslash;leskap senket med 2 skuffer under &middot; vask &middot; skuffer &middot; skuffer &middot; h&oslash;yskap &middot; vinskap</dd>
+        <dd>Kj&oslash;leskap over benkeskap med 3 skuffer &middot; vask &middot; skuffer &middot; skuffer &middot; h&oslash;yskap &middot; vinskap</dd>
         <dt>Benk</dt>
-        <dd class="kode">Benkeh&oslash;yde 870&nbsp;mm, stein 30&nbsp;mm</dd>
+        <dd class="kode">Overkant benkeplate 900&nbsp;mm, stein 20&nbsp;mm</dd>
       </dl>
     </section>
 
@@ -326,15 +335,15 @@
       <h2>Materialer</h2>
       <dl>
         <dt>Fronter, skrog og omramming</dt>
-        <dd>Eik og eikefin&eacute;r mix-match 23&nbsp;mm, mattlakk NCS S7805-B01G</dd>
+        <dd>Eik og eikefin&eacute;r mix-match 23 og 19&nbsp;+&nbsp;19&nbsp;mm, mattlakk NCS S7805-B01G</dd>
         <dt>Benkeplate</dt>
         <dd>Lundhs Blue granitt, polert</dd>
         <dt>Hyller</dt>
         <dd>Eikefin&eacute;r mix-match, naturfarget</dd>
         <dt>H&aring;ndtak</dt>
-        <dd>Sigdal T-grep stål c/c 128 &ndash; Sigdal art.nr HK000161</dd>
+        <dd>Håndtak SS-C rustfritt stål c/c 128 &ndash; Beslagdesign art.nr SS-C c/c 128 (BVB-ID 93106)</dd>
         <dt>Skuffer og d&oslash;rer</dt>
-        <dd>Treskuffer p&aring; Blum MOVENTO, Blum CLIP top-hengsler. Kj&oslash;leskapet er senket: fast luftefront med slisser og 2 skuffer under.</dd>
+        <dd>Treskuffer p&aring; Blum MOVENTO 70&nbsp;kg, Blum CLIP top-hengsler. Kj&oslash;leskapet st&aring;r i vanlig nisje med skapets egen rist.</dd>
       </dl>
     </section>
 
@@ -354,61 +363,65 @@
   <div class="teg-hode">
     <div>
       <h2>Tegninger</h2>
-      <p>REV&nbsp;B &middot; 16.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+      <p>REV&nbsp;B &middot; 19.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-161-C209-Te-kjokken-REV-B.pdf?v=20261116132155" download>Last ned PDF</a>
+    <a class="lastned" href="2026-161-C209-Te-kjokken-REV-B.pdf?v=20261119152606" download>Last ned PDF</a>
   </div>
     <figure class="side">
-      <a href="sider/side-01.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261116132155" width="909" height="1287" loading="lazy" alt="Tegning side 1 av 13"></a>
-      <figcaption>Side 1 av 13</figcaption>
+      <a href="sider/side-01.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261119152606" width="909" height="1287" loading="lazy" alt="Tegning side 1 av 14"></a>
+      <figcaption>Side 1 av 14</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-02.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261116132155" width="909" height="1287" loading="lazy" alt="Tegning side 2 av 13"></a>
-      <figcaption>Side 2 av 13</figcaption>
+      <a href="sider/side-02.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261119152606" width="909" height="1287" loading="lazy" alt="Tegning side 2 av 14"></a>
+      <figcaption>Side 2 av 14</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-03.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261116132155" width="909" height="1287" loading="lazy" alt="Tegning side 3 av 13"></a>
-      <figcaption>Side 3 av 13</figcaption>
+      <a href="sider/side-03.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261119152606" width="909" height="1287" loading="lazy" alt="Tegning side 3 av 14"></a>
+      <figcaption>Side 3 av 14</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-04.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261116132155" width="909" height="1287" loading="lazy" alt="Tegning side 4 av 13"></a>
-      <figcaption>Side 4 av 13</figcaption>
+      <a href="sider/side-04.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261119152606" width="909" height="1287" loading="lazy" alt="Tegning side 4 av 14"></a>
+      <figcaption>Side 4 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-05.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 13"></a>
-      <figcaption>Side 5 av 13</figcaption>
+      <a href="sider/side-05.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 14"></a>
+      <figcaption>Side 5 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 13"></a>
-      <figcaption>Side 6 av 13</figcaption>
+      <a href="sider/side-06.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 14"></a>
+      <figcaption>Side 6 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 13"></a>
-      <figcaption>Side 7 av 13</figcaption>
+      <a href="sider/side-07.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 14"></a>
+      <figcaption>Side 7 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-08.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 13"></a>
-      <figcaption>Side 8 av 13</figcaption>
+      <a href="sider/side-08.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 14"></a>
+      <figcaption>Side 8 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-09.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 13"></a>
-      <figcaption>Side 9 av 13</figcaption>
+      <a href="sider/side-09.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 14"></a>
+      <figcaption>Side 9 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-10.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 13"></a>
-      <figcaption>Side 10 av 13</figcaption>
+      <a href="sider/side-10.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 14"></a>
+      <figcaption>Side 10 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-11.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 13"></a>
-      <figcaption>Side 11 av 13</figcaption>
+      <a href="sider/side-11.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 14"></a>
+      <figcaption>Side 11 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-12.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-12.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 12 av 13"></a>
-      <figcaption>Side 12 av 13</figcaption>
+      <a href="sider/side-12.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-12.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 12 av 14"></a>
+      <figcaption>Side 12 av 14</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-13.png?v=20261116132155" target="_blank" rel="noopener"><img src="sider/side-13.png?v=20261116132155" width="1819" height="1287" loading="lazy" alt="Tegning side 13 av 13"></a>
-      <figcaption>Side 13 av 13</figcaption>
+      <a href="sider/side-13.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-13.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 13 av 14"></a>
+      <figcaption>Side 13 av 14</figcaption>
+    </figure>
+    <figure class="side liggende">
+      <a href="sider/side-14.png?v=20261119152606" target="_blank" rel="noopener"><img src="sider/side-14.png?v=20261119152606" width="1819" height="1287" loading="lazy" alt="Tegning side 14 av 14"></a>
+      <figcaption>Side 14 av 14</figcaption>
     </figure>
 </section>
 
@@ -608,7 +621,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261116132155').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261119152606').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -968,14 +981,14 @@
 
 <script type="module">
   /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
-  import { startSim } from '../_felles/sim3d.js?v=20261116132155';
+  import { startSim } from '../_felles/sim3d.js?v=20261119152606';
   startSim({
     stage: document.getElementById('stage'),
     mv: document.getElementById('mv'),
     hint: document.getElementById('hint'),
     verktoy: document.querySelector('.verktoy'),
     standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
-    versjon: '20261116132155',
+    versjon: '20261119152606',
   }).catch(() => {});
 </script>
 <script src="../_felles/sprak.js?v=20261027111627" defer></script>
