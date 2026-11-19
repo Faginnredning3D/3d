@@ -201,6 +201,54 @@
    ]
   },
   {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff1",
+   "navn": "skuff1 relingstang V",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    2009.5,
+    335.6,
+    -2329.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff1",
+   "navn": "skuff1 relingstang H",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    2274.0,
+    335.6,
+    -2329.0,
+    1.0
+   ]
+  },
+  {
    "art": "BLUM_358M5002SA_L",
    "glb": "BLUM_358M5002SA_L.glb",
    "gruppe": "skuff2",
@@ -293,6 +341,54 @@
     2322.5,
     503.5,
     -2361.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff2",
+   "navn": "skuff2 relingstang V",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    2009.5,
+    641.5,
+    -2329.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff2",
+   "navn": "skuff2 relingstang H",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    2274.0,
+    641.5,
+    -2329.0,
     1.0
    ]
   },
@@ -489,6 +585,54 @@
    ]
   },
   {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff4",
+   "navn": "skuff4 relingstang V",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    3003.0,
+    335.6,
+    -2329.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff4",
+   "navn": "skuff4 relingstang H",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    3275.5,
+    335.6,
+    -2329.0,
+    1.0
+   ]
+  },
+  {
    "art": "BLUM_358M5002SA_L",
    "glb": "BLUM_358M5002SA_L.glb",
    "gruppe": "skuff5",
@@ -581,6 +725,54 @@
     3324.0,
     503.5,
     -2361.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff5",
+   "navn": "skuff5 relingstang V",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    3003.0,
+    641.5,
+    -2329.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_ZRG437_RELING",
+   "glb": "BLUM_ZRG437_RELING.glb",
+   "gruppe": "skuff5",
+   "navn": "skuff5 relingstang H",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    3275.5,
+    641.5,
+    -2329.0,
     1.0
    ]
   },
