@@ -186,6 +186,14 @@ class Bucket:
 KANTDATA = {}          # {del-id: {cid: "ABS_1,0_F7927"}}
 HOPP_OVER = set()      # del-ID-er der VRML og PXM ikke har like mange kanter
 
+# imos sin VR Link trianguler gjennomgaaende utfresinger feil: den legger en
+# diagonal trekant tvers over aapningen (paa begge flater, pluss en skraa
+# sideflate). Konturen i VRML-en er riktig, men flatene daekker halve hullet,
+# saa plata ser uopskaaret ut i 3D. Rektanglene fra PXM («pocket rect» med
+# through=yes) brukes til aa kaste de falske flatene. Verifisert 19.11.2026 paa
+# 2026 087 Test eilighet del 1, bunnplate NC 10303: lomme 632 x 636 i x=1282,5.
+LOMMER = {}            # {del-id: [(cx, cy, lengde, bredde)]}
+
 
 def les_pxm(sti):
     import xml.etree.ElementTree as ET
@@ -197,7 +205,42 @@ def les_pxm(sti):
             if e.get("machining") == "edgebanded" and navn and not navn.startswith("PRF_"):
                 kanter[int(e.get("cid"))] = navn
         data[part.get("id")] = kanter
+        lom = []
+        for op in part.iter("operation"):
+            if (op.get("type") or "").strip() != "pocket rect":
+                continue
+            a = {at.get("name"): at.get("value") for at in op.iter("attribute")}
+            if (a.get("through") or "no") != "yes":
+                continue
+            tr = op.find("transform")
+            if tr is None:
+                continue
+            try:
+                lom.append((float(tr.get("x")), float(tr.get("y")),
+                            float(a.get("length") or 0), float(a.get("width") or 0)))
+            except (TypeError, ValueError):
+                continue
+        if lom:
+            LOMMER[part.get("id")] = lom
     return data
+
+
+def del_id(coord):
+    m = re.match(r"BT(\d+)CO$", (coord or {}).get("_name") or "")
+    return m.group(1) if m else None
+
+
+def i_lomme(pts, poly, lommer, margin=4.0):
+    """Sant naar flatens tyngdepunkt ligger inne i en gjennomgaaende utfresing.
+    Marginen gjoer at de ekte sideflatene i kanten av hullet blir staaende."""
+    idx = [v for v in poly if 0 <= v < len(pts)]
+    if not idx:
+        return False
+    c = pts[idx].mean(axis=0)
+    for cx, cy, lengde, bredde in lommer:
+        if abs(c[0] - cx) < lengde / 2 - margin and abs(c[1] - cy) < bredde / 2 - margin:
+            return True
+    return False
 
 
 def sjekk_pxm(pxm, wrl):
@@ -321,6 +364,12 @@ def walk(node, mat, buckets, stats, kant=0):
                     curt.append(tci[k])
         if len(cur) >= 3:
             faces.append((cur, curt))
+
+        lom = LOMMER.get(del_id(coord)) if not kant else None
+        if lom:
+            foer = len(faces)
+            faces = [f for f in faces if not i_lomme(pts, f[0], lom)]
+            stats["lomme"] = stats.get("lomme", 0) + (foer - len(faces))
 
         for poly, polyt in faces:
             for j in range(1, len(poly) - 1):
