@@ -194,6 +194,12 @@ HOPP_OVER = set()      # del-ID-er der VRML og PXM ikke har like mange kanter
 # 2026 087 Test eilighet del 1, bunnplate NC 10303: lomme 632 x 636 i x=1282,5.
 LOMMER = {}            # {del-id: [(cx, cy, lengde, bredde)]}
 
+# Deluttrekk for sim-modellene: DELER_BARE gir en GLB med kun de oppgitte
+# imos-del-ID-ene (en skuffegruppe), DELER_UNNTATT gir resten (korpuset).
+# Deler uten BT-id (hvitevarer, romskall) foelger korpuset.
+BARE = {d for d in (os.environ.get("DELER_BARE") or "").split(",") if d}
+UNNTATT = {d for d in (os.environ.get("DELER_UNNTATT") or "").split(",") if d}
+
 
 def les_pxm(sti):
     import xml.etree.ElementTree as ET
@@ -336,6 +342,12 @@ def walk(node, mat, buckets, stats, kant=0):
         ci = geo.get("coordIndex")
         if not pts or not ci:
             return
+        if BARE or UNNTATT:
+            pid = del_id(coord)
+            if BARE and pid not in BARE:
+                return
+            if UNNTATT and pid in UNNTATT:
+                return
         pts = np.asarray(pts, dtype=np.float64).reshape(-1, 3)
         ci = [int(v) for v in ci]
 
@@ -657,9 +669,15 @@ def main():
         walk(r, np.eye(4), buckets, stats)
     print(f"{stats['shapes']} shapes -> {len(buckets)} materialgrupper "
           f"({stats.get('annot', 0)} annotasjonsnoder hoppet over, {stats.get('kant', 0)} kanter med kantlist)", flush=True)
-    drop_outside_room(buckets)
-    drop_ceiling(buckets)
-    drop_shell(buckets)
+    if BARE:
+        # En skuffegruppe er bare noen faa deler – rom-, himlings- og skallfiltrene
+        # regner ut grensene sine fra modellens egen utstrekning og ville spist
+        # opp geometri her. Korpuset (DELER_UNNTATT) filtreres som vanlig.
+        print("deluttrekk: hopper over rom-, himlings- og skallfilter", flush=True)
+    else:
+        drop_outside_room(buckets)
+        drop_ceiling(buckets)
+        drop_shell(buckets)
 
     size, prims, verts = build_glb(buckets, dst)
     print(f"GLB: {size/1e6:.2f} MB | {prims} primitiver | {verts:,} vertekser")

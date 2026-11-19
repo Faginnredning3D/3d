@@ -1,0 +1,107 @@
+{
+ "grupper": [
+  {
+   "id": "skuff1",
+   "glb": "skuff1.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff2",
+   "glb": "skuff2.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff3",
+   "glb": "skuff3.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff4",
+   "glb": "skuff4.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff5",
+   "glb": "skuff5.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  },
+  {
+   "id": "skuff6",
+   "glb": "skuff6.glb",
+   "type": "skuff",
+   "pivot": [
+    0,
+    0,
+    0
+   ],
+   "slag": 470.0,
+   "retn": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "indre": false
+  }
+ ],
+ "beslag": []
+}
