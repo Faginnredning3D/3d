@@ -5,7 +5,7 @@
    "glb": "Benk_A_dor_venstre.glb",
    "type": "dor",
    "pivot": [
-    83.0,
+    83,
     480.0,
     600
    ],
@@ -18,7 +18,7 @@
    "glb": "Benk_A_dor_hoyre.glb",
    "type": "dor",
    "pivot": [
-    832.0,
+    872.0,
     480.0,
     600
    ],
@@ -31,7 +31,7 @@
    "glb": "Benk_B_dor_venstre.glb",
    "type": "dor",
    "pivot": [
-    918.0,
+    878.0,
     480.0,
     600
    ],
@@ -70,7 +70,7 @@
    "glb": "Benk_C_dor_hoyre.glb",
    "type": "dor",
    "pivot": [
-    2502.0,
+    2542.0,
     480.0,
     600
    ],
@@ -83,7 +83,7 @@
    "glb": "Benk_D_dor_venstre.glb",
    "type": "dor",
    "pivot": [
-    2588.0,
+    2548.0,
     480.0,
     600
    ],
@@ -109,7 +109,7 @@
    "glb": "Vitrine_V1_dor_1.glb",
    "type": "dor",
    "pivot": [
-    83.0,
+    83,
     1650.0,
     400
    ],
@@ -122,7 +122,7 @@
    "glb": "Vitrine_V1_dor_2.glb",
    "type": "dor",
    "pivot": [
-    832.0,
+    872.0,
     1650.0,
     400
    ],
@@ -135,7 +135,7 @@
    "glb": "Vitrine_V2_dor_1.glb",
    "type": "dor",
    "pivot": [
-    918.0,
+    878.0,
     1650.0,
     400
    ],
