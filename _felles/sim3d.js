@@ -242,6 +242,7 @@ export async function startSim(o) {
     if (aLast[i].status === 'fulfilled') artCache[n] = kanter(aLast[i].value);
     else console.warn('sim: hoppet over beslag', n, aLast[i].reason);
   });
+  const armer = [], kopper = {};   // hengsler: armer i skroget, kopper per dør
   for (const b of meta.beslag) {
     if (!artCache[b.glb]) continue;
     if (b.gruppe && !grupper[b.gruppe]) continue;
@@ -249,6 +250,33 @@ export async function startSim(o) {
     inst.applyMatrix4(new THREE.Matrix4().fromArray(b.matrise));
     if (b.gruppe) { inst.traverse(x => x.userData.gruppe = b.gruppe); grupper[b.gruppe].indre.add(inst); }
     else scene.add(inst);
+    if (/_ARM$/i.test(b.art) && !b.gruppe) armer.push(inst);
+    if (/_KOPP$/i.test(b.art) && b.gruppe) (kopper[b.gruppe] = kopper[b.gruppe] || []).push(inst);
+  }
+
+  // FAST REGEL (Marius 23.11.2026): en hengsel skal virke som en ekte hengsel. Arm og montasjeplate
+  // står i skroget, koppen i døra – og døra dreies om knekkpunktet der armen møter koppen, ikke om
+  // dørhjørnet. Da henger koppen sammen med armen gjennom hele åpningen. Knekkpunktet = punktet i
+  // armen nærmest koppens midte (lukket dør). Dører uten kopper beholder pivot fra sim.json.
+  scene.updateMatrixWorld(true);
+  for (const id in kopper) {
+    const g = grupper[id];
+    if (!g || g.meta.type !== 'dor' || !armer.length) continue;
+    const k = new THREE.Vector3(); let n = 0;
+    for (const kopp of kopper[id]) {
+      const c = new THREE.Box3().setFromObject(kopp).getCenter(new THREE.Vector3());
+      let best = null, bestD = Infinity;
+      for (const arm of armer) {
+        const bx = new THREE.Box3().setFromObject(arm), p = bx.clampPoint(c, new THREE.Vector3());
+        const d = p.distanceTo(c);
+        if (d < bestD) { bestD = d; best = p; }
+      }
+      if (best && bestD < 80) { k.add(best); n++; }   // armen må høre til denne koppen
+    }
+    if (!n) continue;
+    k.divideScalar(n);
+    const p = g.meta.pivot;
+    g.parent.position.set(k.x, p[1], k.z); g.indre.position.set(-k.x, -p[1], -k.z);
   }
 
   /* --- kamera: samme retninger som visningsterningen (model-viewer-konvensjon) --- */
