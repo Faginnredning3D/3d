@@ -222,7 +222,7 @@
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261123091145';
+    const SIDE_VERSJON = '20261123091834';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -256,7 +256,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261123091145"
+      src="modell.glb?v=20261123091834"
       alt="3D-modell av vitrineskap i eikefin&eacute;r med glassd&oslash;rer, benkeskap og benkeplate i stein"
       camera-controls
       touch-action="none"
@@ -608,7 +608,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261123091145').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261123091834').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -952,7 +952,7 @@
     hint: document.getElementById('hint'),
     verktoy: document.querySelector('.verktoy'),
     standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
-    versjon: '20261123091145',
+    versjon: '20261123091834',
   }).catch(() => {});
 </script>
 
