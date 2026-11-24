@@ -92,12 +92,12 @@
    "indre": false
   },
   {
-   "id": "dor_S9_dor_venstre_2160",
-   "glb": "dor_S9_dor_venstre_2160.glb",
+   "id": "dor_S9_dor_venstre_1894",
+   "glb": "dor_S9_dor_venstre_1894.glb",
    "type": "dor",
    "pivot": [
     4107.0,
-    2278.5,
+    2145.75,
     4113.0
    ],
    "vinkel": 110.0,
@@ -105,12 +105,12 @@
    "indre": false
   },
   {
-   "id": "dor_S9_dor_hoyre_2160",
-   "glb": "dor_S9_dor_hoyre_2160.glb",
+   "id": "dor_S9_dor_hoyre_1894",
+   "glb": "dor_S9_dor_hoyre_1894.glb",
    "type": "dor",
    "pivot": [
     3393.0,
-    2278.5,
+    2145.75,
     4113.0
    ],
    "vinkel": 110.0,
@@ -2017,7 +2017,7 @@
    "art": "BLUM_71B3590_ARM",
    "glb": "BLUM_71B3590_ARM.glb",
    "gruppe": null,
-   "navn": "S9 dør venstre 2160 hengsel z2210 Blum 71B3590",
+   "navn": "S9 dør venstre 1894 hengsel z2014 Blum 71B3590",
    "matrise": [
     1.0,
     0.0,
@@ -2032,7 +2032,7 @@
     0.0,
     0.0,
     4091.0,
-    2210.0,
+    2014.5,
     4170.3,
     1.0
    ]
@@ -2041,7 +2041,7 @@
    "art": "BLUM_177H3100E",
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
-   "navn": "S9 dør venstre 2160 montasjeplate z2210 Blum 177H3100E",
+   "navn": "S9 dør venstre 1894 montasjeplate z2014 Blum 177H3100E",
    "matrise": [
     1.0,
     0.0,
@@ -2056,7 +2056,7 @@
     0.0,
     0.0,
     4091.0,
-    2210.0,
+    2014.5,
     4169.0,
     1.0
    ]
@@ -2065,7 +2065,7 @@
    "art": "BLUM_71B3590_ARM",
    "glb": "BLUM_71B3590_ARM.glb",
    "gruppe": null,
-   "navn": "S9 dør venstre 2160 hengsel z2347 Blum 71B3590",
+   "navn": "S9 dør venstre 1894 hengsel z2277 Blum 71B3590",
    "matrise": [
     1.0,
     0.0,
@@ -2080,7 +2080,7 @@
     0.0,
     0.0,
     4091.0,
-    2347.0,
+    2277.0,
     4170.3,
     1.0
    ]
@@ -2089,7 +2089,7 @@
    "art": "BLUM_177H3100E",
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
-   "navn": "S9 dør venstre 2160 montasjeplate z2347 Blum 177H3100E",
+   "navn": "S9 dør venstre 1894 montasjeplate z2277 Blum 177H3100E",
    "matrise": [
     1.0,
     0.0,
@@ -2104,7 +2104,7 @@
     0.0,
     0.0,
     4091.0,
-    2347.0,
+    2277.0,
     4169.0,
     1.0
    ]
@@ -2113,7 +2113,7 @@
    "art": "BLUM_71B3590_ARM",
    "glb": "BLUM_71B3590_ARM.glb",
    "gruppe": null,
-   "navn": "S9 dør høyre 2160 hengsel z2210 Blum 71B3590",
+   "navn": "S9 dør høyre 1894 hengsel z2014 Blum 71B3590",
    "matrise": [
     -1.0,
     0.0,
@@ -2128,7 +2128,7 @@
     0.0,
     0.0,
     3409.0,
-    2210.0,
+    2014.5,
     4170.3,
     1.0
    ]
@@ -2137,7 +2137,7 @@
    "art": "BLUM_177H3100E",
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
-   "navn": "S9 dør høyre 2160 montasjeplate z2210 Blum 177H3100E",
+   "navn": "S9 dør høyre 1894 montasjeplate z2014 Blum 177H3100E",
    "matrise": [
     -1.0,
     0.0,
@@ -2152,7 +2152,7 @@
     0.0,
     0.0,
     3409.0,
-    2210.0,
+    2014.5,
     4169.0,
     1.0
    ]
@@ -2161,7 +2161,7 @@
    "art": "BLUM_71B3590_ARM",
    "glb": "BLUM_71B3590_ARM.glb",
    "gruppe": null,
-   "navn": "S9 dør høyre 2160 hengsel z2347 Blum 71B3590",
+   "navn": "S9 dør høyre 1894 hengsel z2277 Blum 71B3590",
    "matrise": [
     -1.0,
     0.0,
@@ -2176,7 +2176,7 @@
     0.0,
     0.0,
     3409.0,
-    2347.0,
+    2277.0,
     4170.3,
     1.0
    ]
@@ -2185,7 +2185,7 @@
    "art": "BLUM_177H3100E",
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
-   "navn": "S9 dør høyre 2160 montasjeplate z2347 Blum 177H3100E",
+   "navn": "S9 dør høyre 1894 montasjeplate z2277 Blum 177H3100E",
    "matrise": [
     -1.0,
     0.0,
@@ -2200,7 +2200,7 @@
     0.0,
     0.0,
     3409.0,
-    2347.0,
+    2277.0,
     4169.0,
     1.0
    ]
@@ -3888,8 +3888,8 @@
   {
    "art": "BLUM_71B3590_KOPP",
    "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "dor_S9_dor_venstre_2160",
-   "navn": "S9 dør venstre 2160 hengsel z2210 Blum 71B3590",
+   "gruppe": "dor_S9_dor_venstre_1894",
+   "navn": "S9 dør venstre 1894 hengsel z2014 Blum 71B3590",
    "matrise": [
     1.0,
     0.0,
@@ -3904,7 +3904,7 @@
     0.0,
     0.0,
     4091.0,
-    2210.0,
+    2014.5,
     4170.3,
     1.0
    ]
@@ -3912,8 +3912,8 @@
   {
    "art": "BLUM_71B3590_KOPP",
    "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "dor_S9_dor_venstre_2160",
-   "navn": "S9 dør venstre 2160 hengsel z2347 Blum 71B3590",
+   "gruppe": "dor_S9_dor_venstre_1894",
+   "navn": "S9 dør venstre 1894 hengsel z2277 Blum 71B3590",
    "matrise": [
     1.0,
     0.0,
@@ -3928,7 +3928,7 @@
     0.0,
     0.0,
     4091.0,
-    2347.0,
+    2277.0,
     4170.3,
     1.0
    ]
@@ -3936,8 +3936,8 @@
   {
    "art": "BLUM_71B3590_KOPP",
    "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "dor_S9_dor_hoyre_2160",
-   "navn": "S9 dør høyre 2160 hengsel z2210 Blum 71B3590",
+   "gruppe": "dor_S9_dor_hoyre_1894",
+   "navn": "S9 dør høyre 1894 hengsel z2014 Blum 71B3590",
    "matrise": [
     -1.0,
     0.0,
@@ -3952,7 +3952,7 @@
     0.0,
     0.0,
     3409.0,
-    2210.0,
+    2014.5,
     4170.3,
     1.0
    ]
@@ -3960,8 +3960,8 @@
   {
    "art": "BLUM_71B3590_KOPP",
    "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "dor_S9_dor_hoyre_2160",
-   "navn": "S9 dør høyre 2160 hengsel z2347 Blum 71B3590",
+   "gruppe": "dor_S9_dor_hoyre_1894",
+   "navn": "S9 dør høyre 1894 hengsel z2277 Blum 71B3590",
    "matrise": [
     -1.0,
     0.0,
@@ -3976,7 +3976,7 @@
     0.0,
     0.0,
     3409.0,
-    2347.0,
+    2277.0,
     4170.3,
     1.0
    ]
