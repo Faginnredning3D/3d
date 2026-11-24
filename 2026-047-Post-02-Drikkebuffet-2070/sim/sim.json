@@ -1,8 +1,8 @@
 {
  "grupper": [
   {
-   "id": "A1_dor_venstre",
-   "glb": "A1_dor_venstre.glb",
+   "id": "A1_dor",
+   "glb": "A1_dor.glb",
    "type": "dor",
    "pivot": [
     18.9,
@@ -14,24 +14,11 @@
    "indre": false
   },
   {
-   "id": "A1_dor_hoyre",
-   "glb": "A1_dor_hoyre.glb",
-   "type": "dor",
-   "pivot": [
-    1033.5,
-    509.25,
-    0.0
-   ],
-   "vinkel": 110.0,
-   "fortegn": 1,
-   "indre": false
-  },
-  {
    "id": "A2_dor_venstre",
    "glb": "A2_dor_venstre.glb",
    "type": "dor",
    "pivot": [
-    1036.5,
+    527.7,
     509.25,
     0.0
    ],
@@ -42,6 +29,19 @@
   {
    "id": "A2_dor_hoyre",
    "glb": "A2_dor_hoyre.glb",
+   "type": "dor",
+   "pivot": [
+    1542.3,
+    509.25,
+    0.0
+   ],
+   "vinkel": 110.0,
+   "fortegn": 1,
+   "indre": false
+  },
+  {
+   "id": "A3_dor",
+   "glb": "A3_dor.glb",
    "type": "dor",
    "pivot": [
     2051.1,
@@ -57,8 +57,8 @@
   {
    "art": "BLUM_71B3590_KOPP",
    "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "A1_dor_venstre",
-   "navn": "A1 dør venstre hengselkopp",
+   "gruppe": "A1_dor",
+   "navn": "A1 dør hengselkopp",
    "matrise": [
     -1.0,
     0.0,
@@ -82,7 +82,7 @@
    "art": "BLUM_71B3590_ARM",
    "glb": "BLUM_71B3590_ARM.glb",
    "gruppe": null,
-   "navn": "A1 dør venstre hengselarm",
+   "navn": "A1 dør hengselarm",
    "matrise": [
     -1.0,
     0.0,
@@ -106,7 +106,7 @@
    "art": "BLUM_177H3100E",
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
-   "navn": "A1 dør venstre plate",
+   "navn": "A1 dør plate",
    "matrise": [
     1.0,
     0.0,
@@ -129,8 +129,8 @@
   {
    "art": "BLUM_71B3590_KOPP",
    "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "A1_dor_venstre",
-   "navn": "A1 dør venstre hengselkopp",
+   "gruppe": "A1_dor",
+   "navn": "A1 dør hengselkopp",
    "matrise": [
     -1.0,
     0.0,
@@ -154,7 +154,7 @@
    "art": "BLUM_71B3590_ARM",
    "glb": "BLUM_71B3590_ARM.glb",
    "gruppe": null,
-   "navn": "A1 dør venstre hengselarm",
+   "navn": "A1 dør hengselarm",
    "matrise": [
     -1.0,
     0.0,
@@ -178,7 +178,7 @@
    "art": "BLUM_177H3100E",
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
-   "navn": "A1 dør venstre plate",
+   "navn": "A1 dør plate",
    "matrise": [
     1.0,
     0.0,
@@ -193,150 +193,6 @@
     0.0,
     0.0,
     43.9,
-    758.5,
-    -37.0,
-    1.0
-   ]
-  },
-  {
-   "art": "BLUM_71B3590_KOPP",
-   "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "A1_dor_hoyre",
-   "navn": "A1 dør høyre hengselkopp",
-   "matrise": [
-    1.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1017.5,
-    260.0,
-    -38.3,
-    1.0
-   ]
-  },
-  {
-   "art": "BLUM_71B3590_ARM",
-   "glb": "BLUM_71B3590_ARM.glb",
-   "gruppe": null,
-   "navn": "A1 dør høyre hengselarm",
-   "matrise": [
-    1.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1017.5,
-    260.0,
-    -38.3,
-    1.0
-   ]
-  },
-  {
-   "art": "BLUM_177H3100E",
-   "glb": "BLUM_177H3100E.glb",
-   "gruppe": null,
-   "navn": "A1 dør høyre plate",
-   "matrise": [
-    -1.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    1008.5,
-    260.0,
-    -37.0,
-    1.0
-   ]
-  },
-  {
-   "art": "BLUM_71B3590_KOPP",
-   "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "A1_dor_hoyre",
-   "navn": "A1 dør høyre hengselkopp",
-   "matrise": [
-    1.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1017.5,
-    758.5,
-    -38.3,
-    1.0
-   ]
-  },
-  {
-   "art": "BLUM_71B3590_ARM",
-   "glb": "BLUM_71B3590_ARM.glb",
-   "gruppe": null,
-   "navn": "A1 dør høyre hengselarm",
-   "matrise": [
-    1.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0,
-    1017.5,
-    758.5,
-    -38.3,
-    1.0
-   ]
-  },
-  {
-   "art": "BLUM_177H3100E",
-   "glb": "BLUM_177H3100E.glb",
-   "gruppe": null,
-   "navn": "A1 dør høyre plate",
-   "matrise": [
-    -1.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    -1.0,
-    0.0,
-    0.0,
-    1008.5,
     758.5,
     -37.0,
     1.0
@@ -360,7 +216,7 @@
     -1.0,
     0.0,
     0.0,
-    1052.5,
+    543.7,
     260.0,
     -38.3,
     1.0
@@ -384,7 +240,7 @@
     -1.0,
     0.0,
     0.0,
-    1052.5,
+    543.7,
     260.0,
     -38.3,
     1.0
@@ -408,7 +264,7 @@
     1.0,
     0.0,
     0.0,
-    1061.5,
+    552.7,
     260.0,
     -37.0,
     1.0
@@ -432,7 +288,7 @@
     -1.0,
     0.0,
     0.0,
-    1052.5,
+    543.7,
     758.5,
     -38.3,
     1.0
@@ -456,7 +312,7 @@
     -1.0,
     0.0,
     0.0,
-    1052.5,
+    543.7,
     758.5,
     -38.3,
     1.0
@@ -480,7 +336,7 @@
     1.0,
     0.0,
     0.0,
-    1061.5,
+    552.7,
     758.5,
     -37.0,
     1.0
@@ -504,7 +360,7 @@
     1.0,
     0.0,
     0.0,
-    2035.1,
+    1526.3,
     260.0,
     -38.3,
     1.0
@@ -528,7 +384,7 @@
     1.0,
     0.0,
     0.0,
-    2035.1,
+    1526.3,
     260.0,
     -38.3,
     1.0
@@ -539,6 +395,150 @@
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
    "navn": "A2 dør høyre plate",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1517.3,
+    260.0,
+    -37.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_KOPP",
+   "glb": "BLUM_71B3590_KOPP.glb",
+   "gruppe": "A2_dor_hoyre",
+   "navn": "A2 dør høyre hengselkopp",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1526.3,
+    758.5,
+    -38.3,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_ARM",
+   "glb": "BLUM_71B3590_ARM.glb",
+   "gruppe": null,
+   "navn": "A2 dør høyre hengselarm",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    1526.3,
+    758.5,
+    -38.3,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_177H3100E",
+   "glb": "BLUM_177H3100E.glb",
+   "gruppe": null,
+   "navn": "A2 dør høyre plate",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1517.3,
+    758.5,
+    -37.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_KOPP",
+   "glb": "BLUM_71B3590_KOPP.glb",
+   "gruppe": "A3_dor",
+   "navn": "A3 dør hengselkopp",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    2035.1,
+    260.0,
+    -38.3,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_ARM",
+   "glb": "BLUM_71B3590_ARM.glb",
+   "gruppe": null,
+   "navn": "A3 dør hengselarm",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    2035.1,
+    260.0,
+    -38.3,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_177H3100E",
+   "glb": "BLUM_177H3100E.glb",
+   "gruppe": null,
+   "navn": "A3 dør plate",
    "matrise": [
     -1.0,
     0.0,
@@ -561,8 +561,8 @@
   {
    "art": "BLUM_71B3590_KOPP",
    "glb": "BLUM_71B3590_KOPP.glb",
-   "gruppe": "A2_dor_hoyre",
-   "navn": "A2 dør høyre hengselkopp",
+   "gruppe": "A3_dor",
+   "navn": "A3 dør hengselkopp",
    "matrise": [
     1.0,
     0.0,
@@ -586,7 +586,7 @@
    "art": "BLUM_71B3590_ARM",
    "glb": "BLUM_71B3590_ARM.glb",
    "gruppe": null,
-   "navn": "A2 dør høyre hengselarm",
+   "navn": "A3 dør hengselarm",
    "matrise": [
     1.0,
     0.0,
@@ -610,7 +610,7 @@
    "art": "BLUM_177H3100E",
    "glb": "BLUM_177H3100E.glb",
    "gruppe": null,
-   "navn": "A2 dør høyre plate",
+   "navn": "A3 dør plate",
    "matrise": [
     -1.0,
     0.0,
