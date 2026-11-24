@@ -25,7 +25,20 @@
   "927 mm (300 + 627)": "927 mm (300 + 627)",
   "4 like moduler a én seksjon, 627 brede: 3 langs bakveggen + 1 på venstre vegg. Blindhjørne 300": "4 jednakowe moduły z jedną sekcją, szerokość 627: 3 wzdłuż tylnej ściany + 1 na lewej ścianie. Martwy narożnik 300",
   "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørne 300": "4 szt. z jedną sekcją: 3 jednakowe moduły 627 wzdłuż tylnej ściany + 515 na lewej ścianie. Martwy narożnik 300",
-  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Rysunek REV C, 04.11.2026 – do zatwierdzenia. Wizualizacja może odbiegać od oryginału. Dokładne szczegóły – patrz rysunek produkcyjny."
+  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Rysunek REV C, 04.11.2026 – do zatwierdzenia. Wizualizacja może odbiegać od oryginału. Dokładne szczegóły – patrz rysunek produkcyjny.",
+  "Presentasjon": "Prezentacja",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Wizualizacje wykonane z tego samego modelu co rysunek. Kliknij obraz, aby zobaczyć pełny rozmiar. Wizualizacja może odbiegać od oryginału – obowiązuje rysunek.",
+  "Kjøkkenet sett fra hjørnet": "Kuchnia widziana z narożnika",
+  "Sett forfra": "Widok z przodu",
+  "Sett fra motsatt hjørne": "Widok z przeciwległego narożnika",
+  "Høyskap i nisjen": "Szafy wysokie we wnęce",
+  "2 sokkelrammer på justerbare stillskruer, front 55 inn. Høyre ende: fronten går rett til veggen i nisja": "2 ramy cokołu na regulowanych nóżkach, front cofnięty o 55. Prawy koniec: front biegnie prosto do ściany we wnęce",
+  "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørnet er sløyfet – modul 1 og 4 festes direkte i veggen": "4 szt. po jednej sekcji: 3 jednakowe moduły 627 wzdłuż tylnej ściany + 515 na lewej ścianie. Martwy narożnik usunięty – moduły 1 i 4 mocowane bezpośrednio do ściany",
+  "6 fag, 5 faste hyller pr. seksjon": "6 przegródek, 5 stałych półek na sekcję",
+  "Gavler og rygg loddrett, topp, bunn, hyller og sokkel langs lengden": "Boki i plecy pionowo, wieniec, dno, półki i cokół wzdłuż długości",
+  "Tegning REV G, 24.11.2026. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Rysunek REV G, 24.11.2026. Wizualizacja może odbiegać od oryginału. Dokładne szczegóły – patrz rysunek produkcyjny.",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Wizualizacja: Kuchnia widziana z narożnika",
+  "Rendering: Sett forfra": "Wizualizacja: Widok z przodu"
  },
  "maler": {}
 }

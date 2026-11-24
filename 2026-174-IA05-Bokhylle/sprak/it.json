@@ -25,7 +25,20 @@
   "927 mm (300 + 627)": "927 mm (300 + 627)",
   "4 like moduler a én seksjon, 627 brede: 3 langs bakveggen + 1 på venstre vegg. Blindhjørne 300": "4 moduli uguali a una sezione, larghi 627: 3 lungo la parete di fondo + 1 sulla parete sinistra. Angolo cieco 300",
   "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørne 300": "4 pz. a una sezione: 3 moduli uguali da 627 lungo la parete di fondo + 515 sulla parete sinistra. Angolo cieco 300",
-  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Disegno REV C, 04.11.2026 – per approvazione. Il rendering può differire dall'originale. Consultare il disegno di produzione per i dettagli esatti."
+  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Disegno REV C, 04.11.2026 – per approvazione. Il rendering può differire dall'originale. Consultare il disegno di produzione per i dettagli esatti.",
+  "Presentasjon": "Presentazione",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Render realizzati dallo stesso modello del disegno. Clicca su un’immagine per la dimensione intera. Il render può differire dall’originale: vale il disegno.",
+  "Kjøkkenet sett fra hjørnet": "La cucina vista dall’angolo",
+  "Sett forfra": "Vista frontale",
+  "Sett fra motsatt hjørne": "Vista dall’angolo opposto",
+  "Høyskap i nisjen": "Colonne nella nicchia",
+  "2 sokkelrammer på justerbare stillskruer, front 55 inn. Høyre ende: fronten går rett til veggen i nisja": "2 telai zoccolo su piedini regolabili, frontale arretrato di 55. Estremità destra: il frontale arriva dritto fino alla parete della nicchia",
+  "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørnet er sløyfet – modul 1 og 4 festes direkte i veggen": "4 pz. a una sezione: 3 moduli uguali da 627 lungo la parete di fondo + 515 sulla parete sinistra. Angolo cieco eliminato – i moduli 1 e 4 si fissano direttamente alla parete",
+  "6 fag, 5 faste hyller pr. seksjon": "6 vani, 5 ripiani fissi per sezione",
+  "Gavler og rygg loddrett, topp, bunn, hyller og sokkel langs lengden": "Fianchi e schienale in verticale; cielo, fondo, ripiani e zoccolo nel senso della lunghezza",
+  "Tegning REV G, 24.11.2026. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Disegno REV G, 24.11.2026. Il rendering può differire dall'originale. Per i dettagli esatti vedere il disegno di produzione.",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Render: La cucina vista dall’angolo",
+  "Rendering: Sett forfra": "Render: Vista frontale"
  },
  "maler": {}
 }

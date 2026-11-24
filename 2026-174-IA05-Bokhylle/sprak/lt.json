@@ -25,7 +25,20 @@
   "927 mm (300 + 627)": "927 mm (300 + 627)",
   "4 like moduler a én seksjon, 627 brede: 3 langs bakveggen + 1 på venstre vegg. Blindhjørne 300": "4 vienodi moduliai su viena sekcija, 627 pločio: 3 palei galinę sieną + 1 ant kairės sienos. Aklas kampas 300",
   "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørne 300": "4 vnt. su viena sekcija: 3 vienodi moduliai 627 palei galinę sieną + 515 ant kairės sienos. Aklas kampas 300",
-  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Brėžinys REV C, 04.11.2026 – tvirtinimui. Vizualizacija gali skirtis nuo originalo. Tikslias detales žr. gamybiniame brėžinyje."
+  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Brėžinys REV C, 04.11.2026 – tvirtinimui. Vizualizacija gali skirtis nuo originalo. Tikslias detales žr. gamybiniame brėžinyje.",
+  "Presentasjon": "Pristatymas",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Vizualizacijos sukurtos iš to paties modelio kaip brėžinys. Spustelėkite paveikslėlį, kad matytumėte visą dydį. Vizualizacija gali skirtis nuo originalo – galioja brėžinys.",
+  "Kjøkkenet sett fra hjørnet": "Virtuvė iš kampo",
+  "Sett forfra": "Vaizdas iš priekio",
+  "Sett fra motsatt hjørne": "Vaizdas iš priešingo kampo",
+  "Høyskap i nisjen": "Aukštos spintos nišoje",
+  "2 sokkelrammer på justerbare stillskruer, front 55 inn. Høyre ende: fronten går rett til veggen i nisja": "2 cokolio rėmai ant reguliuojamų kojelių, priekis įtrauktas 55. Dešinysis galas: priekis eina tiesiai iki nišos sienos",
+  "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørnet er sløyfet – modul 1 og 4 festes direkte i veggen": "4 vnt. po vieną sekciją: 3 vienodi 627 moduliai palei galinę sieną + 515 ant kairės sienos. Aklas kampas panaikintas – 1 ir 4 moduliai tvirtinami tiesiai prie sienos",
+  "6 fag, 5 faste hyller pr. seksjon": "6 skyriai, 5 nekilnojamos lentynos sekcijoje",
+  "Gavler og rygg loddrett, topp, bunn, hyller og sokkel langs lengden": "Šonai ir galinė sienelė vertikaliai, viršus, dugnas, lentynos ir cokolis išilgai",
+  "Tegning REV G, 24.11.2026. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Brėžinys REV G, 24.11.2026. Vizualizacija gali skirtis nuo originalo. Tikslias detales žr. gamybos brėžinyje.",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Vizualizacija: Virtuvė iš kampo",
+  "Rendering: Sett forfra": "Vizualizacija: Vaizdas iš priekio"
  },
  "maler": {}
 }

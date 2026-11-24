@@ -25,7 +25,20 @@
   "927 mm (300 + 627)": "927 mm (300 + 627)",
   "4 like moduler a én seksjon, 627 brede: 3 langs bakveggen + 1 på venstre vegg. Blindhjørne 300": "4 módulos iguales de una sección, 627 de ancho: 3 a lo largo de la pared trasera + 1 en la pared izquierda. Esquina ciega 300",
   "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørne 300": "4 uds. de una sección: 3 módulos iguales de 627 a lo largo de la pared trasera + 515 en la pared izquierda. Esquina ciega 300",
-  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Plano REV C, 04.11.2026 – para aprobación. El render puede diferir del original. Consulte el plano de producción para los detalles exactos."
+  "Tegning REV C, 04.11.2026 – til godkjenning. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Plano REV C, 04.11.2026 – para aprobación. El render puede diferir del original. Consulte el plano de producción para los detalles exactos.",
+  "Presentasjon": "Presentación",
+  "Renderinger laget fra samme modell som tegningen. Trykk på et bilde for full størrelse. Rendering kan avvike fra originalen – tegningen gjelder.": "Renders hechos con el mismo modelo que el plano. Pulse una imagen para verla a tamaño completo. El render puede diferir del original: el plano prevalece.",
+  "Kjøkkenet sett fra hjørnet": "La cocina vista desde la esquina",
+  "Sett forfra": "Vista frontal",
+  "Sett fra motsatt hjørne": "Vista desde la esquina opuesta",
+  "Høyskap i nisjen": "Armarios altos en el nicho",
+  "2 sokkelrammer på justerbare stillskruer, front 55 inn. Høyre ende: fronten går rett til veggen i nisja": "2 bastidores de zócalo sobre patas regulables, frente retranqueado 55. Extremo derecho: el frente llega recto hasta la pared del nicho",
+  "4 stk a én seksjon: 3 like moduler 627 langs bakveggen + 515 på venstre vegg. Blindhjørnet er sløyfet – modul 1 og 4 festes direkte i veggen": "4 uds. de una sección: 3 módulos iguales de 627 a lo largo de la pared del fondo + 515 en la pared izquierda. Se elimina el rincón ciego: los módulos 1 y 4 se fijan directamente a la pared",
+  "6 fag, 5 faste hyller pr. seksjon": "6 huecos, 5 estantes fijos por sección",
+  "Gavler og rygg loddrett, topp, bunn, hyller og sokkel langs lengden": "Laterales y trasera en vertical; techo, base, estantes y zócalo a lo largo",
+  "Tegning REV G, 24.11.2026. Rendering kan avvike fra originalen. Sjekk produksjonstegning for nøyaktige detaljer.": "Plano REV G, 24.11.2026. La representación puede diferir del original. Consulte el plano de producción para los detalles exactos.",
+  "Rendering: Kjøkkenet sett fra hjørnet": "Render: La cocina vista desde la esquina",
+  "Rendering: Sett forfra": "Render: Vista frontal"
  },
  "maler": {}
 }
