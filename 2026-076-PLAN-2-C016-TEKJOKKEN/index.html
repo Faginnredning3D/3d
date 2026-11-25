@@ -217,12 +217,21 @@
   .prodtid p { margin: 0; font-size: 14px; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  /* --- presentasjon (renderinger) --- */
+  .presentasjon { max-width: 1500px; margin: 0 auto; padding: 8px 16px 24px; display: grid; gap: 14px; }
+  .pres-hode { border-top: 2px solid var(--accent); padding-top: 12px; }
+  .pres-hode h2 { margin: 0 0 4px; }
+  .pres-hode p { margin: 0; font-size: 13px; color: var(--ink-soft); max-width: 70ch; }
+  .pres-rutenett { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .pres-rutenett figure { margin: 0; }
+  .pres-rutenett img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+  .pres-rutenett figcaption { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); padding-top: 6px; }
 </style>
 <script>
   /* Ny versjon? GitHub Pages lar nettleseren gjenbruke siden i 10 min. Sjekk versjon.txt
      uten mellomlagring og last siden paa nytt (en gang) hvis den er utdatert. */
   (function () {
-    const SIDE_VERSJON = '20261110135803';
+    const SIDE_VERSJON = '20261125152154';
     fetch('versjon.txt', { cache: 'no-store' }).then(r => r.text()).then(v => {
       v = v.trim();
       let sist = null;
@@ -256,7 +265,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261110135803"
+      src="modell.glb?v=20261125152154"
       alt="3D-modell av tekjøkken i rom C016"
       camera-controls
       touch-action="none"
@@ -314,7 +323,7 @@
         <dt>Rom</dt>
         <dd>C016 Thommessen-torget, plan 2</dd>
         <dt>M&aring;l</dt>
-        <dd class="kode">B 2436,8 &times; D 680 &times; H 2284&nbsp;mm</dd>
+        <dd class="kode">B 2438 &times; D 680 &times; H 2284&nbsp;mm</dd>
         <dt>Skap</dt>
         <dd>Vaskeskap, oppvaskmaskin, benkeskap og høyskap for integrert kjøleskap. Tre overskap med gripelist 20 mm.</dd>
         <dt>H&oslash;yde</dt>
@@ -328,7 +337,7 @@
         <dt>Skrog</dt>
         <dd>16 mm MDF, laminat Formica F7927 Folkestone (17,4 mm)</dd>
         <dt>Fronter</dt>
-        <dd>16&nbsp;mm MDF med Homapal 444N SRM b&oslash;rstet st&aring;llaminat (17,4&nbsp;mm) &ndash; ogs&aring; dekksider, toppplate, sokkel og backsplash</dd>
+        <dd>16&nbsp;mm MDF med Homapal 444N SRM b&oslash;rstet st&aring;llaminat (18&nbsp;mm) &ndash; ogs&aring; dekksider, toppplate, sokkel og backsplash</dd>
         <dt>Benkeplate</dt>
         <dd>B&oslash;rstet rustfritt st&aring;l 18&nbsp;mm, flukter med d&oslash;rfront</dd>
         <dt>Kum</dt>
@@ -355,60 +364,65 @@
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        Godkjent for produksjon 10.11.2026 – tegning REV C, skrog 16 mm MDF. Høyskapet er tilpasset Miele K 7737 D, og oppvaskmaskinen Miele G 7760 SCVi står på 12 mm underlagsplate. Hvitevarene leveres av Faginnredning. Benkeplata flukter med dørfront og har egen bestillingstegning. Hull for blandebatteri og PureWater må bekreftes av rørlegger før produksjon.</p>
+        Godkjent for produksjon 10.11.2026. REV D 25.11.2026: venstre side av høyskapet i Folkestone med egen dekkside i Homapal fra benkeplate til toppplate, overskapet mot kjøleskapet 582 bredt, backsplash 1782, Homapal-delene 18 mm. Høyskapet er tilpasset Miele K 7737 D, og oppvaskmaskinen Miele G 7760 SCVi står på 12 mm underlagsplate. Hvitevarene leveres av Faginnredning. Benkeplata flukter med dørfront og har egen bestillingstegning. Hull for blandebatteri og PureWater må bekreftes av rørlegger før produksjon.</p>
     </section>
   </aside>
 
 
 </div>
 
+
 <section class="tegninger" id="tegninger">
   <div class="teg-hode">
     <div>
       <h2>Tegninger</h2>
-      <p>REV&nbsp;C &middot; 10.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+      <p>REV&nbsp;D &middot; 25.11.2026 &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
-    <a class="lastned" href="2026-076-PLAN-2-C016-TEKJOKKEN-REV-C.pdf?v=20261110135803" download>Last ned PDF</a>
+    <a class="lastned" href="2026-076-PLAN-2-C016-TEKJOKKEN-REV-D.pdf?v=20261125152154" download>Last ned PDF</a>
   </div>
     <figure class="side">
-      <a href="sider/side-01.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261110135803" width="1300" height="1840" loading="lazy" alt="Tegning side 1 av 10"></a>
-      <figcaption>Side 1 av 10</figcaption>
+      <a href="sider/side-01.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-01.png?v=20261125152154" width="1300" height="1840" loading="lazy" alt="Tegning side 1 av 11"></a>
+      <figcaption>Side 1 av 11</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-02.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261110135803" width="1300" height="1840" loading="lazy" alt="Tegning side 2 av 10"></a>
-      <figcaption>Side 2 av 10</figcaption>
+      <a href="sider/side-02.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-02.png?v=20261125152154" width="1300" height="1840" loading="lazy" alt="Tegning side 2 av 11"></a>
+      <figcaption>Side 2 av 11</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-03.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261110135803" width="1300" height="1840" loading="lazy" alt="Tegning side 3 av 10"></a>
-      <figcaption>Side 3 av 10</figcaption>
+      <a href="sider/side-03.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-03.png?v=20261125152154" width="1300" height="1840" loading="lazy" alt="Tegning side 3 av 11"></a>
+      <figcaption>Side 3 av 11</figcaption>
     </figure>
     <figure class="side">
-      <a href="sider/side-04.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261110135803" width="1300" height="1840" loading="lazy" alt="Tegning side 4 av 10"></a>
-      <figcaption>Side 4 av 10</figcaption>
+      <a href="sider/side-04.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-04.png?v=20261125152154" width="1300" height="1840" loading="lazy" alt="Tegning side 4 av 11"></a>
+      <figcaption>Side 4 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-05.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261110135803" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 10"></a>
-      <figcaption>Side 5 av 10</figcaption>
+      <a href="sider/side-05.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-05.png?v=20261125152154" width="1819" height="1287" loading="lazy" alt="Tegning side 5 av 11"></a>
+      <figcaption>Side 5 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-06.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261110135803" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 10"></a>
-      <figcaption>Side 6 av 10</figcaption>
+      <a href="sider/side-06.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-06.png?v=20261125152154" width="1819" height="1287" loading="lazy" alt="Tegning side 6 av 11"></a>
+      <figcaption>Side 6 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-07.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261110135803" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 10"></a>
-      <figcaption>Side 7 av 10</figcaption>
+      <a href="sider/side-07.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-07.png?v=20261125152154" width="1819" height="1287" loading="lazy" alt="Tegning side 7 av 11"></a>
+      <figcaption>Side 7 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-08.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261110135803" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 10"></a>
-      <figcaption>Side 8 av 10</figcaption>
+      <a href="sider/side-08.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-08.png?v=20261125152154" width="1819" height="1287" loading="lazy" alt="Tegning side 8 av 11"></a>
+      <figcaption>Side 8 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-09.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261110135803" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 10"></a>
-      <figcaption>Side 9 av 10</figcaption>
+      <a href="sider/side-09.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-09.png?v=20261125152154" width="1819" height="1287" loading="lazy" alt="Tegning side 9 av 11"></a>
+      <figcaption>Side 9 av 11</figcaption>
     </figure>
     <figure class="side liggende">
-      <a href="sider/side-10.png?v=20261110135803" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261110135803" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 10"></a>
-      <figcaption>Side 10 av 10</figcaption>
+      <a href="sider/side-10.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-10.png?v=20261125152154" width="1819" height="1287" loading="lazy" alt="Tegning side 10 av 11"></a>
+      <figcaption>Side 10 av 11</figcaption>
+    </figure>
+    <figure class="side liggende">
+      <a href="sider/side-11.png?v=20261125152154" target="_blank" rel="noopener"><img src="sider/side-11.png?v=20261125152154" width="1819" height="1287" loading="lazy" alt="Tegning side 11 av 11"></a>
+      <figcaption>Side 11 av 11</figcaption>
     </figure>
 </section>
 
@@ -608,7 +622,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261110135803').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261125152154').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
@@ -968,16 +982,16 @@
 
 <script type="module">
   /* Bevegelig visning (sim/-mappa): dører og skuffer kan åpnes/lukkes. Mangler sim/ gjør denne ingenting. */
-  import { startSim } from '../_felles/sim3d.js?v=20261123093620';
+  import { startSim } from '../_felles/sim3d.js?v=20261125152154';
   startSim({
     stage: document.getElementById('stage'),
     mv: document.getElementById('mv'),
     hint: document.getElementById('hint'),
     verktoy: document.querySelector('.verktoy'),
     standardHint: 'Dra for å snu rundt punktet du tar tak i · rull for å zoome der musa peker · dobbeltklikk for å gå inn på et punkt',
-    versjon: '20261110135803',
+    versjon: '20261125152154',
   }).catch(() => {});
 </script>
-<script src="../_felles/sprak.js?v=20261027111627" defer></script>
+<script src="../_felles/sprak.js?v=20261124213428" defer></script>
 </body>
 </html>
