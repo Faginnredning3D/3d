@@ -256,7 +256,7 @@
 
     <model-viewer
       id="mv"
-      src="modell.glb?v=20261119200435"
+      src="modell.glb?v=20261126154216"
       alt="3D-modell av to reoler i eikefin&eacute;r med &aring;pne felt, skap og skuffer"
       camera-controls
       touch-action="none"
@@ -326,20 +326,20 @@
       <h2>Materialer</h2>
       <dl>
         <dt>Skrog, fronter og bakplater</dt>
-        <dd>MDF 19 eikefin&eacute;r m/heltre eik kantlist, 1,5&nbsp;% hvitpigmentert klar lakk glans 10 &ndash; ved st&aring;ende</dd>
+        <dd>Eik fin&eacute;r 19&nbsp;mm m/heltre eik kantlist, 1,5&nbsp;% hvitpigmentert klar lakk glans 10 &ndash; ved st&aring;ende. Eikeprofil 20/40/20</dd>
         <dt>Sokkel</dt>
-        <dd>Eikefin&eacute;r H 70, trukket 20 inn, p&aring; ramme med justerbare stillskruer</dd>
+        <dd>Sort kompaktlaminat H 80, trukket 20 inn, p&aring; ramme med justerbare stillskruer</dd>
         <dt>Skuffer</dt>
         <dd>Blum hvit m/eik list</dd>
         <dt>Beslag</dt>
-        <dd>Knott Elvin 20&nbsp;mm sort, hengsler Blum CLIP top 110&deg; &ndash; alle synlige beslag sort</dd>
+        <dd>Knott Habo Isac sort 19&nbsp;mm (art.nr 17978), hengsler Blum CLIP top 110&deg; &ndash; alle synlige beslag sort</dd>
       </dl>
     </section>
 
     <section class="blokk">
       <h2>Status</h2>
       <p class="merknad">
-        Tegning REV&nbsp;A, 19.11.2026 &ndash; til godkjenning. Reolene er ikke kontrollm&aring;lt: alle m&aring;l m&aring; m&aring;les opp f&oslash;r produksjon. Chill Out sofa er ikke med i denne leveransen. Rendering kan avvike fra originalen.
+        Tegning REV&nbsp;A, 26.11.2026 &ndash; til godkjenning. Reolene er ikke kontrollm&aring;lt: alle m&aring;l m&aring; m&aring;les opp f&oslash;r produksjon. Chill Out sofa er ikke med i denne leveransen. Rendering kan avvike fra originalen.
       </p>
     </section>
   </aside>
@@ -352,7 +352,7 @@
   <div class="teg-hode">
     <div>
       <h2>Tegninger</h2>
-      <p>REV&nbsp;A, 19.11.2026 &ndash; til godkjenning &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
+      <p>REV&nbsp;A, 26.11.2026 &ndash; til godkjenning &middot; Ordreinfo, pakkliste og produksjonstegning. Trykk p&aring; en side for full st&oslash;rrelse.</p>
     </div>
     <a class="lastned" href="2025-284-C05-Hylle-reol-REV-A.pdf?v=20261119200435" download>Last ned PDF</a>
   </div>
@@ -590,7 +590,7 @@
 
   let snapp = null;
   const CELLE = 250;
-  fetch('snap.json?v=20261119200435').then(r => r.json()).then(d => {
+  fetch('snap.json?v=20261126154216').then(r => r.json()).then(d => {
     const pkt = Int32Array.from(d.punkter);
     const rutenett = new Map();
     for (let i = 0; i < pkt.length; i += 3) {
