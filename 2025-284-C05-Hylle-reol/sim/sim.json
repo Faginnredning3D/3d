@@ -5,7 +5,7 @@
    "glb": "Reol_venstre_skapdor_1.glb",
    "type": "dor",
    "pivot": [
-    3,
+    82.5,
     440.0,
     359
    ],
@@ -18,7 +18,7 @@
    "glb": "Reol_venstre_skapdor_2.glb",
    "type": "dor",
    "pivot": [
-    935,
+    977.5,
     440.0,
     359
    ],
@@ -27,5 +27,294 @@
    "indre": false
   }
  ],
- "beslag": []
+ "beslag": [
+  {
+   "art": "BLUM_71B3590_KOPP",
+   "glb": "BLUM_71B3590_KOPP.glb",
+   "gruppe": "Reol_venstre_skapdor_1",
+   "navn": "Reol venstre skapdør 1 hengsel z202 Blum 71B3590",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    98.5,
+    201.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_ARM",
+   "glb": "BLUM_71B3590_ARM.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 1 hengsel z202 Blum 71B3590",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    98.5,
+    201.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_177H3100E",
+   "glb": "BLUM_177H3100E.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 1 montasjeplate z202 Blum 177H3100E",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    100.0,
+    201.5,
+    303.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_KOPP",
+   "glb": "BLUM_71B3590_KOPP.glb",
+   "gruppe": "Reol_venstre_skapdor_1",
+   "navn": "Reol venstre skapdør 1 hengsel z678 Blum 71B3590",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    98.5,
+    678.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_ARM",
+   "glb": "BLUM_71B3590_ARM.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 1 hengsel z678 Blum 71B3590",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    98.5,
+    678.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_177H3100E",
+   "glb": "BLUM_177H3100E.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 1 montasjeplate z678 Blum 177H3100E",
+   "matrise": [
+    -1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    100.0,
+    678.5,
+    303.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_KOPP",
+   "glb": "BLUM_71B3590_KOPP.glb",
+   "gruppe": "Reol_venstre_skapdor_2",
+   "navn": "Reol venstre skapdør 2 hengsel z202 Blum 71B3590",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    961.5,
+    201.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_ARM",
+   "glb": "BLUM_71B3590_ARM.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 2 hengsel z202 Blum 71B3590",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    961.5,
+    201.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_177H3100E",
+   "glb": "BLUM_177H3100E.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 2 montasjeplate z202 Blum 177H3100E",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    960.0,
+    201.5,
+    303.0,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_KOPP",
+   "glb": "BLUM_71B3590_KOPP.glb",
+   "gruppe": "Reol_venstre_skapdor_2",
+   "navn": "Reol venstre skapdør 2 hengsel z678 Blum 71B3590",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    961.5,
+    678.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_71B3590_ARM",
+   "glb": "BLUM_71B3590_ARM.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 2 hengsel z678 Blum 71B3590",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    961.5,
+    678.5,
+    301.7,
+    1.0
+   ]
+  },
+  {
+   "art": "BLUM_177H3100E",
+   "glb": "BLUM_177H3100E.glb",
+   "gruppe": null,
+   "navn": "Reol venstre skapdør 2 montasjeplate z678 Blum 177H3100E",
+   "matrise": [
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -1.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0,
+    960.0,
+    678.5,
+    303.0,
+    1.0
+   ]
+  }
+ ]
 }
